@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+
+    <ion-toolbar class="ion-text-center" color="light">
+  
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      </ion-buttons>
+  
+      <ion-title>Invoices</ion-title>
+        
+      <ion-buttons slot="end">
+        <ion-button (click)="goToEditInvoice()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  
+    </ion-toolbar>
+  
+  </ion-header>
+<ion-content>
+
+    <ion-card>
+           
+        <ion-row class="header">
+            <ion-col class="header factura" col-2>
+                <ion-label >Factura</ion-label>
+            </ion-col>
+            <ion-col class="header factura" col-4>
+                <ion-label >Proveedor</ion-label>
+             </ion-col>
+            <ion-col class="header factura" col-2>
+                <ion-label >Fecha</ion-label>
+            </ion-col>
+            <ion-col class="header factura" col-2>
+                <ion-label >Total</ion-label>
+            </ion-col>
+            <ion-col class="header factura" col-2>
+                <ion-label >Editar/Borrar</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let factura of facturas">
+            <ion-col class="factura" col-2>
+                <ion-label > {{factura.codigo}} </ion-label>
+            </ion-col>
+            <ion-col class="factura" col-2>
+                <ion-label > {{factura.proveedor}} </ion-label>
+            </ion-col>
+            <ion-col class="factura" col-4>
+                <ion-label > {{factura.fecha}} </ion-label>
+            </ion-col>
+            <ion-col class="factura" col-2>
+                <ion-label > {{factura.cantidad}} €</ion-label>
+            </ion-col>
+            <ion-col col-2>
+                <ion-label >
+                    <ion-buttons slot="end">
+                        <ion-button (click)="goToEditInvoice(factura.id)">
+                            <ion-icon name="pencil" ></ion-icon>
+                        </ion-button>
+                        <ion-button (click)="presentAlertConfirm(factura)">
+                            <ion-icon name="trash"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                </ion-label>
+            </ion-col>
+        </ion-row>
+    
+    </ion-card>
+
+</ion-content>

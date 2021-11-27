@@ -1,0 +1,77 @@
+<app-header titulo="Register"></app-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+    
+          <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+    
+          <!-- Contenido -->
+          <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
+    
+            <div class="espacio"></div>
+    
+            <ion-card class="ion-padding ion-text-center slide-fwd-center">
+    
+              <div class="espacio-form">Welcome</div>
+            
+              <div class="espacio"></div>
+
+              <!-- Entrada nombre -->
+              <ion-item class="form">
+                <ion-label color="light" position="floating">Nombre</ion-label>
+                <ion-input  name='nombre' 
+                            type="text"
+                            [(ngModel)]="usuario.nombre" 
+                            required>
+                </ion-input>
+              </ion-item>
+            
+              <!-- Entrada Email -->
+              <ion-item class="form">
+                <ion-label color="light" position="floating">Email</ion-label>
+                <ion-input  name='email' 
+                            type="email"
+                            [(ngModel)]="usuario.email" 
+                            required
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+              </ion-item>
+    
+              <div class="espacio-form"></div>
+            
+              <!-- Entrada Password -->
+              <ion-item class="form">
+                <ion-label color="light" position="floating">Password</ion-label>
+                <ion-input  name='password' 
+                            type="password"
+                            [(ngModel)]="usuario.password" 
+                            required></ion-input>
+              </ion-item>
+
+              <!-- Entrada Password Repetida -->
+              <ion-item class="form">
+                <ion-label color="light" position="floating">Repita password</ion-label>
+                <ion-input  name='password' 
+                            type="password"
+                            [(ngModel)]="usuario.password2" 
+                            required></ion-input>
+              </ion-item>
+            
+              <div class="espacio"></div>
+            
+              <!-- Boton Registro -->
+              <ion-button color="tertiary" fill="solid" (click)="userRegister(usuario)">Register</ion-button>
+    
+              <div class="espacio-form"></div>
+              <div class="espacio-form"></div>
+    
+            </ion-card>
+    
+          </ion-col>
+    
+          <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+    
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

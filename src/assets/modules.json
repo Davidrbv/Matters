@@ -1,0 +1,22 @@
+[
+    {
+        "name" : "Employees",
+        "redirecTo": "/employees",
+        "image" : "personal.png"
+    },
+    {
+        "name" : "Invoices",
+        "redirecTo": "/invoices",
+        "image" : "facturas.png"
+    },
+    {
+        "name" : "Sales",
+        "redirecTo": "/sales",
+        "image" : "estadisticas.png"
+    },
+    {
+        "name" : "Accounting",
+        "redirecTo": "/accounting",
+        "image" : "caja.png"
+    }
+]

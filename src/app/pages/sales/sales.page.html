@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+
+    <ion-toolbar class="ion-text-center" color="light">
+  
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      </ion-buttons>
+  
+      <ion-title>Sales</ion-title>
+        
+      <ion-buttons slot="end">
+        <ion-button (click)="goToSaleRegister()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  
+    </ion-toolbar>
+  
+  </ion-header>
+
+<ion-content>
+
+    <ion-card>
+           
+        <ion-row class="header">
+            <ion-col class="header" col-3>
+                <ion-label >Fecha</ion-label>
+            </ion-col>
+            <ion-col class="header" col-3>
+                <ion-label >Efectivo</ion-label>
+             </ion-col>
+            <ion-col class="header" col-3>
+                <ion-label >Tarjeta</ion-label>
+            </ion-col>
+            <ion-col class="header" col-3>
+                <ion-label >Total</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let sale of sales">
+            <ion-col col-3>
+                <ion-label > {{sale.fecha}} </ion-label>
+            </ion-col>
+            <ion-col col-3>
+                <ion-label > {{sale.efectivo}} €</ion-label>
+            </ion-col>
+            <ion-col col-3>
+                <ion-label > {{sale.tarjeta}} €</ion-label>
+            </ion-col>
+            <ion-col col-3>
+                <ion-label > {{sale.efectivo + sale.tarjeta}} €</ion-label>
+            </ion-col>
+        </ion-row>
+    
+    </ion-card>
+
+</ion-content>

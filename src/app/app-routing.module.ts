@@ -11,6 +11,58 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'employees',
+    loadChildren: () => import('./pages/employees/employees.module').then( m => m.EmployeesPageModule)
+  },
+  {
+    path: 'sales',
+    loadChildren: () => import('./pages/sales/sales.module').then( m => m.SalesPageModule)
+  },
+  {
+    path: 'sales/:id',
+    loadChildren: () => import('./pages/sales/sales.module').then( m => m.SalesPageModule)
+  },
+  {
+    path: 'invoices',
+    loadChildren: () => import('./pages/invoices/invoices.module').then( m => m.InvoicesPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'accounting',
+    loadChildren: () => import('./pages/accounting/accounting.module').then( m => m.AccountingPageModule)
+  },
+  {
+    path: 'employee-register',
+    loadChildren: () => import('./pages/employee-register/employee-register.module').then( m => m.EmployeeRegisterPageModule)
+  },
+  {
+    path: 'employee-register/:id',
+    loadChildren: () => import('./pages/employee-register/employee-register.module').then( m => m.EmployeeRegisterPageModule)
+  },
+  {
+    path: 'edit-invoice',
+    loadChildren: () => import('./pages/edit-invoice/edit-invoice.module').then( m => m.EditInvoicePageModule)
+  },
+  {
+    path: 'edit-invoice/:id',
+    loadChildren: () => import('./pages/edit-invoice/edit-invoice.module').then( m => m.EditInvoicePageModule)
+  },
+  {
+    path: 'sales-register',
+    loadChildren: () => import('./pages/sales-register/sales-register.module').then( m => m.SalesRegisterPageModule)
+  },
+  {
+    path: 'sales-register/:id',
+    loadChildren: () => import('./pages/sales-register/sales-register.module').then( m => m.SalesRegisterPageModule)
+  },
 ];
 
 @NgModule({

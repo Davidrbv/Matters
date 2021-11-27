@@ -1,0 +1,85 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar class="ion-text-center" color="light">
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Edit invoices</ion-title>
+      
+    <ion-buttons slot="end">
+      <ion-button >
+        <ion-icon slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="espacio"></div>
+
+  <ion-card>
+    
+    <form #formulario='ngForm'>
+
+      <ion-list>
+
+        <ion-item>
+          <ion-label  position="floating">Código Factura</ion-label>
+          <ion-input  name='codigo' 
+                      type="text" 
+                      [(ngModel)]="factura.codigo" 
+                      required>
+
+          </ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label position="floating">Fecha</ion-label>
+          <ion-input  name='fecha' 
+                      type="date" 
+                      [(ngModel)]="factura.fecha" 
+                      required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Cantidad</ion-label>
+          <ion-input  name='cantidad' 
+                      type="number" 
+                      [(ngModel)]="factura.cantidad" 
+                      required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Proveedor</ion-label>
+          <ion-input  name='proveedor' 
+                      type="text" 
+                      [(ngModel)]="factura.proveedor" 
+                      required>
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+
+    </form>
+
+  </ion-card>
+
+  <div class="espaciobtn"></div>
+
+    <ion-button class="btnsave" (click)="saveInvoice()" color="success" shape="round">
+      Save
+    </ion-button>
+    <ion-button class="btncancel" (click)="goInvoices()" color="danger" shape="round">
+      Cancel
+    </ion-button>
+
+
+</ion-content>

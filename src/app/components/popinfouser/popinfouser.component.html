@@ -1,0 +1,5 @@
+<ion-list lines="none">
+  <ion-item *ngFor="let item of opciones" (click)="redirecTo(item)">
+    <ion-label>{{item | uppercase}}</ion-label>
+  </ion-item>
+</ion-list>

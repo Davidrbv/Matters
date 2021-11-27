@@ -1,0 +1,58 @@
+<ion-header translucent>
+
+    <ion-toolbar color="light">
+  
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+  
+      <ion-title class="ion-no-border" class="ion-text-center">NombreUsuario</ion-title>
+      
+      <ion-buttons slot="end">
+        <ion-button (click)="presentPopover( $event )" expand="block" shape="round">
+          <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+
+      <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
+
+          <!-- Foto Usuario -->
+          <ion-avatar class="avatar tilt-in-top-1">
+            <img src="../../../assets/iconsDashboard/tio.jpg" alt="User Image"/>
+          </ion-avatar>
+
+          <div class="espacio"></div>
+   
+      </ion-col>
+
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col *ngFor="let modulo of modulos | async" size="6">
+
+        <ion-card class="modulos ion-text-center tilt-in-top-1" [routerLink]="modulo.redirecTo">
+          <ion-card-header class="ion-text-center">
+            <ion-card-title> {{modulo.name}} </ion-card-title>
+          </ion-card-header>
+          <img class="ion-text-center" [src]="'../../../assets/iconsDashboard/'+ modulo.image" alt="Logo modulo">
+        </ion-card>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

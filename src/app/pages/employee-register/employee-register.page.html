@@ -1,0 +1,79 @@
+<app-header titulo="Registro Empleados"></app-header>
+
+<ion-content>
+
+  <ion-card>
+    
+    <form #formulario='ngForm'>
+
+      <ion-list>
+
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input  name='nombre' 
+                      type="text" 
+                      placeholder="Escriba aquí.." 
+                      [(ngModel)]="empleado.nombre" 
+                      required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input  name='email' 
+                      type="email" 
+                      placeholder="Escriba aquí.." 
+                      [(ngModel)]="empleado.email" 
+                      required
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Puesto</ion-label>
+          <ion-input  name='puesto' 
+                      type="text" 
+                      placeholder="Escriba aquí.." 
+                      [(ngModel)]="empleado.puesto" 
+                      required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Salario</ion-label>
+          <ion-input  name='salario' 
+                      type="number" 
+                      placeholder="Escriba aquí.." 
+                      [(ngModel)]="empleado.salario" 
+                      required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Telefono</ion-label>
+          <ion-input  name='telefono' 
+                      type="number" 
+                      placeholder="Escriba aquí.." 
+                      [(ngModel)]="empleado.telefono" 
+                      required>
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+
+    </form>
+
+  </ion-card>
+
+  <ion-button (click)="saveEmployee()" color="success" shape="round">
+    Save
+  </ion-button>
+  <ion-button (click)="goEmployees()" color="danger" shape="round">
+    Cancel
+  </ion-button>
+  <ion-button (click)="presentAlertConfirm(empleado)" color="warning" shape="round">
+    Delete
+  </ion-button>
+
+</ion-content>
