@@ -34,7 +34,7 @@ export class InvoiceService{
   }
 
   async saveInvoice(factura: Invoice): Promise<Boolean>{
-
+    
     if(factura.id == undefined){
       //Si no tiene id lo creo nuevo, en caso contrario, machacamos el que había.
       factura.id = this.facturaCounter++;
@@ -52,19 +52,16 @@ export class InvoiceService{
   /* Eliminamos empleado grabando un array nuevo sin el empleado borrado */
 
   async deleteInvoice(id: number): Promise<Boolean>{
-    //Sustituimos el array por el que devuelve filter sin la tarea con el id que queremos eliminar
     this.facturas = this.facturas.filter(t => t.id !== id);
-    //Grabamos el array al borrar para modificarlo en el storage
     return await this.saveInvoiceInToStorage();
   }
 
   /* Grabamos empleado en storage */
 
   async saveInvoiceInToStorage(): Promise<Boolean>{
-    //Espera a que este grabada la informacion para devolver la promesa booleano. 
     await Storage.set({
       key: 'factura',
-      value: JSON.stringify(this.facturas), //Pasamos el array a objeto json
+      value: JSON.stringify(this.facturas),
     });
     return true;
   }
@@ -84,17 +81,16 @@ export class InvoiceService{
 
   async getInvoiceFromStorage(): Promise<Invoice[]>{
     const retorno = await Storage.get({ key: 'factura' });
-    //Usamos Jsonparse para pasar el objeto a texto json
+
     return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
   }
 
   /* Obtener el contador de facturas del disco */
+  
   async getInvoiceCounterFromStorage(): Promise<number>{
-    //Storage devuelve un tipo de objeto llamado getResult que hay que parsear.
-    //Almacenamos en value la informacion asociada a la clave taskCounter
+
     const tc = await Storage.get({ key: 'facturaCounter' });
-    //En este caso no necesitamos JsonParse porque es un dato simple. Con el + lo conviertes en número
-    //Parseamos value con + para que sea entero. También podría hacerse con parseInt()
+
     return Number.isInteger(+tc.value) ? + tc.value : 0;
   }
 }

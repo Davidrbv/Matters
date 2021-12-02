@@ -32,8 +32,7 @@ export class EmployeeRegisterPage implements OnInit {
     if(id != null){
       //Metemos un + en el id para convertirlo en Int, ya que nos llega como string
       this.dataService.getEmployee(+id).subscribe(
-        data => {this.empleado = data;
-          console.log(data);}
+        data => {this.empleado = data}
       );
     }
   }
@@ -60,14 +59,14 @@ export class EmployeeRegisterPage implements OnInit {
         role: 'cancel',
         cssClass: 'secondary',
         handler: () => {
-          console.log('Eliminación cancelada.');        
+          console.log('Eliminación cancelada..');        
         }
       },
         {
           text: 'Ok',
           handler: () => {
             this.dataService.deleteEmployee(empleado.id);
-            console.log("Empleado eliminado");
+            console.log("Eliminando empleado...");
             this.router.navigateByUrl('/employees');
             
           }

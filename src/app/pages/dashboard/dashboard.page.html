@@ -17,41 +17,20 @@
     
 </ion-header>
 
-<ion-content>
+<ion-content mode="md">
 
-  <ion-grid>
+  <ion-grid fixed>
     <ion-row>
-
-      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
-
-      <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
-
-          <!-- Foto Usuario -->
-          <ion-avatar class="avatar tilt-in-top-1">
-            <img src="../../../assets/iconsDashboard/tio.jpg" alt="User Image"/>
-          </ion-avatar>
-
-          <div class="espacio"></div>
-   
-      </ion-col>
-
-      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
-
+      <ion-col size="6"></ion-col>
+      <ion-col size="6"></ion-col>
     </ion-row>
-
     <ion-row>
-
-      <ion-col *ngFor="let modulo of modulos | async" size="6">
-
-        <ion-card class="modulos ion-text-center tilt-in-top-1" [routerLink]="modulo.redirecTo">
-          <ion-card-header class="ion-text-center">
-            <ion-card-title> {{modulo.name}} </ion-card-title>
-          </ion-card-header>
-          <img class="ion-text-center" [src]="'../../../assets/iconsDashboard/'+ modulo.image" alt="Logo modulo">
-        </ion-card>
-
-      </ion-col>
-
+      <ion-col size="6"></ion-col>
+      <ion-col size="6"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6"></ion-col>
+      <ion-col size="6"></ion-col>
     </ion-row>
   </ion-grid>
   

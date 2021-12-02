@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Invoice } from 'src/app/model/invoice';
@@ -13,14 +13,13 @@ export class InvoicesPage implements OnInit {
 
   facturas : Invoice [] = [];
 
-  constructor(private invoiceService: InvoiceService,
+  constructor(public invoiceService: InvoiceService,
               private router: Router,
               private alertController: AlertController) { }
 
   ngOnInit() {
 
     this.getInvoices();
-    
   }
 
   getInvoices(){

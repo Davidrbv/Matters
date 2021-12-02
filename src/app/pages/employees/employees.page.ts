@@ -12,7 +12,7 @@ export class EmployeesPage implements OnInit {
 
   employees: Employee[] = [];
 
-  constructor(private dataService: DataService,
+  constructor(public dataService: DataService,
               private router:Router) { }
 
   ngOnInit() {

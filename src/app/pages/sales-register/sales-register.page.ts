@@ -19,6 +19,7 @@ export class SalesRegisterPage implements OnInit {
     tarjeta: undefined,
     total: undefined
   }
+
   constructor(private saleService: SaleService,
       private router: Router,
       private activatedRoute: ActivatedRoute) { }
@@ -37,7 +38,6 @@ export class SalesRegisterPage implements OnInit {
   }
 
   saveSale(){
-    console.log(this.sale);
     this.saleService.saveSale(this.sale);
     this.router.navigateByUrl('/sales');
   }

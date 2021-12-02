@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Sale } from 'src/app/model/sale';
 import { SaleService } from 'src/app/services/sale.service';
@@ -12,8 +12,9 @@ export class SalesPage implements OnInit {
 
   sales : Sale [] = [];
 
-  constructor(private saleService: SaleService,
+  constructor(public saleService: SaleService,
               private router: Router) { }
+
 
   ngOnInit() {
     this.getSales();

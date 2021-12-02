@@ -59,7 +59,7 @@ export class UserService{
 
   async saveUserInToStorage(): Promise<Boolean>{
     await Storage.set({
-      key: 'usuarios',
+      key: 'usuario',
       value: JSON.stringify(this.usuarios),
     });
     return true;

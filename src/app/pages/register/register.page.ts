@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,10 +21,11 @@ export class RegisterPage implements OnInit {
 
   usuarios : User [] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private router: Router) {}
 
   ngOnInit() {
-
+    this.getUsers();
   }
 
   getUsers(){
@@ -33,18 +35,20 @@ export class RegisterPage implements OnInit {
   }
 
   compruebaUsuario(usuario: User): Boolean{
-    const usuarios = new Set(this.usuarios);
-    return usuarios.has(usuario);
+    let repetido = this.usuarios.filter(user => { 
+      return (user.nombre === usuario.nombre || user.email === usuario.email)
+    });
+    return !(repetido.length < 1);
   }
 
-  userRegister(usuario){
+  userRegister(usuario: User){
     this.getUsers();
     if(this.compruebaUsuario(usuario)){
       console.log('Usuario repetido');      
     }else{
-      console.log('No repetido');
-      
+      console.log('No repetido');     
       this.userService.saveUser(usuario);
+      this.router.navigateByUrl('/home');
     }
   }
 }

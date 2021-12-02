@@ -1,10 +1,10 @@
 <ion-header>
     <ion-toolbar color="light">
-        <ion-title class="ion-text-center">User Login</ion-title>
+        <ion-title class="ion-text-center">Matters</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>    
+<ion-content mode="md">    
 
     <ion-grid>
         <ion-row>
@@ -14,16 +14,11 @@
           <!-- Contenido -->
           <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
     
-            <div class="espacio"></div>
-    
             <ion-card class="ion-padding ion-text-center rotate-vert-center">
     
-              <div class="espacio-form"></div>
-    
               <!-- Logo -->
-              <img src="../../assets/icon/favicon.png" alt="Logo">
+              <img src="../../assets/resources/matters.png" alt="LogoMatters">
             
-              <div class="espacio"></div>
             
               <!-- Entrada Email -->
               <ion-item class="form">
@@ -49,12 +44,11 @@
               <div class="espacio"></div>
             
               <!-- Boton Registro -->
-              <ion-button color="tertiary" fill="outline" (click)="goToRegister()">Register</ion-button>
+              <ion-button color="light" fill="outline" (click)="goToRegister()">Register</ion-button>
             
               <!-- Boton Login -->
-              <ion-button color="tertiary" (click)="goToDashboard()">Login</ion-button>
+              <ion-button color="light" (click)="login()">Login</ion-button>
     
-              <div class="espacio-form"></div>
               <div class="espacio-form"></div>
     
             </ion-card>

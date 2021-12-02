@@ -39,8 +39,7 @@ export class EditInvoicePage implements OnInit {
 
   saveInvoice(){
     console.log(this.factura);
-    this.invoiceService.saveInvoice(this.factura);
-    this.router.navigateByUrl('/invoices');
+    this.invoiceService.saveInvoice(this.factura).then(() => this.router.navigateByUrl('/invoices'));
   }
 
   goInvoices(){

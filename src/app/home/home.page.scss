@@ -38,20 +38,20 @@
 
 
 ion-card {
+  position: relative;
+  margin-top: 55px;
   -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
   -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
   box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
 }
 
+
+
 img {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .espacio {
   min-height: 5vh;
-}
-
-.espacio-form {
-  min-height: 22px;
 }

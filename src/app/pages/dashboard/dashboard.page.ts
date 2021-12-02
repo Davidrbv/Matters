@@ -11,14 +11,11 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
   modulos: Observable<Module[]>;
 
-  constructor( private popOverController: PopoverController,
-               private dataService: DataService ) { }
+  constructor(private popOverController: PopoverController, private dataService: DataService) {}
 
   ngOnInit() {
-    this.modulos = this.dataService.getModules();
   }
 
   async presentPopover(event: any) {
@@ -27,15 +24,13 @@ export class DashboardPage implements OnInit {
       cssClass: 'my-custom-class',
       event,
       mode: 'ios',
-      backdropDismiss: true, //Esto es para que el popover no se cierre si no se interactua con el.
-      translucent: true
+      backdropDismiss: true,
+      translucent: true,
     });
     await popover.present();
 
     const { data } = await popover.onWillDismiss();
 
-    console.log('Padre: ',data);
-
+    console.log('Padre: ', data);
   }
-
 }

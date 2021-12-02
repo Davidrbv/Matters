@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class PopinfouserComponent implements OnInit {
 
-  opciones = ['accounting','dashboard','employees','invoices','sales'];
+  opciones = ['employees','invoices','sales','accounting'];
 
   constructor(private router: Router) { }
 

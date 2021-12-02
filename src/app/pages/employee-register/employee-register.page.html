@@ -12,7 +12,7 @@
           <ion-label position="floating">Nombre</ion-label>
           <ion-input  name='nombre' 
                       type="text" 
-                      placeholder="Escriba aquí.." 
+                      placeholder="Introduzca nombre.." 
                       [(ngModel)]="empleado.nombre" 
                       required>
           </ion-input>
@@ -22,7 +22,7 @@
           <ion-label position="floating">Email</ion-label>
           <ion-input  name='email' 
                       type="email" 
-                      placeholder="Escriba aquí.." 
+                      placeholder="Introduzca email.." 
                       [(ngModel)]="empleado.email" 
                       required
                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
@@ -30,21 +30,12 @@
           </ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Puesto</ion-label>
-          <ion-input  name='puesto' 
-                      type="text" 
-                      placeholder="Escriba aquí.." 
-                      [(ngModel)]="empleado.puesto" 
-                      required>
-          </ion-input>
-        </ion-item>
 
         <ion-item>
           <ion-label position="floating">Salario</ion-label>
           <ion-input  name='salario' 
                       type="number" 
-                      placeholder="Escriba aquí.." 
+                      placeholder="Salario del empleado.." 
                       [(ngModel)]="empleado.salario" 
                       required>
           </ion-input>
@@ -54,11 +45,21 @@
           <ion-label position="floating">Telefono</ion-label>
           <ion-input  name='telefono' 
                       type="number" 
-                      placeholder="Escriba aquí.." 
+                      placeholder="Telefono.." 
                       [(ngModel)]="empleado.telefono" 
                       required>
           </ion-input>
         </ion-item>
+
+
+        <ion-item required>
+          <ion-label>Puesto</ion-label>
+          <ion-select [(ngModel)]="empleado.puesto" [ngModelOptions]="{standalone: true}" okText="Ok" cancelText="Cancel">
+            <ion-select-option value="cocinero">Cocinero</ion-select-option>
+            <ion-select-option value="camarero">Camarero</ion-select-option>
+          </ion-select>
+        </ion-item>
+
 
       </ion-list>
 

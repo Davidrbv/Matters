@@ -1,9 +1,9 @@
 <ion-header [translucent]="true">
 
-  <ion-toolbar class="ion-text-center" color="light">
+  <ion-toolbar class="ion-text-center" color="tertiary">
 
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      <ion-back-button defaultHref="/invoices"></ion-back-button>
     </ion-buttons>
 
     <ion-title>Edit invoices</ion-title>
@@ -21,6 +21,7 @@
 <ion-content>
 
   <div class="espacio"></div>
+
 
   <ion-card>
     
@@ -41,11 +42,14 @@
 
         <ion-item>
           <ion-label position="floating">Fecha</ion-label>
-          <ion-input  name='fecha' 
-                      type="date" 
-                      [(ngModel)]="factura.fecha" 
-                      required>
-          </ion-input>
+          <ion-datetime placeholder="Nacimiento" 
+                        value="{{factura.fecha| date: 'yyyy-MM-dd'}}"
+                        display-format="YYYY MMMM DD"
+                        cancelText="Cancel"
+                        [(ngModel)]="factura.fecha"
+                        required="true"
+                        [ngModelOptions]="{standalone: true}">
+          </ion-datetime> 
         </ion-item>
 
         <ion-item>
@@ -66,20 +70,29 @@
           </ion-input>
         </ion-item>
 
+        
+
       </ion-list>
 
     </form>
+
+    <ion-item>
+      <ion-label>Estado factura</ion-label>
+      <ion-toggle [(ngModel)]="factura.estado" color="success"></ion-toggle>
+    </ion-item>
 
   </ion-card>
 
   <div class="espaciobtn"></div>
 
-    <ion-button class="btnsave" (click)="saveInvoice()" color="success" shape="round">
-      Save
-    </ion-button>
-    <ion-button class="btncancel" (click)="goInvoices()" color="danger" shape="round">
-      Cancel
-    </ion-button>
+    <div class="botones">
+      <ion-button class="btnsave" (click)="saveInvoice()" color="success" shape="round">
+        Save
+      </ion-button>
+      <ion-button class="btncancel" (click)="goInvoices()" color="danger" shape="round">
+        Cancel
+      </ion-button>
+    </div>
 
 
 </ion-content>
