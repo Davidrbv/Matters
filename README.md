@@ -2,7 +2,7 @@
 <br />
 <p align="center">
 
-  <img src="media/matters.png" alt="Logo" width="200" height="200">
+  <img src="media/matters.png" alt="Logo" width="200" height="250">
 
   <h3 align="center">Matters</h3>
   
@@ -46,10 +46,10 @@ persistencia de datos.
 </a>
 
 ## Mockup App
-<img src="media/home.png" alt="Logo" width="600" height="600">
-<img src="media/popover.png" alt="Logo" width="600" height="600">
-<img src="media/registroMock.png" alt="Logo" width="600" height="600">
-<img src="media/empleadosMock.png" alt="Logo" width="600" height="600">
-<img src="media/registroVentas.png" alt="Logo" width="600" height="600">
-<img src="media/ajustesUsuario.png" alt="Logo" width="600" height="600">
+<img src="media/home.png" alt="Logo" width="300" height="300">
+<img src="media/popover.png" alt="Logo" width="300" height="300">
+<img src="media/registroMock.png" alt="Logo" width="300" height="300">
+<img src="media/empleadosMock.png" alt="Logo" width="300" height="300">
+<img src="media/registroVentas.png" alt="Logo" width="300" height="300">
+<img src="media/ajustesUsuario.png" alt="Logo" width="300" height="300">
 
