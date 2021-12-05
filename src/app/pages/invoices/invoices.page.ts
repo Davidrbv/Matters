@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Observable, of } from 'rxjs';
 import { Invoice } from 'src/app/model/invoice';
 import { InvoiceService } from 'src/app/services/invoice.service';
 
@@ -9,23 +10,24 @@ import { InvoiceService } from 'src/app/services/invoice.service';
   templateUrl: './invoices.page.html',
   styleUrls: ['./invoices.page.scss'],
 })
-export class InvoicesPage implements OnInit {
+export class InvoicesPage implements OnInit{
 
   facturas : Invoice [] = [];
+  hayFactura : Boolean;
 
   constructor(public invoiceService: InvoiceService,
               private router: Router,
               private alertController: AlertController) { }
 
-  ngOnInit() {
 
-    this.getInvoices();
+  ngOnInit() {
+    
   }
 
   getInvoices(){
-    return this.invoiceService.getInvoiceFromStorage().then(data => {
+    this.invoiceService.getInvoices().subscribe(data => {
       this.facturas = data;
-    });
+    })
   }
 
   goToEditInvoice(id? : number){
@@ -34,6 +36,10 @@ export class InvoicesPage implements OnInit {
 
   deleteInvoice(id: number){
     this.invoiceService.deleteInvoice(id);
+  }
+
+  async haveInvoices(){
+    return ((await this.invoiceService.getInvoiceFromStorage()).length > 0);
   }
 
   async presentAlertConfirm(factura : Invoice){

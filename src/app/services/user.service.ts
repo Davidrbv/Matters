@@ -2,6 +2,8 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User } from '../model/user';
 import { Storage } from '@capacitor/storage';
+import { HttpClient } from '@angular/common/http';
+import { Module } from 'src/app/interfaces/module';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class UserService{
 
   usuarioCounter: number = 0;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     
     /* Cargamos informacion usuario */
     
@@ -28,12 +30,22 @@ export class UserService{
     
   }
 
+  /* Modulos que ha adquirido el cliente */
+  getModules(): Observable<Module[]>{
+    return this.http.get<Module[]>('../assets/modules.json');
+  }
+
+  /* Recogemos empleados */
   getUsers(): Observable <User[]> {    
     return of(this.usuarios);
   }
 
-  /* Guardar usuario */
+  /* Recogemos usuario */
+  getUser(id: number): Observable<User>{
+    return of({...this.usuarios.filter(t => t.id === id)[0]});
+  }
 
+  /* Guardar usuario */
   async saveUser(user: User): Promise<Boolean>{
 
     if(user.id == undefined){
@@ -48,15 +60,13 @@ export class UserService{
     return true;  
   }
 
-  /* Eliminar usuario de array*/
-
+  /* Elimina usuario de array y graba en Storage*/
   async deleteUser(id: number): Promise<Boolean>{
     this.usuarios = this.usuarios.filter(t => t.id !== id);
     return await this.saveUserInToStorage();
   }
 
   /* Guardar usuario en storage*/
-
   async saveUserInToStorage(): Promise<Boolean>{
     await Storage.set({
       key: 'usuario',
@@ -65,8 +75,7 @@ export class UserService{
     return true;
   }
 
-  /* Guardar id usuario en Storage */
-
+  /* Guarda id usuario en Storage */
   async saveUserCounterInToStorage(): Promise<Boolean>{
     await Storage.set({
       key: 'usuarioCounter',
@@ -76,15 +85,13 @@ export class UserService{
   }
 
 
-  /* Obtener usuarios de Storage */
-
+  /* Obtiene usuarios de Storage */
   async getUserFromStorage(): Promise<User[]>{
     const retorno = await Storage.get({ key: 'usuario' });
     return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
   }
 
-  /* Obtener contador de usuario de Storage */
-
+  /* Obtiene contador de usuario de Storage */
   async getUserCounterFromStorage(): Promise<number>{
     const tc = await Storage.get({ key: 'usuarioCounter' });
     return Number.isInteger(+tc.value) ? + tc.value : 0;

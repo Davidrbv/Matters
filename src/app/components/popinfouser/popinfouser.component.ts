@@ -7,15 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./popinfouser.component.scss'],
 })
 export class PopinfouserComponent implements OnInit {
+  opciones = ['employees', 'invoices', 'sales', 'accounting'];
 
-  opciones = ['employees','invoices','sales','accounting'];
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
-  redirecTo(item){
+  redirecTo(item) {
     this.router.navigateByUrl('/' + item);
   }
-
 }

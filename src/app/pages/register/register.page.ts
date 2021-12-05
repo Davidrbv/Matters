@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -22,7 +23,8 @@ export class RegisterPage implements OnInit {
   usuarios : User [] = [];
 
   constructor(private userService: UserService,
-              private router: Router) {}
+              private router: Router,
+              private toastController: ToastController) {}
 
   ngOnInit() {
     this.getUsers();
@@ -35,6 +37,7 @@ export class RegisterPage implements OnInit {
   }
 
   compruebaUsuario(usuario: User): Boolean{
+    if(usuario.email === '' || usuario.nombre === '' || usuario.password !== usuario.password2) return true;
     let repetido = this.usuarios.filter(user => { 
       return (user.nombre === usuario.nombre || user.email === usuario.email)
     });
@@ -44,11 +47,23 @@ export class RegisterPage implements OnInit {
   userRegister(usuario: User){
     this.getUsers();
     if(this.compruebaUsuario(usuario)){
-      console.log('Usuario repetido');      
+      if(usuario.password !== usuario.password2){
+        this.presentToast('Constraseñas no validas...');
+      }else this.presentToast('Usuario ya registrado...');     
     }else{
-      console.log('No repetido');     
       this.userService.saveUser(usuario);
       this.router.navigateByUrl('/home');
     }
+  }
+
+  async presentToast(message?: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'bottom',
+      animated: true,
+      color: 'dark'
+    });
+    toast.present();
   }
 }

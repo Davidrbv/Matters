@@ -1,19 +1,19 @@
 ion-card {
-    -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
-    -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
-    box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
-  }
-
-ion-row{
-    border-bottom: groove;
+  -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
 }
 
-ion-row:nth-child(2n){
-    background-color:rgb(229, 253, 94);
+ion-row {
+  border-bottom: groove;
 }
 
-.header{
-    background-color:  red;
-    font-weight: bold;
-    color:white;
+ion-row:nth-child(2n) {
+  background-color: rgb(229, 253, 94);
+}
+
+.header {
+  background-color: red;
+  font-weight: bold;
+  color: white;
 }

@@ -3,7 +3,7 @@
     <ion-toolbar class="ion-text-center" color="light">
   
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/dashboard"></ion-back-button>
+        <ion-back-button text="" defaultHref="/dashboard"></ion-back-button>
       </ion-buttons>
   
       <ion-title>Sales</ion-title>
@@ -38,7 +38,7 @@
         </ion-row>
         <ion-row *ngFor="let sale of saleService.getSales() | async" (click)="goToSaleRegister(sale.id)">
             <ion-col col-3>
-                <ion-label > {{sale.fecha}} </ion-label>
+                <ion-label > {{sale.fecha | date: 'dd/MM/yy'}} </ion-label>
             </ion-col>
             <ion-col col-3>
                 <ion-label > {{' '+ sale.efectivo | currency : 'EUR' : 'symbol' : '1.2-2'}}</ion-label>
@@ -47,7 +47,7 @@
                 <ion-label > {{' '+ sale.tarjeta | currency : 'EUR' : 'symbol' : '1.2-2'}}</ion-label>
             </ion-col>
             <ion-col col-3>
-                <ion-label > {{' '+ sale.efectivo + sale.tarjeta | currency : 'EUR' : 'symbol' : '1.2-2'}}</ion-label>
+                <ion-label > {{' '+ sale.total | currency : 'EUR' : 'symbol' : '1.2-2'}}</ion-label>
             </ion-col>
         </ion-row>
     

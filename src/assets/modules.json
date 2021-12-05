@@ -2,7 +2,7 @@
     {
         "name" : "Employees",
         "redirecTo": "/employees",
-        "image" : "personal.png"
+        "image" : "empleados.png"
     },
     {
         "name" : "Invoices",
@@ -12,11 +12,11 @@
     {
         "name" : "Sales",
         "redirecTo": "/sales",
-        "image" : "estadisticas.png"
+        "image" : "contabilidad.png"
     },
     {
         "name" : "Accounting",
         "redirecTo": "/accounting",
-        "image" : "caja.png"
+        "image" : "ventas.png"
     }
 ]

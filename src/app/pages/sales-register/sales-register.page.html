@@ -1,70 +1,47 @@
 <ion-header [translucent]="true">
-
-  <ion-toolbar class="ion-text-center" color="tertiary">
-
+  <ion-toolbar class="ion-text-center" color="light">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/sales"></ion-back-button>
+      <ion-back-button text="" defaultHref="/sales"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Sales register</ion-title>
-      
+    <ion-title> {{sale.fecha | date: 'dd / MM / yy'}} </ion-title>
+
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
+  <div class="espacio"></div>
+  <ion-card>
+    <form #formulario="ngForm">
+      <img src="../../../assets/resources/venta.png" alt="" />
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating"></ion-label>
+          <ion-input name="fecha" type="date" [(ngModel)]="sale.fecha"> </ion-input>
+        </ion-item>
 
-<ion-card>
+        <ion-item>
+          <ion-label position="floating">Efectivo</ion-label>
+          <ion-input name="efectivo" type="number" min="0" [(ngModel)]="sale.efectivo"> </ion-input>
+        </ion-item>
 
-  <form #formulario='ngForm'>
-
-    <ion-list>
-
-      <ion-item>
-        <ion-label position="floating">Fecha</ion-label>
-        <ion-input  name='fecha' 
-                    type="date"
-                    [(ngModel)]="sale.fecha" 
-                    required>
-        </ion-input>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label position="floating">Efectivo</ion-label>
-        <ion-input  name='efectivo' 
-                    type="number"
-                    [(ngModel)]="sale.efectivo" 
-                    required>
-        </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Tarjeta</ion-label>
-        <ion-input  name='tarjeta' 
-                    type="number"
-                    [(ngModel)]="sale.tarjeta" 
-                    required>
-        </ion-input>
-      </ion-item>
-
-    </ion-list>
-
-  </form>
-
-</ion-card>
-
-<ion-button (click)="saveSale()" color="success" shape="round">
-  Save
-</ion-button>
-<ion-button (click)="goSales()" color="danger" shape="round">
-  Cancel
-</ion-button>
-
+        <ion-item>
+          <ion-label position="floating">Tarjeta</ion-label>
+          <ion-input name="tarjeta" type="number" min="0" [(ngModel)]="sale.tarjeta"> </ion-input>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-card>
+  <div class="botones">
+    <ion-button (click)="saveSale()" color="success" shape="round"> Save </ion-button>
+    <ion-button (click)="goSales()" color="light" shape="round"> Cancel </ion-button>
+    <ion-button *ngIf="sale.id !== undefined" (click)="presentAlertConfirm(sale)" color="warning" shape="round">
+      Delete
+    </ion-button>
+  </div>
 </ion-content>

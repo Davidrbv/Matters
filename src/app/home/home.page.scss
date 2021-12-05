@@ -1,6 +1,6 @@
 .rotate-vert-center {
-	-webkit-animation: rotate-vert-center 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-	        animation: rotate-vert-center 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+  -webkit-animation: rotate-vert-center 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  animation: rotate-vert-center 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 
 /* ----------------------------------------------
@@ -15,37 +15,34 @@
  * animation rotate-vert-center
  * ----------------------------------------
  */
- @-webkit-keyframes rotate-vert-center {
+@-webkit-keyframes rotate-vert-center {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
   }
   100% {
     -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
+    transform: rotateY(360deg);
   }
 }
 @keyframes rotate-vert-center {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
   }
   100% {
     -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
+    transform: rotateY(360deg);
   }
 }
-
 
 ion-card {
   position: relative;
   margin-top: 55px;
-  -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
-  -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
-  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.250);
+  -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
 }
-
-
 
 img {
   max-width: 150px;

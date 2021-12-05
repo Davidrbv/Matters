@@ -1,63 +1,52 @@
 <ion-header>
-    <ion-toolbar color="light">
-        <ion-title class="ion-text-center">Matters</ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">Matters</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content mode="md">    
+<ion-content mode="md">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
 
-    <ion-grid>
-        <ion-row>
-    
-          <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
-    
-          <!-- Contenido -->
-          <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
-    
-            <ion-card class="ion-padding ion-text-center rotate-vert-center">
-    
-              <!-- Logo -->
-              <img src="../../assets/resources/matters.png" alt="LogoMatters">
-            
-            
-              <!-- Entrada Email -->
-              <ion-item class="form">
-                <ion-label color="dark" position="floating">Email</ion-label>
-                <ion-input  name='email' 
-                            type="email"
-                            [(ngModel)]="usuario.email" 
-                            required
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
-              </ion-item>
-    
-              <div class="espacio-form"></div>
-            
-              <!-- Entrada Password -->
-              <ion-item class="form">
-                <ion-label color="dark" position="floating">Password</ion-label>
-                <ion-input  name='password' 
-                            type="password"
-                            [(ngModel)]="usuario.password" 
-                            required></ion-input>
-              </ion-item>
-            
-              <div class="espacio"></div>
-            
-              <!-- Boton Registro -->
-              <ion-button color="light" fill="outline" (click)="goToRegister()">Register</ion-button>
-            
-              <!-- Boton Login -->
-              <ion-button color="light" (click)="login()">Login</ion-button>
-    
-              <div class="espacio-form"></div>
-    
-            </ion-card>
-    
-          </ion-col>
-    
-          <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
-    
-        </ion-row>
-    </ion-grid>
+      <!-- Contenido -->
+      <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
+        <ion-card class="ion-padding ion-text-center rotate-vert-center">
+          <!-- Logo -->
+          <img src="../../assets/resources/matters.png" alt="LogoMatters" />
 
+          <!-- Entrada Email -->
+          <ion-item class="form">
+            <ion-label color="dark" position="floating">Email</ion-label>
+            <ion-input
+              name="email"
+              type="email"
+              [(ngModel)]="usuario.email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            ></ion-input>
+          </ion-item>
+
+          <div class="espacio-form"></div>
+
+          <!-- Entrada Password -->
+          <ion-item class="form">
+            <ion-label color="dark" position="floating">Password</ion-label>
+            <ion-input name="password" type="password" [(ngModel)]="usuario.password"></ion-input>
+          </ion-item>
+
+          <div class="espacio"></div>
+
+          <!-- Boton Registro -->
+          <ion-button color="light" fill="outline" (click)="goToRegister()">Register</ion-button>
+
+          <!-- Boton Login -->
+          <ion-button color="light" (click)="login()">Login</ion-button>
+
+          <div class="espacio-form"></div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

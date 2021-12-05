@@ -37,23 +37,26 @@
   }
   
 ion-card{
-    background-color: rgb(115, 252, 145);
-}  
-
-ion-avatar{
-    position: relative;
-    margin: auto;
-    margin-bottom: 9px;
+  margin: 0;
+  max-height: fit-content;
+  font-weight: bold;
+  background-color: rgb(255, 207, 153);
+  color: black;
 }
 
-h2{
-  font-weight: bold ;
-}
-
-ion-tabs{
-  position: sticky ;
+img{
+  position: relative;
+  left: 50%;
 }
 
 .info{
-  margin-top: 7px ;
+  padding-top: 30px;
+}
+
+p{
+  font-weight: bold;
+}
+
+ng-template{
+  font-weight: bold;
 }

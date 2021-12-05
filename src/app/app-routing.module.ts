@@ -12,11 +12,19 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
+    path: 'dashboard/:id',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
   {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
     path: 'employees',
+    loadChildren: () => import('./pages/employees/employees.module').then( m => m.EmployeesPageModule)
+  },
+  {
+    path: 'employees/:id',
     loadChildren: () => import('./pages/employees/employees.module').then( m => m.EmployeesPageModule)
   },
   {
@@ -32,11 +40,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/invoices/invoices.module').then( m => m.InvoicesPageModule)
   },
   {
-    path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    path: 'invoices/:id',
+    loadChildren: () => import('./pages/invoices/invoices.module').then( m => m.InvoicesPageModule)
   },
   {
     path: 'accounting',
+    loadChildren: () => import('./pages/accounting/accounting.module').then( m => m.AccountingPageModule)
+  },
+  {
+    path: 'accounting/:id',
     loadChildren: () => import('./pages/accounting/accounting.module').then( m => m.AccountingPageModule)
   },
   {
@@ -48,6 +60,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/employee-register/employee-register.module').then( m => m.EmployeeRegisterPageModule)
   },
   {
+    path: 'sales-register',
+    loadChildren: () => import('./pages/sales-register/sales-register.module').then( m => m.SalesRegisterPageModule)
+  },
+  {
+    path: 'sales-register/:id',
+    loadChildren: () => import('./pages/sales-register/sales-register.module').then( m => m.SalesRegisterPageModule)
+  },
+  {
     path: 'edit-invoice',
     loadChildren: () => import('./pages/edit-invoice/edit-invoice.module').then( m => m.EditInvoicePageModule)
   },
@@ -56,12 +76,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/edit-invoice/edit-invoice.module').then( m => m.EditInvoicePageModule)
   },
   {
-    path: 'sales-register',
-    loadChildren: () => import('./pages/sales-register/sales-register.module').then( m => m.SalesRegisterPageModule)
+    path: 'edit-user',
+    loadChildren: () => import('./pages/edit-user/edit-user.module').then( m => m.EditUserPageModule)
   },
   {
-    path: 'sales-register/:id',
-    loadChildren: () => import('./pages/sales-register/sales-register.module').then( m => m.SalesRegisterPageModule)
+    path: 'edit-user/:id',
+    loadChildren: () => import('./pages/edit-user/edit-user.module').then( m => m.EditUserPageModule)
   },
 ];
 

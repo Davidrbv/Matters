@@ -15,47 +15,51 @@
  * animation tilt-in-top-1
  * ----------------------------------------
  */
- @-webkit-keyframes tilt-in-top-1 {
-    0% {
-      -webkit-transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
-              transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: rotateY(0deg) translateY(0) skewY(0deg);
-              transform: rotateY(0deg) translateY(0) skewY(0deg);
-      opacity: 1;
-    }
+@-webkit-keyframes tilt-in-top-1 {
+  0% {
+    -webkit-transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
+            transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
+    opacity: 0;
   }
-  @keyframes tilt-in-top-1 {
-    0% {
-      -webkit-transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
-              transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: rotateY(0deg) translateY(0) skewY(0deg);
-              transform: rotateY(0deg) translateY(0) skewY(0deg);
-      opacity: 1;
-    }
+  100% {
+    -webkit-transform: rotateY(0deg) translateY(0) skewY(0deg);
+            transform: rotateY(0deg) translateY(0) skewY(0deg);
+    opacity: 1;
   }
-  
-.modulos{
-  background-color: azure;
 }
 
-.avatar{
-    position: relative;
-    margin: auto;
-    min-width: 12vh;
-    min-height: 12vh;
-    margin-top: 10%;
+@keyframes tilt-in-top-1 {
+  0% {
+    -webkit-transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
+            transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateY(0deg) translateY(0) skewY(0deg);
+            transform: rotateY(0deg) translateY(0) skewY(0deg);
+    opacity: 1;
+  }
 }
 
-.espacio {
-  min-height: 5vh;
+h1{
+  text-align: center;
 }
 
-ion-card-title{
+h2{
+  text-align: center;
   font-weight: bold;
+}
+
+.editar{
+  
+  position: relative;
+  width: 50px;
+  height: 50px;
+  left: 50%;
+}
+
+ion-card {
+  -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.400);
+  -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.400);
+  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.400);
 }

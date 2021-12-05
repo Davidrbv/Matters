@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/model/employee';
+import { User } from 'src/app/model/user';
 import { DataService } from 'src/app/services/data.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-employees',
@@ -11,12 +13,12 @@ import { DataService } from 'src/app/services/data.service';
 export class EmployeesPage implements OnInit {
 
   employees: Employee[] = [];
+  nombre = ''; 
 
   constructor(public dataService: DataService,
               private router:Router) { }
 
   ngOnInit() {
-
     this.getEmployees();
   }
 
@@ -30,4 +32,14 @@ export class EmployeesPage implements OnInit {
     this.router.navigateByUrl(`/employee-register${id !== undefined ? '/' + id : ''}`);
   }
 
+  buscar(event){
+    this.nombre = event.detail.value;
+    this.filtroNombres(this.nombre);
+  }
+
+  filtroNombres(nombre: string){
+    return this.dataService.getEmployeesFromStorage().then(data => {
+      this.employees = data;
+    });
+  }
 }

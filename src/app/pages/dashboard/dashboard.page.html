@@ -1,37 +1,46 @@
-<ion-header translucent>
-
-    <ion-toolbar color="light">
-  
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-buttons>
-  
-      <ion-title class="ion-no-border" class="ion-text-center">NombreUsuario</ion-title>
-      
-      <ion-buttons slot="end">
-        <ion-button (click)="presentPopover( $event )" expand="block" shape="round">
-          <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-    
+<ion-header translucent color="light">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>DashBoard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover( $event )" expand="block" shape="round">
+        <ion-icon slot="start" name="apps-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content mode="md">
-
   <ion-grid fixed>
     <ion-row>
-      <ion-col size="6"></ion-col>
-      <ion-col size="6"></ion-col>
+      <ion-col size="12">
+        <ion-card color="secondary" class="ion-padding tilt-in-top-1" (click)="goToEditeUser(user.id)">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="6">
+                <img src="../../../assets/resources/trabajando.png" alt="IconoTrabajo">
+              </ion-col>
+              <ion-col size="6">
+                  <h2 class="ion-text-center">{{(user.nombre | titlecase) || '¡Hola!'}}</h2>
+                  <h1 class="ion-text-center"></h1>
+                  <ion-avatar>
+                    <img class="editar" src="../../../assets/resources/engranaje.png" alt="EngranajeImagen">
+                  </ion-avatar>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="6"></ion-col>
-      <ion-col size="6"></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6"></ion-col>
-      <ion-col size="6"></ion-col>
+      <ion-col size="6" *ngFor="let module of modulos">
+        <ion-card class="ion-padding tilt-in-top-1" (click)="goTo(module)">
+          <img [src]="'../assets/resources/'+ module.image" alt="{{module.name}}" />
+          <p class="ion-text-center">{{module.name}}</p>
+        </ion-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>

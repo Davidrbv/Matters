@@ -10,13 +10,7 @@ import { EditInvoicePage } from './edit-invoice.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    EditInvoicePageRoutingModule,
-    ComponentsModule
-  ],
-  declarations: [EditInvoicePage]
+  imports: [CommonModule, FormsModule, IonicModule, EditInvoicePageRoutingModule, ComponentsModule],
+  declarations: [EditInvoicePage],
 })
 export class EditInvoicePageModule {}
