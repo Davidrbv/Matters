@@ -17,3 +17,40 @@ ion-row:nth-child(2n) {
   font-weight: bold;
   color: white;
 }
+
+ion-item {
+  padding: 0;
+  background-color: rgb(158, 90, 0);
+  border-radius: 5px;
+  border: 2px solid rgb(209, 1, 1);
+}
+
+.espacio {
+  min-height: 2vh;
+}
+
+img {
+  position: relative;
+  left: 40%;
+  width: 30px;
+}
+
+p {
+  font-weight: bold;
+  color: white;
+}
+
+.cabecera {
+  padding: 0;
+  margin: 0;
+  border: 2px solid red;
+  max-height: 10vh;
+}
+
+ion-grid {
+  padding: 0;
+}
+
+.maxmin {
+  background-color: rgb(209, 1, 1);
+}

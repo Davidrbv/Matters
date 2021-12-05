@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/model/employee';
 import { User } from 'src/app/model/user';
@@ -16,10 +16,9 @@ export class EmployeesPage implements OnInit {
 
   constructor(public dataService: DataService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getEmployees();
   }
-
   /* Recuperamos empleados del Storage */
   getEmployees() {
     return this.dataService.getEmployeesFromStorage().then((data) => {
@@ -27,19 +26,21 @@ export class EmployeesPage implements OnInit {
     });
   }
 
+  /* Filtro de empleados. Busca referencias al escribir en el Search */
+  async getBusqueda(event) {
+    const empleados = await this.dataService.getEmployeesFromStorage();
+    const porNombre = empleados.filter(
+      (empleado) =>
+        empleado.nombre.includes(event.detail.value) ||
+        empleado.puesto.includes(event.detail.value) ||
+        empleado.email.includes(event.detail.value) ||
+        empleado.genero.includes(event.detail.value)
+    );
+    this.employees = porNombre;
+  }
+
   /* Redirección a edición de empleados */
   goEmployeesRegister(id?: number) {
     this.router.navigateByUrl(`/employee-register${id !== undefined ? '/' + id : ''}`);
-  }
-
-  buscar(event) {
-    this.nombre = event.detail.value;
-    this.filtroNombres(this.nombre);
-  }
-
-  filtroNombres(nombre: string) {
-    return this.dataService.getEmployeesFromStorage().then((data) => {
-      this.employees = data;
-    });
   }
 }

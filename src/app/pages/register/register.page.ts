@@ -48,7 +48,7 @@ export class RegisterPage implements OnInit {
     if (this.compruebaUsuario(usuario)) {
       if (usuario.password !== usuario.password2) {
         this.presentToast('Constraseñas no validas...');
-      } else this.presentToast('Usuario ya registrado...');
+      } else this.presentToast('Usuario no valido..');
     } else {
       this.userService.saveUser(usuario);
       this.router.navigateByUrl('/home');

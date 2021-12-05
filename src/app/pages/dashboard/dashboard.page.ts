@@ -5,7 +5,6 @@ import { PopinfouserComponent } from 'src/app/components/popinfouser/popinfouser
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { dismiss } from '@ionic/core/dist/types/utils/overlays';
 
 @Component({
   selector: 'app-dashboard',

@@ -18,16 +18,10 @@ export class UserService {
     this.getUserCounterFromStorage().then((data) => (this.usuarioCounter = data));
   }
 
-  /* Modulos que ha adquirido el cliente */
+  /* Modulos que ha adquirido el cliente/usuario */
 
   getModules(): Observable<Module[]> {
     return this.http.get<Module[]>('../assets/modules.json');
-  }
-
-  /* Recogemos usuarios */
-
-  getUsers(): Observable<User[]> {
-    return of(this.usuarios);
   }
 
   /* Recogemos usuario */

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Employee } from '../model/employee';
 import { Observable, of } from 'rxjs';
 import { Storage } from '@capacitor/storage';
@@ -12,15 +11,9 @@ export class DataService {
 
   employeeCounter: number = 0;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.getEmployeesFromStorage().then((data) => (this.empleados = data));
     this.getEmployeeCounterFromStorage().then((data) => (this.employeeCounter = data));
-  }
-
-  /* Recupera todos los empleados */
-  
-  getEmployees(): Observable<Employee[]> {
-    return of(this.empleados);
   }
 
   /* Recupera un empleado */
@@ -64,7 +57,7 @@ export class DataService {
     return true;
   }
 
-  /* Grabamos contador en storage */
+  /* Grabamos contador de empleado en storage */
 
   async saveEmployeeCounterInToStorage(): Promise<Boolean> {
     await Storage.set({
@@ -74,14 +67,14 @@ export class DataService {
     return true;
   }
 
-  /* Obtener empleados del disco */
+  /* Obtener empleados del Storage */
 
   async getEmployeesFromStorage(): Promise<Employee[]> {
     const retorno = await Storage.get({ key: 'empleados' });
     return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
   }
 
-  /* Obtener el contador del disco */
+  /* Obtener el contador del Storage */
 
   async getEmployeeCounterFromStorage(): Promise<number> {
     const tc = await Storage.get({ key: 'employeeCounter' });

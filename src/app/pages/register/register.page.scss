@@ -41,14 +41,12 @@
 }
 
 .icono {
-  min-height: 20vh;
-  max-height: 35vh;
+  max-height: 30vh;
 }
 
 img {
   width: 100%;
   height: 100%;
-  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -57,15 +55,3 @@ ion-button {
   position: relative;
   left: 30%;
 }
-
-/* .container{
-    border-radius: 20px;
-    background-color: seagreen;
-  }
-  .cont{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background-color: salmon;
-    height: 100%;
-  } */

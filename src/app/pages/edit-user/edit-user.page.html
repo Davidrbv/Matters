@@ -1,17 +1,62 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ion-text-center" color="light">
+<ion-header translucent mode="md">
+  <ion-toolbar color="light">
     <ion-buttons slot="start">
-      <ion-back-button text="" defaultHref="/invoices"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Edit User</ion-title>
+    <ion-title class="ion-no-border" class="ion-text-center"> {{user.nombre | titlecase}} </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button expand="block" shape="round">
         <ion-icon slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<div class="icono">
+  <img src="../../../assets/resources/user.png" alt="FotoRegistro" />
+</div>
+<ion-content mode="md">
+  <ion-card>
+    <div class="cont">
+      <div class="container">
+        <!-- Entrada nombre -->
+        <ion-item>
+          <ion-label color="light" position="floating">Nombre</ion-label>
+          <ion-input name="nombre" type="text" [(ngModel)]="user.nombre" required> </ion-input>
+        </ion-item>
+
+        <!-- Entrada Email -->
+        <ion-item>
+          <ion-label color="light" position="floating">Email</ion-label>
+          <ion-input
+            name="email"
+            type="email"
+            [(ngModel)]="user.email"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Entrada Password -->
+        <ion-item>
+          <ion-label color="light" position="floating">Password</ion-label>
+          <ion-input name="password" type="password" [(ngModel)]="user.password" required></ion-input>
+        </ion-item>
+
+        <!-- Entrada Password Repetida -->
+        <ion-item>
+          <ion-label color="light" position="floating">Repita password</ion-label>
+          <ion-input name="password" type="password" [(ngModel)]="user.password2" required></ion-input>
+        </ion-item>
+
+        <div class="espacio"></div>
+
+        <!-- Boton Registro -->
+        <ion-button color="success" fill="outline" (click)="saveChange(user)">Save</ion-button>
+        <ion-button color="light" fill="outline" (click)="cancelChange()">Cancel</ion-button>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

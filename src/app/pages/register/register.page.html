@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
 
-    <ion-title class="ion-no-border" class="ion-text-center">NUsuario</ion-title>
+    <ion-title class="ion-no-border" class="ion-text-center">New User</ion-title>
 
     <ion-buttons slot="end">
       <ion-button expand="block" shape="round">
@@ -14,46 +14,48 @@
   </ion-toolbar>
 </ion-header>
 
-<div class="icono">
-  <img src="../../../assets/resources/registro.png" alt="FotoRegistro" />
-</div>
 <ion-content mode="md">
-  <div class="cont">
-    <div class="container">
-      <!-- Entrada nombre -->
-      <ion-item>
-        <ion-label color="light" position="floating">Nombre</ion-label>
-        <ion-input name="nombre" type="text" [(ngModel)]="usuario.nombre" required> </ion-input>
-      </ion-item>
-
-      <!-- Entrada Email -->
-      <ion-item>
-        <ion-label color="light" position="floating">Email</ion-label>
-        <ion-input
-          name="email"
-          type="email"
-          [(ngModel)]="usuario.email"
-          required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-        ></ion-input>
-      </ion-item>
-
-      <!-- Entrada Password -->
-      <ion-item>
-        <ion-label color="light" position="floating">Password</ion-label>
-        <ion-input name="password" type="password" [(ngModel)]="usuario.password" required></ion-input>
-      </ion-item>
-
-      <!-- Entrada Password Repetida -->
-      <ion-item>
-        <ion-label color="light" position="floating">Repita password</ion-label>
-        <ion-input name="password" type="password" [(ngModel)]="usuario.password2" required></ion-input>
-      </ion-item>
-
-      <div class="espacio"></div>
-
-      <!-- Boton Registro -->
-      <ion-button color="light" (click)="userRegister(usuario)">Register</ion-button>
+  <ion-card>
+    <div class="icono">
+      <img src="../../../assets/resources/registro.png" alt="FotoRegistro" />
     </div>
-  </div>
+    <div class="cont">
+      <div class="container">
+        <!-- Entrada nombre -->
+        <ion-item>
+          <ion-label color="light" position="floating">Nombre</ion-label>
+          <ion-input name="nombre" type="text" [(ngModel)]="usuario.nombre" required> </ion-input>
+        </ion-item>
+
+        <!-- Entrada Email -->
+        <ion-item>
+          <ion-label color="light" position="floating">Email</ion-label>
+          <ion-input
+            name="email"
+            type="email"
+            [(ngModel)]="usuario.email"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Entrada Password -->
+        <ion-item>
+          <ion-label color="light" position="floating">Password</ion-label>
+          <ion-input name="password" type="password" [(ngModel)]="usuario.password" required></ion-input>
+        </ion-item>
+
+        <!-- Entrada Password Repetida -->
+        <ion-item>
+          <ion-label color="light" position="floating">Repita password</ion-label>
+          <ion-input name="password" type="password" [(ngModel)]="usuario.password2" required></ion-input>
+        </ion-item>
+
+        <div class="espacio"></div>
+
+        <!-- Boton Registro -->
+        <ion-button color="light" (click)="userRegister(usuario)">Register</ion-button>
+      </div>
+    </div>
+  </ion-card>
 </ion-content>

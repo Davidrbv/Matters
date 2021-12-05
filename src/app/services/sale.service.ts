@@ -16,18 +16,27 @@ export class SaleService {
     this.getSalesCounterFromStorage().then((data) => (this.salesCounter = data));
   }
 
-  /* Devuelve ventas de array */
-
-  getSales(): Observable<Sale[]> {
-    return of(this.sales);
-  }
-
   /* Devuelve venta de array */
-
   getSale(id: number): Observable<Sale> {
     return of({ ...this.sales.filter((t) => t.id === id)[0] });
   }
-  /* Grabamos factura en array y Storage */
+
+  /* Devuelve ventas donde el total se encuentra entre min y max */
+
+  getSalesRange(min: number, max: number): Sale[] {
+    if (min !== null && (max === null || max === 0)) {
+      return this.sales.filter((sale) => sale.total >= min);
+    }
+    if (max !== null && min === null) {
+      return this.sales.filter((sale) => sale.total >= 0 && sale.total <= max);
+    }
+    if ((min === null && max === null) || (min === 0 && max === 0)) {
+      return this.sales;
+    }
+    return this.sales.filter((sale) => sale.total >= min && sale.total <= max);
+  }
+
+  /* Grabamos venta en array y Storage */
 
   async saveSale(sale: Sale): Promise<Boolean> {
     if (sale.id == undefined) {

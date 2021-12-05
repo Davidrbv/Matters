@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Invoice } from '../model/invoice';
 import { Storage } from '@capacitor/storage';
@@ -12,16 +12,8 @@ export class InvoiceService {
   facturaCounter: number = 0;
 
   constructor() {
-    /* Cargamos informacion de facturas */
     this.getInvoiceFromStorage().then((data) => (this.facturas = data));
-    /* Cargamos contador facturas */
     this.getInvoiceCounterFromStorage().then((data) => (this.facturaCounter = data));
-  }
-
-  /* Envia facturas recuperadas de array */
-
-  getInvoices(): Observable<Invoice[]> {
-    return of(this.facturas);
   }
 
   /* Recupera una factura */
@@ -33,7 +25,7 @@ export class InvoiceService {
   /* Graba factura en array y llamada a Storage */
 
   async saveInvoice(factura: Invoice): Promise<Boolean> {
-    if (factura.id == undefined) {
+    if (factura.id === undefined) {
       factura.id = this.facturaCounter++;
       this.facturas.push(factura);
     } else {
@@ -80,7 +72,7 @@ export class InvoiceService {
   }
 
   /* Obtener el contador de facturas del Storage */
-
+  
   async getInvoiceCounterFromStorage(): Promise<number> {
     const tc = await Storage.get({ key: 'facturaCounter' });
     return Number.isInteger(+tc.value) ? +tc.value : 0;

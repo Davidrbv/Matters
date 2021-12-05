@@ -9,7 +9,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./accounting.page.scss'],
 })
 export class AccountingPage implements OnInit {
+  delay: boolean = false;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => {
+      this.delay = true;
+    }, 3000);
+  }
 }

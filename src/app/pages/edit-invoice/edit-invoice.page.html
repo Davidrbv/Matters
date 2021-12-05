@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center" color="light">
     <ion-buttons slot="start">
-      <ion-back-button text="" defaultHref="/invoices"></ion-back-button>
+      <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
 
     <ion-title *ngIf="factura.estado">Pagada</ion-title>
@@ -62,7 +62,7 @@
 
     <ion-item>
       <ion-label>Estado factura</ion-label>
-      <ion-toggle [(ngModel)]="factura.estado" color="success"></ion-toggle>
+      <ion-toggle [(ngModel)]="factura.estado" color="success">{{factura.estado}}</ion-toggle>
     </ion-item>
   </ion-card>
 

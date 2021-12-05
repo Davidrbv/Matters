@@ -11,13 +11,15 @@ import { InvoiceService } from 'src/app/services/invoice.service';
   styleUrls: ['./edit-invoice.page.scss'],
 })
 export class EditInvoicePage implements OnInit {
+  invoices: Invoice[] = [];
+
   factura: Invoice = {
     id: undefined,
     codigo: '',
     fecha: new Date(),
     cantidad: undefined,
     proveedor: '',
-    estado: false,
+    estado: null,
   };
 
   constructor(
