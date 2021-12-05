@@ -6,8 +6,8 @@ import { SalesRegisterPage } from './sales-register.page';
 const routes: Routes = [
   {
     path: '',
-    component: SalesRegisterPage
-  }
+    component: SalesRegisterPage,
+  },
 ];
 
 @NgModule({

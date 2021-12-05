@@ -35,6 +35,7 @@ export class SalesRegisterPage implements OnInit {
     }
   }
 
+  /* Graba venta  */
   saveSale() {
     if (this.sale.efectivo === undefined || this.sale.tarjeta === undefined) {
       this.presentToast('Introduzca cantidades..');
@@ -46,6 +47,7 @@ export class SalesRegisterPage implements OnInit {
     }
   }
 
+  /* Redirección a modulo ventas */
   goSales() {
     this.presentToast('Cancelando acciones..');
     this.router.navigateByUrl('/sales');

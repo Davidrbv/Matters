@@ -9,15 +9,8 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    DashboardPageRoutingModule,
-    ComponentsModule,
-  ],
-  declarations: [DashboardPage]
+  imports: [CommonModule, FormsModule, IonicModule, DashboardPageRoutingModule, ComponentsModule],
+  declarations: [DashboardPage],
 })
 export class DashboardPageModule {}

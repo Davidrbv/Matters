@@ -13,7 +13,6 @@ import { dismiss } from '@ionic/core/dist/types/utils/overlays';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
   modulos: Module[] = [];
 
   user: User = {
@@ -21,39 +20,45 @@ export class DashboardPage implements OnInit {
     email: '',
     nombre: '',
     password: undefined,
-    password2:undefined
+    password2: undefined,
   };
 
-  constructor(private popOverController: PopoverController,
-              public  userService: UserService,
-              private router: Router,
-              private activatedRoute:ActivatedRoute) {}
+  constructor(
+    private popOverController: PopoverController,
+    public userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
+  /* Iniciamos Dashboard con id de usuario */
   ngOnInit() {
-
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if(id != null){
-      this.userService.getUser(+id).subscribe(
-        data => {this.user = data;}
-      );
+    if (id != null) {
+      this.userService.getUser(+id).subscribe((data) => {
+        this.user = data;
+      });
     }
     this.getmodules();
   }
 
-  getmodules(){
-    this.userService.getModules().subscribe(data => {
+  /* Recuperamos modulos de usuarios */
+  getmodules() {
+    this.userService.getModules().subscribe((data) => {
       this.modulos = data;
-    })
+    });
   }
 
-  goToEditeUser(id: number){
+  /* Redirección a edición de usuario */
+  goToEditeUser(id: number) {
     this.router.navigateByUrl(`/edit-user${id !== undefined ? '/' + id : ''}`);
   }
 
-  goTo(module : Module){
-    this.router.navigateByUrl(`/${module.redirecTo}${this.user.id !== undefined ? '/' + this.user.id : ''}`)
+  /* Redirección a modulo */
+  goTo(module: Module) {
+    this.router.navigateByUrl(`/${module.redirecTo}${this.user.id !== undefined ? '/' + this.user.id : ''}`);
   }
 
+  /* PopOver menú navegación usuario */
   async presentPopover(event: any) {
     const popover = await this.popOverController.create({
       component: PopinfouserComponent,
@@ -62,8 +67,7 @@ export class DashboardPage implements OnInit {
       mode: 'ios',
       backdropDismiss: true,
       translucent: true,
-      animated: true
-      
+      animated: true,
     });
     await popover.present();
   }

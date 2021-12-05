@@ -10,13 +10,7 @@ import { AccountingPage } from './accounting.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AccountingPageRoutingModule,
-    ComponentsModule
-  ],
-  declarations: [AccountingPage]
+  imports: [CommonModule, FormsModule, IonicModule, AccountingPageRoutingModule, ComponentsModule],
+  declarations: [AccountingPage],
 })
 export class AccountingPageModule {}

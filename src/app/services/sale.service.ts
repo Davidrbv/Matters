@@ -4,87 +4,83 @@ import { Sale } from '../model/sale';
 import { Storage } from '@capacitor/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SaleService {
+  sales: Sale[] = [];
+  salesCounter: number = 0;
 
-  sales : Sale [] = [];
+  constructor() {
+    this.getSalesFromStorage().then((data) => (this.sales = data));
 
-  salesCounter : number = 0;
-
-  constructor() { 
-
-    this.getSalesFromStorage().then(
-      data => this.sales = data
-    );
-
-    this.getSalesCounterFromStorage().then(
-      data => this.salesCounter = data
-    );
+    this.getSalesCounterFromStorage().then((data) => (this.salesCounter = data));
   }
 
-  getSales(): Observable <Sale[]> {    
+  /* Devuelve ventas de array */
+
+  getSales(): Observable<Sale[]> {
     return of(this.sales);
   }
 
-  getSale(id: number): Observable<Sale>{
-    return of({...this.sales.filter(t => t.id === id)[0]});
+  /* Devuelve venta de array */
+
+  getSale(id: number): Observable<Sale> {
+    return of({ ...this.sales.filter((t) => t.id === id)[0] });
   }
+  /* Grabamos factura en array y Storage */
 
-  async saveSale(sale: Sale): Promise<Boolean>{
-
-    if(sale.id == undefined){
+  async saveSale(sale: Sale): Promise<Boolean> {
+    if (sale.id == undefined) {
       sale.id = this.salesCounter++;
       sale.total = sale.efectivo + sale.tarjeta;
       this.sales.push(sale);
-    }else{
+    } else {
       this.deleteSale(sale.id);
       this.sales.push(sale);
     }
     await this.saveSaleInToStorage();
     await this.saveSaleCounterInToStorage();
-    return true;  
+    return true;
   }
 
-  /* Eliminamos empleado grabando un array nuevo sin el empleado borrado */
+  /* Eliminamos venta grabando un array nuevo sin la venta borrada */
 
-  async deleteSale(id: number): Promise<Boolean>{
-    this.sales = this.sales.filter(t => t.id !== id);
+  async deleteSale(id: number): Promise<Boolean> {
+    this.sales = this.sales.filter((t) => t.id !== id);
     return await this.saveSaleInToStorage();
   }
 
-  /* Grabamos empleado en storage */
+  /* Grabamos venta en storage */
 
-  async saveSaleInToStorage(): Promise<Boolean>{
+  async saveSaleInToStorage(): Promise<Boolean> {
     await Storage.set({
       key: 'sales',
-      value: JSON.stringify(this.sales), 
+      value: JSON.stringify(this.sales),
     });
     return true;
   }
 
-  /* Grabamos contador en storage */
+  /* Grabamos contador de ventas en storage */
 
-  async saveSaleCounterInToStorage(): Promise<Boolean>{
+  async saveSaleCounterInToStorage(): Promise<Boolean> {
     await Storage.set({
       key: 'salesCounter',
-      value: this.salesCounter.toString()
+      value: this.salesCounter.toString(),
     });
     return true;
   }
 
+  /* Obtener venta del Storage */
 
-  /* Obtener empleados del disco */
-
-  async getSalesFromStorage(): Promise<Sale[]>{
+  async getSalesFromStorage(): Promise<Sale[]> {
     const retorno = await Storage.get({ key: 'sales' });
     return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
   }
 
-  /* Obtener el contador del disco */
+  /* Obtener el contador de ventas del Storage */
 
-  async getSalesCounterFromStorage(): Promise<number>{
+  async getSalesCounterFromStorage(): Promise<number> {
     const tc = await Storage.get({ key: 'salesCounter' });
-    return Number.isInteger(+tc.value) ? + tc.value : 0;
+    return Number.isInteger(+tc.value) ? +tc.value : 0;
   }
 }

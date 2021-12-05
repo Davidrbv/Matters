@@ -9,25 +9,23 @@ import { SaleService } from 'src/app/services/sale.service';
   styleUrls: ['./sales.page.scss'],
 })
 export class SalesPage implements OnInit {
+  sales: Sale[] = [];
 
-  sales : Sale [] = [];
-
-  constructor(public saleService: SaleService,
-              private router: Router) { }
-
+  constructor(public saleService: SaleService, private router: Router) {}
 
   ngOnInit() {
     this.getSales();
   }
 
-  getSales(){
-    return this.saleService.getSalesFromStorage().then(data => {
+  /* Recupera ventas de Storage */
+  getSales() {
+    return this.saleService.getSalesFromStorage().then((data) => {
       this.sales = data;
     });
   }
 
-  goToSaleRegister(id? : number){
+  /* Redirección a registro de ventas */
+  goToSaleRegister(id?: number) {
     this.router.navigateByUrl(`/sales-register${id !== undefined ? '/' + id : ''}`);
   }
-
 }

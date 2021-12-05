@@ -18,13 +18,19 @@ export class InvoiceService {
     this.getInvoiceCounterFromStorage().then((data) => (this.facturaCounter = data));
   }
 
+  /* Envia facturas recuperadas de array */
+
   getInvoices(): Observable<Invoice[]> {
     return of(this.facturas);
   }
 
+  /* Recupera una factura */
+
   getInvoice(id: number): Observable<Invoice> {
     return of({ ...this.facturas.filter((t) => t.id === id)[0] });
   }
+
+  /* Graba factura en array y llamada a Storage */
 
   async saveInvoice(factura: Invoice): Promise<Boolean> {
     if (factura.id == undefined) {
@@ -39,14 +45,14 @@ export class InvoiceService {
     return true;
   }
 
-  /* Eliminamos empleado grabando un array nuevo sin el empleado borrado */
+  /* Eliminamos factura grabando un array nuevo sin la factura borrada */
 
   async deleteInvoice(id: number): Promise<Boolean> {
     this.facturas = this.facturas.filter((t) => t.id !== id);
     return await this.saveInvoiceInToStorage();
   }
 
-  /* Grabamos empleado en storage */
+  /* Grabamos factura en storage */
 
   async saveInvoiceInToStorage(): Promise<Boolean> {
     await Storage.set({
@@ -73,11 +79,10 @@ export class InvoiceService {
     return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
   }
 
-  /* Obtener el contador de facturas del disco */
+  /* Obtener el contador de facturas del Storage */
 
   async getInvoiceCounterFromStorage(): Promise<number> {
     const tc = await Storage.get({ key: 'facturaCounter' });
-
     return Number.isInteger(+tc.value) ? +tc.value : 0;
   }
 }

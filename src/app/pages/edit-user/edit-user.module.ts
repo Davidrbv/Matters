@@ -9,12 +9,7 @@ import { EditUserPageRoutingModule } from './edit-user-routing.module';
 import { EditUserPage } from './edit-user.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    EditUserPageRoutingModule
-  ],
-  declarations: [EditUserPage]
+  imports: [CommonModule, FormsModule, IonicModule, EditUserPageRoutingModule],
+  declarations: [EditUserPage],
 })
 export class EditUserPageModule {}

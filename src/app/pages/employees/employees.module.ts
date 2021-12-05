@@ -10,13 +10,7 @@ import { EmployeesPage } from './employees.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    EmployeesPageRoutingModule,
-    ComponentsModule
-  ],
-  declarations: [EmployeesPage]
+  imports: [CommonModule, FormsModule, IonicModule, EmployeesPageRoutingModule, ComponentsModule],
+  declarations: [EmployeesPage],
 })
 export class EmployeesPageModule {}

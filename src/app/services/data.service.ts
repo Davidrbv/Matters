@@ -5,64 +5,58 @@ import { Observable, of } from 'rxjs';
 import { Storage } from '@capacitor/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-export class DataService{
-
-  empleados : Employee [] = [];
+export class DataService {
+  empleados: Employee[] = [];
 
   employeeCounter: number = 0;
 
-  constructor(private http: HttpClient) { 
-
-    //Almacenamos en tasks la promesa que devuelve el metodo, que es un array
-    this.getEmployeesFromStorage().then(
-      data => this.empleados = data
-    );
-    //Almacenamos el contador de tareas que nos devuelve el método.
-    this.getEmployeeCounterFromStorage().then(
-      data => this.employeeCounter = data
-    );
+  constructor(private http: HttpClient) {
+    this.getEmployeesFromStorage().then((data) => (this.empleados = data));
+    this.getEmployeeCounterFromStorage().then((data) => (this.employeeCounter = data));
   }
 
-
-  getEmployees(): Observable <Employee[]> {    
+  /* Recupera todos los empleados */
+  
+  getEmployees(): Observable<Employee[]> {
     return of(this.empleados);
   }
 
-  getEmployee(id: number): Observable<Employee>{
-    return of({...this.empleados.filter(t => t.id === id)[0]});
+  /* Recupera un empleado */
+
+  getEmployee(id: number): Observable<Employee> {
+    return of({ ...this.empleados.filter((t) => t.id === id)[0] });
   }
 
-  async saveEmployee(empleado: Employee): Promise<Boolean>{
+  /* Graba empleado en array y llamada a grabar en Storage */
 
-    if(empleado.id == undefined){
-      empleado.id = this.employeeCounter++; 
+  async saveEmployee(empleado: Employee): Promise<Boolean> {
+    if (empleado.id == undefined) {
+      empleado.id = this.employeeCounter++;
       this.empleados.push(empleado);
-    }else{
-      //Borramos antigua y pusheamos el nuevo
+    } else {
       this.deleteEmployee(empleado.id);
       this.empleados.push(empleado);
     }
     await this.saveEmployeeInToStorage();
     await this.saveEmployeeCounterInToStorage();
-    return true;  
+    return true;
   }
 
   /* Eliminamos empleado grabando un array nuevo sin el empleado borrado */
   /* Si no quedan empleados en el array, reiniciamos el contador */
 
-  async deleteEmployee(id: number): Promise<Boolean>{
-    this.empleados = this.empleados.filter(empleado => empleado.id !== id);
-    if(this.empleados.length == 0) this.employeeCounter = 0;
+  async deleteEmployee(id: number): Promise<Boolean> {
+    this.empleados = this.empleados.filter((empleado) => empleado.id !== id);
+    if (this.empleados.length == 0) this.employeeCounter = 0;
     await this.saveEmployeeCounterInToStorage();
     return await this.saveEmployeeInToStorage();
   }
 
   /* Grabamos empleado en storage */
 
-  async saveEmployeeInToStorage(): Promise<Boolean>{
+  async saveEmployeeInToStorage(): Promise<Boolean> {
     await Storage.set({
       key: 'empleados',
       value: JSON.stringify(this.empleados),
@@ -72,27 +66,25 @@ export class DataService{
 
   /* Grabamos contador en storage */
 
-  async saveEmployeeCounterInToStorage(): Promise<Boolean>{
+  async saveEmployeeCounterInToStorage(): Promise<Boolean> {
     await Storage.set({
       key: 'employeeCounter',
-      value: this.employeeCounter.toString()
+      value: this.employeeCounter.toString(),
     });
     return true;
   }
 
-
   /* Obtener empleados del disco */
 
-  async getEmployeesFromStorage(): Promise<Employee[]>{
+  async getEmployeesFromStorage(): Promise<Employee[]> {
     const retorno = await Storage.get({ key: 'empleados' });
     return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
   }
 
   /* Obtener el contador del disco */
-  async getEmployeeCounterFromStorage(): Promise<number>{
+
+  async getEmployeeCounterFromStorage(): Promise<number> {
     const tc = await Storage.get({ key: 'employeeCounter' });
-    return Number.isInteger(+tc.value) ? + tc.value : 0;
+    return Number.isInteger(+tc.value) ? +tc.value : 0;
   }
 }
-
-

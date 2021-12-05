@@ -11,34 +11,34 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./employees.page.scss'],
 })
 export class EmployeesPage implements OnInit {
-
   employees: Employee[] = [];
-  nombre = ''; 
+  nombre = '';
 
-  constructor(public dataService: DataService,
-              private router:Router) { }
+  constructor(public dataService: DataService, private router: Router) {}
 
   ngOnInit() {
     this.getEmployees();
   }
 
-  getEmployees(){
-    return this.dataService.getEmployeesFromStorage().then(data => {
+  /* Recuperamos empleados del Storage */
+  getEmployees() {
+    return this.dataService.getEmployeesFromStorage().then((data) => {
       this.employees = data;
     });
   }
 
-  goEmployeesRegister(id? : number){
+  /* Redirección a edición de empleados */
+  goEmployeesRegister(id?: number) {
     this.router.navigateByUrl(`/employee-register${id !== undefined ? '/' + id : ''}`);
   }
 
-  buscar(event){
+  buscar(event) {
     this.nombre = event.detail.value;
     this.filtroNombres(this.nombre);
   }
 
-  filtroNombres(nombre: string){
-    return this.dataService.getEmployeesFromStorage().then(data => {
+  filtroNombres(nombre: string) {
+    return this.dataService.getEmployeesFromStorage().then((data) => {
       this.employees = data;
     });
   }

@@ -10,14 +10,7 @@ import { RegisterPage } from './register.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RegisterPageRoutingModule,
-    ComponentsModule,
-    ReactiveFormsModule
-  ],
-  declarations: [RegisterPage]
+  imports: [CommonModule, FormsModule, IonicModule, RegisterPageRoutingModule, ComponentsModule, ReactiveFormsModule],
+  declarations: [RegisterPage],
 })
 export class RegisterPageModule {}

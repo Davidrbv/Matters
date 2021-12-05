@@ -10,7 +10,6 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./employee-register.page.scss'],
 })
 export class EmployeeRegisterPage implements OnInit {
-
   empleado: Employee = {
     id: undefined,
     nombre: '',

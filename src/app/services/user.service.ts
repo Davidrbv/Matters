@@ -6,68 +6,59 @@ import { HttpClient } from '@angular/common/http';
 import { Module } from 'src/app/interfaces/module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class UserService{
-
+export class UserService {
   usuarios: User[] = [];
 
   usuarioCounter: number = 0;
 
   constructor(private http: HttpClient) {
-    
-    /* Cargamos informacion usuario */
-    
-    this.getUserFromStorage().then(
-      data => this.usuarios = data
-    );
-
-    /* Cargamos información contador usuario */
-
-    this.getUserCounterFromStorage().then(
-      data => this.usuarioCounter = data
-    );
-    
+    this.getUserFromStorage().then((data) => (this.usuarios = data));
+    this.getUserCounterFromStorage().then((data) => (this.usuarioCounter = data));
   }
 
   /* Modulos que ha adquirido el cliente */
-  getModules(): Observable<Module[]>{
+
+  getModules(): Observable<Module[]> {
     return this.http.get<Module[]>('../assets/modules.json');
   }
 
-  /* Recogemos empleados */
-  getUsers(): Observable <User[]> {    
+  /* Recogemos usuarios */
+
+  getUsers(): Observable<User[]> {
     return of(this.usuarios);
   }
 
   /* Recogemos usuario */
-  getUser(id: number): Observable<User>{
-    return of({...this.usuarios.filter(t => t.id === id)[0]});
+
+  getUser(id: number): Observable<User> {
+    return of({ ...this.usuarios.filter((t) => t.id === id)[0] });
   }
 
-  /* Guardar usuario */
-  async saveUser(user: User): Promise<Boolean>{
+  /* Guardar usuario en array y Storage*/
 
-    if(user.id == undefined){
+  async saveUser(user: User): Promise<Boolean> {
+    if (user.id == undefined) {
       user.id = this.usuarioCounter++;
       this.usuarios.push(user);
-    }else{
+    } else {
       this.deleteUser(user.id);
       this.usuarios.push(user);
     }
     await this.saveUserInToStorage();
     await this.saveUserCounterInToStorage();
-    return true;  
+    return true;
   }
 
   /* Elimina usuario de array y graba en Storage*/
-  async deleteUser(id: number): Promise<Boolean>{
-    this.usuarios = this.usuarios.filter(t => t.id !== id);
+  async deleteUser(id: number): Promise<Boolean> {
+    this.usuarios = this.usuarios.filter((t) => t.id !== id);
     return await this.saveUserInToStorage();
   }
 
   /* Guardar usuario en storage*/
-  async saveUserInToStorage(): Promise<Boolean>{
+  async saveUserInToStorage(): Promise<Boolean> {
     await Storage.set({
       key: 'usuario',
       value: JSON.stringify(this.usuarios),
@@ -76,24 +67,23 @@ export class UserService{
   }
 
   /* Guarda id usuario en Storage */
-  async saveUserCounterInToStorage(): Promise<Boolean>{
+  async saveUserCounterInToStorage(): Promise<Boolean> {
     await Storage.set({
       key: 'usuarioCounter',
-      value: this.usuarioCounter.toString()
+      value: this.usuarioCounter.toString(),
     });
     return true;
   }
 
-
   /* Obtiene usuarios de Storage */
-  async getUserFromStorage(): Promise<User[]>{
+  async getUserFromStorage(): Promise<User[]> {
     const retorno = await Storage.get({ key: 'usuario' });
     return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
   }
 
   /* Obtiene contador de usuario de Storage */
-  async getUserCounterFromStorage(): Promise<number>{
+  async getUserCounterFromStorage(): Promise<number> {
     const tc = await Storage.get({ key: 'usuarioCounter' });
-    return Number.isInteger(+tc.value) ? + tc.value : 0;
+    return Number.isInteger(+tc.value) ? +tc.value : 0;
   }
 }

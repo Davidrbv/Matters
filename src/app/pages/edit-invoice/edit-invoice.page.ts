@@ -28,6 +28,7 @@ export class EditInvoicePage implements OnInit {
     private alertController: AlertController
   ) {}
 
+  /* Inicio de modulo con id de empleado */
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id != null) {
@@ -44,6 +45,7 @@ export class EditInvoicePage implements OnInit {
     this.router.navigateByUrl('/invoices');
   }
 
+  /* Redirección a modulo facturas */
   goInvoices() {
     this.presentToast('Cancelando cambios realizados..');
     this.router.navigateByUrl('/invoices');

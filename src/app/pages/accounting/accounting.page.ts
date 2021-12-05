@@ -9,11 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./accounting.page.scss'],
 })
 export class AccountingPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }

@@ -19,6 +19,8 @@ export class HomePage {
 
   constructor(private router: Router, private userService: UserService, private toastController: ToastController) {}
 
+  /* Valida las credenciales del usuario */
+
   async isUser(): Promise<Boolean> {
     if (this.usuario.email === '' && this.usuario.password === '') return false;
     const users = await this.getUsers();
@@ -34,6 +36,8 @@ export class HomePage {
     return !!coincide;
   }
 
+  /* Comprueba las credenciales del usuario */
+
   async login() {
     if (await this.isUser()) {
       this.router.navigateByUrl(`/dashboard${this.usuarioLog.id !== undefined ? '/' + this.usuarioLog.id : ''}`);
@@ -42,13 +46,18 @@ export class HomePage {
     }
   }
 
+  /* Recupera usuarios de Storage */
+
   async getUsers(): Promise<User[]> {
     return await this.userService.getUserFromStorage();
   }
 
+  /* Redireccion a RegiterPage */
   goToRegister() {
     this.router.navigateByUrl('/register');
   }
+
+  /* Envío de mensaje de error */
 
   async presentToast() {
     const toast = await this.toastController.create({
