@@ -1,8 +1,8 @@
 /* Definición propiedades de las ventas */
 export class Sale {
-  id: number;
+  saleId: string;
   fecha: Date;
-  efectivo?: number;
-  tarjeta?: number;
+  efectivo: number;
+  tarjeta: number;
   total: number;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { User } from 'src/app/model/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,53 +11,37 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  usuario: User = {
-    id: undefined,
-    email: '',
-    nombre: '',
-    password: '',
-    password2: '',
-  };
+  
+  user: User = {} as User;
 
-  usuarios: User[] = [];
-
-  constructor(private userService: UserService, private router: Router, private toastController: ToastController) {}
+  constructor(private authService: AuthService,
+              private router: Router,
+              private toastController: ToastController,
+              private userService : UserService) {}
 
   ngOnInit() {
-    this.getUsers();
   }
 
-  /* Recupera usuarios de storage */
-  getUsers() {
-    return this.userService.getUserFromStorage().then((data) => {
-      this.usuarios = data;
-    });
-  }
-
-  /* Comprueba validez de datos introducidos */
-  compruebaUsuario(usuario: User): Boolean {
-    if (usuario.email === '' || usuario.nombre === '' || usuario.password !== usuario.password2) return true;
-    let repetido = this.usuarios.filter((user) => {
-      return user.nombre === usuario.nombre || user.email === usuario.email;
-    });
-    return !(repetido.length < 1);
-  }
-
-  /* Regitro de usuario */
-  userRegister(usuario: User) {
-    this.getUsers();
-    if (this.compruebaUsuario(usuario)) {
-      if (usuario.password !== usuario.password2) {
-        this.presentToast('Constraseñas no validas...');
-      } else this.presentToast('Usuario no valido..');
+  async register() {
+    if (
+      this.user.email !== '' &&
+      this.user.nombre !== '' &&
+      this.user.password !== '' &&
+      this.user.password.length >= 6 &&
+      this.user.password === this.user.password2
+    ) {
+      if (await this.authService.registerUser(this.user.email, this.user.password)) {
+        this.userService.addUser(this.user);
+        this.router.navigateByUrl('/dashboard');
+      } else {
+        this.presentToast('Registered user..Try with other email..');
+      }
     } else {
-      this.userService.saveUser(usuario);
-      this.router.navigateByUrl('/home');
+      this.presentToast('Fill the fields correctly...');
     }
   }
 
-  /* Presentacion de acciones */
-  async presentToast(message?: string) {
+  async presentToast(message : string) {
     const toast = await this.toastController.create({
       message,
       duration: 2000,

@@ -10,16 +10,9 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./employee-register.page.scss'],
 })
 export class EmployeeRegisterPage implements OnInit {
-  empleado: Employee = {
-    id: undefined,
-    nombre: '',
-    puesto: '',
-    salario: undefined,
-    email: '',
-    imagen: '',
-    telefono: '',
-    genero: '',
-  };
+
+  employee: Employee = {} as Employee;
+  edit : boolean = false;
 
   constructor(
     private dataService: DataService,
@@ -32,30 +25,45 @@ export class EmployeeRegisterPage implements OnInit {
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id != null) {
-      this.dataService.getEmployee(+id).subscribe((data) => {
-        this.empleado = data;
+      this.dataService.getEmployee(id).subscribe((data) => {
+        this.employee = data;
+        this.edit = true;
       });
     }
   }
 
-  /* Grabamos nuevo empleado */
+  /* Grabamos nuevo employee */
   saveEmployee() {
-    this.presentToast('Guardando usuario..');
-    this.dataService.saveEmployee(this.empleado);
-    this.router.navigateByUrl('/employees');
+    if(this.employee.nombre == '' ||
+       this.employee.puesto == '' ||
+       this.employee.salario == undefined ||
+       this.employee.email == '' ||
+       this.employee.imagen == '' ||
+       this.employee.telefono == '' ||
+       this.employee.genero == ''){
+         this.presentToast(`Fields must be filled in..`)
+       }else{
+          this.presentToast('Save user..');
+
+          if(this.edit) this.dataService.updateEmployee(this.employee)
+          else this.dataService.addEmployee(this.employee);
+
+          this.router.navigateByUrl('/employees');
+       }
+    
   }
 
   /* Regresamos a la tabla de empleados */
   goEmployees() {
-    this.presentToast('Volviendo..');
+    this.presentToast('Come back..');
     this.router.navigateByUrl('/employees');
   }
 
   /* Confirmación de eliminación */
-  async presentAlertConfirm(empleado: Employee) {
+  async presentAlertConfirm(employee: Employee) {
     const alert = await this.alertController.create({
-      header: `${empleado.nombre}`,
-      subHeader: `Con id: ${empleado.id}`,
+      header: `${employee.nombre}`,
+      subHeader: `Con id: ${employee.employeeId}`,
       message: `Será eliminado. ¿Está seguro?`,
       buttons: [
         {
@@ -69,7 +77,7 @@ export class EmployeeRegisterPage implements OnInit {
         {
           text: 'Ok',
           handler: () => {
-            this.dataService.deleteEmployee(empleado.id);
+            this.dataService.deleteEmployee(employee.employeeId);
             this.presentToast('Eliminando usuario..');
             this.router.navigateByUrl('/employees');
           },

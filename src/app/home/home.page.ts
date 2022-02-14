@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { User } from '../model/user';
-import { UserService } from '../services/user.service';
+import { AlertController, IonInput } from '@ionic/angular';
+//Todo: Ver popInfoUser
+import { PopinfouserComponent } from '../components/popinfouser/popinfouser.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,63 +11,34 @@ import { UserService } from '../services/user.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  usuario = {
-    email: '',
-    password: '',
-  };
 
-  usuarioLog: User;
+  email: string;
+  password: string;
 
-  constructor(private router: Router, private userService: UserService, private toastController: ToastController) {}
-
-  /* Valida las credenciales del usuario */
-
-  async isUser(): Promise<Boolean> {
-    if (this.usuario.email === '' && this.usuario.password === '') return false;
-    const users = await this.getUsers();
-    let coincide = users.find((user) => {
-      return this.usuario.email === user.email && this.usuario.password === user.password;
-    });
-    if (!!coincide) {
-      this.usuarioLog = users.filter(
-        (user) => this.usuario.email === user.email && this.usuario.password === user.password
-      )[0];
-    }
-
-    return !!coincide;
-  }
-
-  /* Comprueba las credenciales del usuario */
+  constructor(private router: Router,
+              private authService: AuthService,
+              private alertController: AlertController) {}
 
   async login() {
-    if (await this.isUser()) {
-      this.router.navigateByUrl(`/dashboard${this.usuarioLog.id !== undefined ? '/' + this.usuarioLog.id : ''}`);
-    } else {
-      await this.presentToast();
-    }
+    const connectionSuccess = await this.authService.login(this.email, this.password);
+    if (connectionSuccess) this.router.navigateByUrl('/dashboard');
+    else this.presentAlert();
   }
 
-  /* Recupera usuarios de Storage */
-
-  async getUsers(): Promise<User[]> {
-    return await this.userService.getUserFromStorage();
+  goToRegister(){
+    this.router.navigateByUrl('/register');    
   }
+  
 
-  /* Redireccion a RegiterPage */
-  goToRegister() {
-    this.router.navigateByUrl('/register');
-  }
-
-  /* Envío de mensaje de error */
-
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Usuario o contraseña incorrectos...',
-      duration: 2000,
-      position: 'bottom',
+  //TODO: MODIFICAR ASPECTO PRESENTALERT!!!!!!!
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: `User Not Found`,
+      message: 'Enter a correct email and password.',
+      buttons: ['OK'],
       animated: true,
-      color: 'dark  ',
     });
-    toast.present();
+
+    await alert.present();
   }
 }

@@ -4,7 +4,7 @@
       <ion-back-button text="" defaultHref="/" text=""></ion-back-button>
     </ion-buttons>
 
-    <ion-title> {{(empleado.nombre | titlecase) || 'New Employee'}} </ion-title>
+    <ion-title> {{(employee.nombre | titlecase) || 'New Employee'}} </ion-title>
 
     <ion-buttons slot="end">
       <ion-button>
@@ -20,16 +20,16 @@
     <form #formulario="ngForm">
       <ion-list>
         <img
-          *ngIf="empleado.genero !== ''"
-          [src]="'../../../assets/resources/' + empleado.genero"
-          alt="Icono Empleado"
+          *ngIf="employee.genero !== ''"
+          [src]="'../../../assets/resources/' + employee.genero"
+          alt="Icono employee"
         />
 
-        <img *ngIf="empleado.genero === ''" src="../../../assets/resources/personas.png" alt="Icono Empleados" />
+        <img *ngIf="employee.genero === ''" src="../../../assets/resources/personas.png" alt="Icono employees" />
 
         <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input name="nombre" type="text" placeholder="Introduzca nombre.." [(ngModel)]="empleado.nombre" required>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input name="nombre" type="text" placeholder="Introduzca nombre.." [(ngModel)]="employee.nombre" required>
           </ion-input>
         </ion-item>
 
@@ -39,7 +39,7 @@
             name="email"
             type="email"
             placeholder="Introduzca email.."
-            [(ngModel)]="empleado.email"
+            [(ngModel)]="employee.email"
             required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           >
@@ -47,46 +47,46 @@
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Salario</ion-label>
+          <ion-label position="floating">Salary</ion-label>
           <ion-input
             name="salario"
             type="number"
-            placeholder="Salario del empleado.."
-            [(ngModel)]="empleado.salario"
+            placeholder="Salario del employee.."
+            [(ngModel)]="employee.salario"
             required
           >
           </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Telefono</ion-label>
-          <ion-input name="telefono" type="number" placeholder="Telefono.." [(ngModel)]="empleado.telefono" required>
+          <ion-label position="floating">Phone</ion-label>
+          <ion-input name="telefono" type="number" placeholder="Telefono.." [(ngModel)]="employee.telefono" required>
           </ion-input>
         </ion-item>
 
         <ion-item required>
-          <ion-label>Puesto</ion-label>
+          <ion-label>Job</ion-label>
           <ion-select
-            [(ngModel)]="empleado.puesto"
+            [(ngModel)]="employee.puesto"
             [ngModelOptions]="{standalone: true}"
             okText="Ok"
             cancelText="Cancel"
           >
-            <ion-select-option value="cocinero">Cocinero</ion-select-option>
-            <ion-select-option value="camarero">Camarero</ion-select-option>
+            <ion-select-option value="cocinero">Chef</ion-select-option>
+            <ion-select-option value="camarero">Waiter</ion-select-option>
           </ion-select>
         </ion-item>
 
         <ion-item required>
-          <ion-label>Género</ion-label>
+          <ion-label>Genre</ion-label>
           <ion-select
-            [(ngModel)]="empleado.genero"
+            [(ngModel)]="employee.genero"
             [ngModelOptions]="{standalone: true}"
             okText="Ok"
             cancelText="Cancel"
           >
-            <ion-select-option value="hombre.png">Hombre</ion-select-option>
-            <ion-select-option value="mujer.png">Mujer</ion-select-option>
+            <ion-select-option value="hombre.png">Man</ion-select-option>
+            <ion-select-option value="mujer.png">Woman</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -96,7 +96,7 @@
   <div class="botones">
     <ion-button (click)="saveEmployee()" color="success" shape="round"> Save </ion-button>
     <ion-button (click)="goEmployees()" color="light" shape="round"> Cancel </ion-button>
-    <ion-button *ngIf="empleado.id !== undefined" (click)="presentAlertConfirm(empleado)" color="warning" shape="round">
+    <ion-button *ngIf="employee.employeeId !== undefined" (click)="presentAlertConfirm(employee)" color="warning" shape="round">
       Delete
     </ion-button>
   </div>

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Module } from 'src/app/interfaces/module';
 import { PopinfouserComponent } from 'src/app/components/popinfouser/popinfouser.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,30 +15,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DashboardPage implements OnInit {
   modulos: Module[] = [];
-
-  user: User = {
-    id: undefined,
-    email: '',
-    nombre: '',
-    password: undefined,
-    password2: undefined,
-  };
+  user: User = {} as User;
+  users: User[];
 
   constructor(
     private popOverController: PopoverController,
-    public userService: UserService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private userService: UserService,
+    private router: Router
   ) {}
 
   /* Iniciamos Dashboard con id de usuario */
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id != null) {
-      this.userService.getUser(+id).subscribe((data) => {
-        this.user = data;
-      });
-    }
+    this.userService.getUsers().subscribe((data) => {
+      this.users = data;
+      this.user = this.users[0];
+    });
     this.getmodules();
   }
 
@@ -48,16 +41,16 @@ export class DashboardPage implements OnInit {
   }
 
   /* Redirección a edición de usuario */
-  goToEditeUser(id: number) {
+  goToEditeUser(id?: string) {
     this.router.navigateByUrl(`/edit-user${id !== undefined ? '/' + id : ''}`);
   }
 
   /* Redirección a modulo */
   goTo(module: Module) {
-    this.router.navigateByUrl(`/${module.redirecTo}${this.user.id !== undefined ? '/' + this.user.id : ''}`);
+    this.router.navigateByUrl(`/${module.redirecTo}${this.user.userId !== undefined ? '/' + this.user.userId : ''}`);
   }
 
-  /* PopOver menú navegación usuario */
+  /* PopOver navigation menu */
   async presentPopover(event: any) {
     const popover = await this.popOverController.create({
       component: PopinfouserComponent,

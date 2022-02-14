@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">Recovery Password</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+
+      <!-- Contenido -->
+      <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
+        <ion-card class="ion-padding ion-text-center scale-up-center">
+          <!-- Logo -->
+          <img src="../../assets/resources/matters.png" alt="LogoMatters" />
+
+          <div class="espacio"></div>
+
+          <!-- Entrada Email -->
+          <ion-item class="form">
+            <ion-label color="dark" position="floating">Email</ion-label>
+            <ion-input name="email"
+                       type="email"
+                       [(ngModel)]="email"
+                       required
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            </ion-input>
+          </ion-item>
+
+          <div class="espacio"></div>
+
+          <!-- Buton Registro -->
+          <ion-button color="light" fill="outline" href="/home">Cancel</ion-button>
+
+          <!-- Buton Login -->
+          <ion-button color="light" (click)="resetPassword()">Send</ion-button>
+
+          <div class="espacio"></div>
+          <div class="text">*Enter your email address and we'll send you an email with the information.</div>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

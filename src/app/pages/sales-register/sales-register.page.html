@@ -40,7 +40,7 @@
   <div class="botones">
     <ion-button (click)="saveSale()" color="success" shape="round"> Save </ion-button>
     <ion-button (click)="goSales()" color="light" shape="round"> Cancel </ion-button>
-    <ion-button *ngIf="sale.id !== undefined" (click)="presentAlertConfirm(sale)" color="warning" shape="round">
+    <ion-button *ngIf="sale.saleId !== undefined" (click)="presentAlertConfirm(sale)" color="warning" shape="round">
       Delete
     </ion-button>
   </div>

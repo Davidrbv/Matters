@@ -1,6 +1,6 @@
 /* Definición propiedades facturas */
 export class Invoice {
-  id: number;
+  invoiceId: string;
   codigo: string;
   fecha: Date;
   cantidad: number;

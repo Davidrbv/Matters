@@ -18,31 +18,30 @@
           <!-- Entrada Email -->
           <ion-item class="form">
             <ion-label color="dark" position="floating">Email</ion-label>
-            <ion-input
-              name="email"
-              type="email"
-              [(ngModel)]="usuario.email"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            ></ion-input>
+            <ion-input name="email" type="email" [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            </ion-input>
           </ion-item>
 
-          <div class="espacio-form"></div>
-
-          <!-- Entrada Password -->
+          <!-- Entrie Password -->
           <ion-item class="form">
-            <ion-label color="dark" position="floating">Password</ion-label>
-            <ion-input name="password" type="password" [(ngModel)]="usuario.password"></ion-input>
+            <ion-label color="dark" position="floating">Password</ion-label>          
+            <ion-input name="password" type="password" [(ngModel)]="password">  
+            </ion-input>
           </ion-item>
 
           <div class="espacio"></div>
 
-          <!-- Boton Registro -->
+          <!-- Buton Registro -->
           <ion-button color="light" fill="outline" (click)="goToRegister()">Register</ion-button>
 
-          <!-- Boton Login -->
+          <!-- Buton Login -->
           <ion-button color="light" (click)="login()">Login</ion-button>
 
-          <div class="espacio-form"></div>
+          <a class="recovery" href="/recovery-pass">
+            <ion-icon  class="iconos" name="mail"></ion-icon>
+            Password recovery
+          </a>
+
         </ion-card>
       </ion-col>
 

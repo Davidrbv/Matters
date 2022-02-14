@@ -12,6 +12,10 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardPageModule),
+  },
+  {
     path: 'dashboard/:id',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardPageModule),
   },
@@ -84,7 +88,11 @@ const routes: Routes = [
   {
     path: 'edit-user/:id',
     loadChildren: () => import('./pages/edit-user/edit-user.module').then((m) => m.EditUserPageModule),
+  },  {
+    path: 'recovery-pass',
+    loadChildren: () => import('./pages/recovery-pass/recovery-pass.module').then( m => m.RecoveryPassPageModule)
   },
+
 ];
 
 @NgModule({

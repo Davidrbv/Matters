@@ -1,80 +1,45 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Invoice } from '../model/invoice';
-import { Storage } from '@capacitor/storage';
+import { AuthService } from './auth.service';
+import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvoiceService {
-  facturas: Invoice[] = [];
 
-  facturaCounter: number = 0;
+  pathToInvoices = `users/${this.authService.getCurrentUser().uid}/invoices`;
 
-  constructor() {
-    this.getInvoiceFromStorage().then((data) => (this.facturas = data));
-    this.getInvoiceCounterFromStorage().then((data) => (this.facturaCounter = data));
+  constructor(private authService: AuthService,
+              private fireStore: Firestore) {}
+
+  /* Get one Invoice */
+  getInvoice(id: string): Observable<Invoice> {
+    return docData(doc(this.fireStore, `${this.pathToInvoices}/${id}`), {
+      idField: 'invoiceId',
+    }) as Observable<Invoice>;
   }
 
-  /* Recupera una factura */
-
-  getInvoice(id: number): Observable<Invoice> {
-    return of({ ...this.facturas.filter((t) => t.id === id)[0] });
+  /* Get All Invoices */
+  getInvoices(): Observable<Invoice[]> {
+    return collectionData(collection(this.fireStore, this.pathToInvoices), {
+      idField: 'invoiceId',
+    }) as Observable<Invoice[]>;
   }
 
-  /* Graba factura en array y llamada a Storage */
-
-  async saveInvoice(factura: Invoice): Promise<Boolean> {
-    if (factura.id === undefined) {
-      factura.id = this.facturaCounter++;
-      this.facturas.push(factura);
-    } else {
-      this.deleteInvoice(factura.id);
-      this.facturas.push(factura);
-    }
-    await this.saveInvoiceInToStorage();
-    await this.saveInvoiceCounterInToStorage();
-    return true;
+  /* Add Invoice */
+  async addInvoice(invoice: Invoice) {
+    await addDoc(collection(this.fireStore, this.pathToInvoices), invoice);
   }
 
-  /* Eliminamos factura grabando un array nuevo sin la factura borrada */
-
-  async deleteInvoice(id: number): Promise<Boolean> {
-    this.facturas = this.facturas.filter((t) => t.id !== id);
-    return await this.saveInvoiceInToStorage();
+  /* Delete Invoice */
+  async deleteInvoice(id: string) {
+    await deleteDoc(doc(this.fireStore, `${this.pathToInvoices}/${id}`));
   }
 
-  /* Grabamos factura en storage */
-
-  async saveInvoiceInToStorage(): Promise<Boolean> {
-    await Storage.set({
-      key: 'factura',
-      value: JSON.stringify(this.facturas),
-    });
-    return true;
-  }
-
-  /* Grabamos contador de facturas en storage */
-
-  async saveInvoiceCounterInToStorage(): Promise<Boolean> {
-    await Storage.set({
-      key: 'facturaCounter',
-      value: this.facturaCounter.toString(),
-    });
-    return true;
-  }
-
-  /* Obtener facturas almacenadas en Storage */
-
-  async getInvoiceFromStorage(): Promise<Invoice[]> {
-    const retorno = await Storage.get({ key: 'factura' });
-    return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
-  }
-
-  /* Obtener el contador de facturas del Storage */
-  
-  async getInvoiceCounterFromStorage(): Promise<number> {
-    const tc = await Storage.get({ key: 'facturaCounter' });
-    return Number.isInteger(+tc.value) ? +tc.value : 0;
+  /* Update Invoice */
+  async updateInvoice(invoice: Invoice) {
+    await setDoc(doc(this.fireStore, `${this.pathToInvoices}/${invoice.invoiceId}`), invoice);
   }
 }

@@ -11,7 +11,9 @@ import { InvoiceService } from 'src/app/services/invoice.service';
   styleUrls: ['./invoices.page.scss'],
 })
 export class InvoicesPage implements OnInit {
-  invoices: Invoice[] = [];
+
+  invoices: Observable<Invoice[]>;
+
   invoicesFilter: Invoice[] = [];
   estado: boolean;
 
@@ -21,33 +23,25 @@ export class InvoicesPage implements OnInit {
     private alertController: AlertController
   ) {}
 
-  async ngOnInit() {
-    await this.getInvoices();
-  }
-
-  /* Recuperamos facturas de Storage */
-  getInvoices() {
-    this.invoiceService.getInvoiceFromStorage().then((data) => {
-      this.invoices = data;
-      this.invoicesFilter = data;
-    });
+  ngOnInit() {
+    this.invoices = this.invoiceService.getInvoices();
   }
 
   /* Devuelve facturas según estado */
   invoiceStatus(estado: boolean) {
-    this.invoiceService.getInvoiceFromStorage().then((data) => {
+    this.invoiceService.getInvoices().subscribe((data) => {
       this.invoicesFilter = data.filter((invoice) => invoice.estado === estado);
     });
     this.estado = !this.estado;
   }
 
   /* Redirección a edición de factura */
-  goToEditInvoice(id?: number) {
+  goToEditInvoice(id?: string) {
     this.router.navigateByUrl(`/edit-invoice${id !== undefined ? '/' + id : ''}`);
   }
 
   /* Eliminación de factura */
-  deleteInvoice(id: number) {
+  deleteInvoice(id: string) {
     this.invoiceService.deleteInvoice(id);
   }
 
@@ -55,7 +49,7 @@ export class InvoicesPage implements OnInit {
   async presentAlertConfirm(invoice: Invoice) {
     const alert = await this.alertController.create({
       header: 'Delete Invoice',
-      message: `La factura ${invoice.id} será eliminada.\n Pulse ok para continuar.`,
+      message: `La factura ${invoice.invoiceId} será eliminada.\n Pulse ok para continuar.`,
       buttons: [
         {
           text: 'Cancel',
@@ -67,7 +61,7 @@ export class InvoicesPage implements OnInit {
         {
           text: 'Ok',
           handler: () => {
-            this.deleteInvoice(invoice.id);
+            this.deleteInvoice(invoice.invoiceId);
             console.log('Factura eliminada');
           },
         },

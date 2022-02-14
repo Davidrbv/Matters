@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, of} from 'rxjs';
 import { Employee } from 'src/app/model/employee';
-import { User } from 'src/app/model/user';
 import { DataService } from 'src/app/services/data.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-employees',
@@ -11,36 +10,36 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./employees.page.scss'],
 })
 export class EmployeesPage implements OnInit {
-  employees: Employee[] = [];
+
+  employees: Observable<Employee[]>;
+  employeesFilter : Employee[] = [];
   nombre = '';
 
-  constructor(public dataService: DataService, private router: Router) {}
+  constructor(public dataService: DataService, private router: Router) {
+    this.employees = this.dataService.getEmployees();
+  }
 
-  ngOnInit(): void {
-    this.getEmployees();
-  }
-  /* Recuperamos empleados del Storage */
-  getEmployees() {
-    return this.dataService.getEmployeesFromStorage().then((data) => {
-      this.employees = data;
-    });
-  }
+  ngOnInit(): void {}
+
 
   /* Filtro de empleados. Busca referencias al escribir en el Search */
-  async getBusqueda(event) {
-    const empleados = await this.dataService.getEmployeesFromStorage();
-    const porNombre = empleados.filter(
-      (empleado) =>
-        empleado.nombre.includes(event.detail.value) ||
-        empleado.puesto.includes(event.detail.value) ||
-        empleado.email.includes(event.detail.value) ||
-        empleado.genero.includes(event.detail.value)
-    );
-    this.employees = porNombre;
-  }
 
+  getBusqueda(event : any) {
+
+    this.dataService.getEmployees().subscribe((data) => {
+
+      this.employeesFilter = data.filter(employee => 
+      employee.nombre.includes(event.detail.value) ||
+      employee.puesto.includes(event.detail.value) ||
+      employee.email.includes(event.detail.value) ||
+      employee.genero.includes(event.detail.value)
+      )
+      this.employees = of(this.employeesFilter);
+    });  
+  }
+  
   /* Redirección a edición de empleados */
-  goEmployeesRegister(id?: number) {
+  goEmployeesRegister(id?: string) {
     this.router.navigateByUrl(`/employee-register${id !== undefined ? '/' + id : ''}`);
   }
 }

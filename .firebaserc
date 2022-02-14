@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "matterionic": {
+      "hosting": {
+        "app": [
+          "matterionic"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "matterionic"
+  }
+}

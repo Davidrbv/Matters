@@ -1,6 +1,6 @@
 /* Definición propiedades empleados */
 export class Employee {
-  id?: number;
+  employeeId: string;
   nombre: string;
   puesto: string;
   salario: number;

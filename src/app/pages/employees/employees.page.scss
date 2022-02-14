@@ -49,10 +49,6 @@ img {
   left: 50%;
 }
 
-.info {
-  padding-top: 30px;
-}
-
 p {
   font-weight: bold;
 }
@@ -60,3 +56,13 @@ p {
 ng-template {
   font-weight: bold;
 }
+
+.info {
+  padding-top: 30px;
+}
+
+.employee{
+  cursor: pointer;
+}
+
+

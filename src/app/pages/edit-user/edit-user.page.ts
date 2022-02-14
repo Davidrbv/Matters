@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { ToastController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user',
@@ -10,15 +11,9 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./edit-user.page.scss'],
 })
 export class EditUserPage implements OnInit {
-  users: User[] = [];
+  users: Observable<User[]>;
 
-  user: User = {
-    id: undefined,
-    email: '',
-    nombre: '',
-    password: undefined,
-    password2: undefined,
-  };
+  user: User = {} as User;
 
   constructor(
     private userService: UserService,
@@ -30,44 +25,36 @@ export class EditUserPage implements OnInit {
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id != null) {
-      this.userService.getUser(+id).subscribe((data) => {
+      this.userService.getUser(id).subscribe((data) => {
         this.user = data;
       });
     }
   }
 
-  /* Recupera usuarios de storage */
-  getUsers() {
-    return this.userService.getUserFromStorage().then((data) => {
-      this.users = data;
-    });
-  }
-
-  /* Comprueba validez de datos introducidos */
+  /* Comprueba validez de datos introducidos 
   compruebaUsuario(usuario: User): Boolean {
     if (usuario.email === '' || usuario.nombre === '' || usuario.password !== usuario.password2) return true;
     let repetido = this.users.filter((user) => {
       return user.nombre === usuario.nombre || user.email === usuario.email;
     });
     return !(repetido.length < 1);
-  }
+  }*/
 
   /* Cambios en usuario */
   async saveChange(usuario: User) {
-    this.getUsers();
     if (usuario.password !== usuario.password2) {
       this.presentToast('Constraseñas no validas...');
     } else {
       this.presentToast('Realizando cambios...');
-      await this.userService.saveUser(usuario);
-      this.router.navigateByUrl(`/dashboard${this.user.id !== undefined ? '/' + this.user.id : ''}`);
+      await this.userService.addUser(usuario);
+      this.router.navigateByUrl(`/dashboard${this.user.userId !== undefined ? '/' + this.user.userId : ''}`);
     }
   }
 
   /* Cancelación de cambios */
   cancelChange() {
     this.presentToast('Cambios cancelados..');
-    this.router.navigateByUrl(`/dashboard${this.user.id !== undefined ? '/' + this.user.id : ''}`);
+    this.router.navigateByUrl(`/dashboard${this.user.userId !== undefined ? '/' + this.user.userId : ''}`);
   }
 
   /* Presentacion de acciones */

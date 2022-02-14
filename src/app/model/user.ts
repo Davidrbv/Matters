@@ -1,6 +1,6 @@
 /* Definición propiedades usuarios */
 export class User {
-  id?: number;
+  userId: string;
   email: string;
   nombre: string;
   password: string;

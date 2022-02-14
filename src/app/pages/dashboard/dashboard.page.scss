@@ -57,9 +57,17 @@ h2 {
   left: 50%;
 }
 
+.all{
+  max-height: fit-content;
+}
+
 ion-card {
   max-height: 160px;
   -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.4);
+}
+
+p{
+  font-weight: bold;
 }

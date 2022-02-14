@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center" color="light">
     <ion-buttons slot="start">
-      <ion-back-button text="" defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
 
     <ion-title>Sales</ion-title>
@@ -47,7 +47,7 @@
         <ion-label>Total</ion-label>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let sale of sales" (click)="goToSaleRegister(sale.id)">
+    <ion-row class="sale" *ngFor="let sale of sales | async" (click)="goToSaleRegister(sale.saleId)">
       <ion-col col-3>
         <ion-label> {{sale.fecha | date: 'dd/MM/yy'}} </ion-label>
       </ion-col>
@@ -62,4 +62,5 @@
       </ion-col>
     </ion-row>
   </ion-card>
+  <pre>{{this.sales | async | json}}</pre>
 </ion-content>

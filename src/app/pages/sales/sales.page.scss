@@ -40,6 +40,10 @@ p {
   color: white;
 }
 
+ion-grid {
+  padding: 0;
+}
+
 .cabecera {
   padding: 0;
   margin: 0;
@@ -47,10 +51,11 @@ p {
   max-height: 10vh;
 }
 
-ion-grid {
-  padding: 0;
+.sale{
+  cursor: pointer;
 }
 
 .maxmin {
   background-color: rgb(209, 1, 1);
 }
+

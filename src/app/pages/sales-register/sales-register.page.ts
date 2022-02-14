@@ -10,13 +10,9 @@ import { SaleService } from 'src/app/services/sale.service';
   styleUrls: ['./sales-register.page.scss'],
 })
 export class SalesRegisterPage implements OnInit {
-  sale: Sale = {
-    id: undefined,
-    fecha: new Date(),
-    efectivo: undefined,
-    tarjeta: undefined,
-    total: undefined,
-  };
+
+  sale: Sale = {} as Sale;
+  edit: boolean = false;
 
   constructor(
     private saleService: SaleService,
@@ -29,8 +25,9 @@ export class SalesRegisterPage implements OnInit {
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id != null) {
-      this.saleService.getSale(+id).subscribe((data) => {
+      this.saleService.getSale(id).subscribe((data) => {
         this.sale = data;
+        this.edit = true;
       });
     }
   }
@@ -42,7 +39,10 @@ export class SalesRegisterPage implements OnInit {
     } else {
       this.sale.total = this.sale.efectivo + this.sale.tarjeta;
       this.presentToast('Registrando entrada..');
-      this.saleService.saveSale(this.sale);
+
+      if(this.edit) this.saleService.updateSale(this.sale);
+      else this.saleService.addSale(this.sale);
+
       this.router.navigateByUrl('/sales');
     }
   }
@@ -57,7 +57,7 @@ export class SalesRegisterPage implements OnInit {
   async presentAlertConfirm(venta: Sale) {
     const alert = await this.alertController.create({
       header: `Fecha: ${venta.fecha}`,
-      subHeader: `Id: ${venta.id}`,
+      subHeader: `Id: ${venta.saleId}`,
       message: `Será eliminada. ¿Está seguro?`,
       buttons: [
         {
@@ -72,7 +72,7 @@ export class SalesRegisterPage implements OnInit {
           text: 'Ok',
           handler: () => {
             this.presentToast('Eliminando venta..');
-            this.saleService.deleteSale(venta.id);
+            this.saleService.deleteSale(venta.saleId);
             this.router.navigateByUrl('/sales');
           },
         },

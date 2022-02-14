@@ -1,83 +1,52 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { User } from '../model/user';
-import { Storage } from '@capacitor/storage';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/model/user';
 import { HttpClient } from '@angular/common/http';
 import { Module } from 'src/app/interfaces/module';
+import { AuthService } from './auth.service';
+import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  usuarios: User[] = [];
 
-  usuarioCounter: number = 0;
-
-  constructor(private http: HttpClient) {
-    this.getUserFromStorage().then((data) => (this.usuarios = data));
-    this.getUserCounterFromStorage().then((data) => (this.usuarioCounter = data));
-  }
+  constructor(private http: HttpClient,
+              private authService : AuthService,
+              private fireStore : Firestore) {
+              }
 
   /* Modulos que ha adquirido el cliente/usuario */
 
   getModules(): Observable<Module[]> {
     return this.http.get<Module[]>('../assets/modules.json');
   }
-
-  /* Recogemos usuario */
-
-  getUser(id: number): Observable<User> {
-    return of({ ...this.usuarios.filter((t) => t.id === id)[0] });
+  
+  /* Get one User */
+  getUser(id : string): Observable<User>{
+    return docData(doc(this.fireStore,`users/${this.authService.getCurrentUser().uid}/user/${id}`),{
+      idField: 'userId',
+    }) as Observable<User>
   }
 
-  /* Guardar usuario en array y Storage*/
-
-  async saveUser(user: User): Promise<Boolean> {
-    if (user.id == undefined) {
-      user.id = this.usuarioCounter++;
-      this.usuarios.push(user);
-    } else {
-      this.deleteUser(user.id);
-      this.usuarios.push(user);
-    }
-    await this.saveUserInToStorage();
-    await this.saveUserCounterInToStorage();
-    return true;
+  getUsers(): Observable<User[]>{
+    return collectionData(collection(this.fireStore, `users/${this.authService.getCurrentUser().uid}/user`), {
+      idField: 'userId',
+    }) as Observable<User[]>;
   }
 
-  /* Elimina usuario de array y graba en Storage*/
-  async deleteUser(id: number): Promise<Boolean> {
-    this.usuarios = this.usuarios.filter((t) => t.id !== id);
-    return await this.saveUserInToStorage();
+  /* Add User */
+  async addUser(user : User){
+    await addDoc(collection(this.fireStore, `users/${this.authService.getCurrentUser().uid}/user`), user);
   }
 
-  /* Guardar usuario en storage*/
-  async saveUserInToStorage(): Promise<Boolean> {
-    await Storage.set({
-      key: 'usuario',
-      value: JSON.stringify(this.usuarios),
-    });
-    return true;
+  /* Delete User */
+  async deleteUser(id: string){
+    await deleteDoc(doc(this.fireStore,`users/${this.authService.getCurrentUser().uid}/user/${id}`));
   }
 
-  /* Guarda id usuario en Storage */
-  async saveUserCounterInToStorage(): Promise<Boolean> {
-    await Storage.set({
-      key: 'usuarioCounter',
-      value: this.usuarioCounter.toString(),
-    });
-    return true;
-  }
-
-  /* Obtiene usuarios de Storage */
-  async getUserFromStorage(): Promise<User[]> {
-    const retorno = await Storage.get({ key: 'usuario' });
-    return JSON.parse(retorno.value) ? JSON.parse(retorno.value) : [];
-  }
-
-  /* Obtiene contador de usuario de Storage */
-  async getUserCounterFromStorage(): Promise<number> {
-    const tc = await Storage.get({ key: 'usuarioCounter' });
-    return Number.isInteger(+tc.value) ? +tc.value : 0;
+  /* Update User */
+  async updateUser(user : User){
+    await setDoc(doc(this.fireStore,`users/${this.authService.getCurrentUser().uid}/user/${user.userId}`),user)
   }
 }

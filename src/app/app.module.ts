@@ -9,11 +9,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PopinfouserComponent } from './components/popinfouser/popinfouser.component';
+import { ShowHidePasswordComponent } from './components/show-hide-password/show-hide-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [PopinfouserComponent],
+  entryComponents: [PopinfouserComponent, ShowHidePasswordComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -21,6 +27,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ComponentsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
+    
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

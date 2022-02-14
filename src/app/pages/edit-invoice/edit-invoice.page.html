@@ -4,8 +4,8 @@
       <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
 
-    <ion-title *ngIf="factura.estado">Pagada</ion-title>
-    <ion-title *ngIf="!factura.estado">Pendiente</ion-title>
+    <ion-title *ngIf="invoice.estado">Pagada</ion-title>
+    <ion-title *ngIf="!invoice.estado">Pendiente</ion-title>
 
     <ion-buttons slot="end">
       <ion-button>
@@ -21,16 +21,16 @@
   <ion-card>
     <form #formulario="ngForm">
       <img
-        *ngIf="factura.estado === false"
+        *ngIf="invoice.estado === false"
         src="../../../assets/resources/facturaPendiente.png"
         alt="Factura pendiente"
       />
 
-      <img *ngIf="factura.estado === true" src="../../../assets/resources/facturaPagada.png" alt="Factura pagada" />
+      <img *ngIf="invoice.estado === true" src="../../../assets/resources/facturaPagada.png" alt="Factura pagada" />
       <ion-list>
         <ion-item>
           <ion-label position="floating">Código Factura</ion-label>
-          <ion-input name="codigo" type="text" [(ngModel)]="factura.codigo" required> </ion-input>
+          <ion-input name="codigo" type="text" [(ngModel)]="invoice.codigo" required> </ion-input>
         </ion-item>
 
         <ion-item>
@@ -41,7 +41,7 @@
             type="date"
             display-format="YYYY MMMM DD"
             cancelText="Cancel"
-            [(ngModel)]="factura.fecha"
+            [(ngModel)]="invoice.fecha"
             required="true"
             [ngModelOptions]="{standalone: true}"
           >
@@ -50,19 +50,19 @@
 
         <ion-item>
           <ion-label position="floating">Cantidad</ion-label>
-          <ion-input name="cantidad" type="number" min="0" [(ngModel)]="factura.cantidad" required> </ion-input>
+          <ion-input name="cantidad" type="number" min="0" [(ngModel)]="invoice.cantidad" required> </ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Proveedor</ion-label>
-          <ion-input name="proveedor" type="text" [(ngModel)]="factura.proveedor" required> </ion-input>
+          <ion-input name="proveedor" type="text" [(ngModel)]="invoice.proveedor" required> </ion-input>
         </ion-item>
       </ion-list>
     </form>
 
     <ion-item>
-      <ion-label>Estado factura</ion-label>
-      <ion-toggle [(ngModel)]="factura.estado" color="success">{{factura.estado}}</ion-toggle>
+      <ion-label>Estado invoice</ion-label>
+      <ion-toggle [(ngModel)]="invoice.estado" color="success">{{invoice.estado}}</ion-toggle>
     </ion-item>
   </ion-card>
 
@@ -71,8 +71,8 @@
     <ion-button class="btncancel" (click)="goInvoices()" color="light" shape="round"> Cancel </ion-button>
     <ion-button
       class="btncancel"
-      *ngIf="factura.id !== undefined"
-      (click)="presentAlertConfirm(factura)"
+      *ngIf="invoice.invoiceId !== undefined"
+      (click)="presentAlertConfirm(invoice)"
       color="warning"
       shape="round"
     >

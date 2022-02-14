@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center" color="light">
     <ion-buttons slot="start">
-      <ion-back-button text="" defaultHref="/" text=""></ion-back-button>
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
     </ion-buttons>
 
     <ion-title>Employees</ion-title>
@@ -22,8 +22,8 @@
   </ion-row>
   <ion-grid fixed>
     <ion-row>
-      <ion-col *ngFor="let employee of employees" size-lg="3" size-md="4" size-sm="6" size-xs="12">
-        <ion-card class="ion-padding ion-text-center scale-up-center" (click)="goEmployeesRegister(employee.id)">
+      <ion-col class="employee" *ngFor="let employee of employees | async" size-lg="3" size-md="4" size-sm="6" size-xs="12">
+        <ion-card class="ion-padding ion-text-center scale-up-center" (click)="goEmployeesRegister(employee.employeeId)">
           <ion-row>
             <ion-col size="6">
               <ion-avatar>
