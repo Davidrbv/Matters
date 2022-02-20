@@ -2,21 +2,31 @@
     {
         "name" : "Employees",
         "redirecTo": "/employees",
-        "image" : "empleados.png"
+        "image" : "empleados.png",
+        "icon" : "people-outline"
     },
     {
         "name" : "Invoices",
         "redirecTo": "/invoices",
-        "image" : "facturas.png"
+        "image" : "facturas.png",
+        "icon" : "layers-outline"
     },
     {
         "name" : "Sales",
         "redirecTo": "/sales",
-        "image" : "contabilidad.png"
+        "image" : "contabilidad.png",
+        "icon" : "cash-outline"
     },
     {
         "name" : "Accounting",
         "redirecTo": "/accounting",
-        "image" : "ventas.png"
+        "image" : "ventas.png",
+        "icon" : "calculator-outline"
+    },
+    {
+        "name" : "Photos",
+        "redirecTo": "/photos",
+        "image" : "engranaje.png",
+        "icon" : "image-outline"
     }
 ]

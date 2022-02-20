@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Sale } from 'src/app/model/sale';
 import { SaleService } from 'src/app/services/sale.service';
 
@@ -18,7 +18,6 @@ export class SalesRegisterPage implements OnInit {
     private saleService: SaleService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private alertController: AlertController,
     private toastController: ToastController
   ) {}
 
@@ -35,10 +34,10 @@ export class SalesRegisterPage implements OnInit {
   /* Graba venta  */
   saveSale() {
     if (this.sale.efectivo === undefined || this.sale.tarjeta === undefined) {
-      this.presentToast('Introduzca cantidades..');
+      this.presentToast('Fild the fields..');
     } else {
       this.sale.total = this.sale.efectivo + this.sale.tarjeta;
-      this.presentToast('Registrando entrada..');
+      this.presentToast('Sale register..');
 
       if(this.edit) this.saleService.updateSale(this.sale);
       else this.saleService.addSale(this.sale);
@@ -49,37 +48,8 @@ export class SalesRegisterPage implements OnInit {
 
   /* Redirección a modulo ventas */
   goSales() {
-    this.presentToast('Cancelando acciones..');
+    this.presentToast('Cancel action..');
     this.router.navigateByUrl('/sales');
-  }
-
-  /* Confirmación de eliminación */
-  async presentAlertConfirm(venta: Sale) {
-    const alert = await this.alertController.create({
-      header: `Fecha: ${venta.fecha}`,
-      subHeader: `Id: ${venta.saleId}`,
-      message: `Será eliminada. ¿Está seguro?`,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            this.presentToast('Acción cancelada..');
-          },
-        },
-        {
-          text: 'Ok',
-          handler: () => {
-            this.presentToast('Eliminando venta..');
-            this.saleService.deleteSale(venta.saleId);
-            this.router.navigateByUrl('/sales');
-          },
-        },
-      ],
-    });
-
-    await alert.present();
   }
 
   /* Presentacion de acciones realizadas */

@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-text-center" color="light">
+    <ion-buttons slot="start">
+      <ion-back-button href="/dashboard"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Photos</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-menu-button menu="main-menu">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+
+      <!-- Contenido -->
+      <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
+        <ion-card *ngIf="select" class="ion-padding ion-text-center">
+          <!-- Logo -->
+          <img [src]="'data:image/'+image.format+';base64,'+image.base64String" alt="imagePicked" />
+          <ion-item class="form">
+            <ion-label color="dark" position="floating">Ubicación</ion-label>
+            <ion-input name="ubicación" type="text" [(ngModel)]="newPhoto.ubicacion">
+            </ion-input>
+          </ion-item>
+
+          <div class="espacio"></div>
+
+          <!-- Buton Registro -->
+          <ion-button color="light" fill="outline" (click)="select = false">Cancel</ion-button>
+
+          <!-- Buton Login -->
+          <ion-button color="light" (click)="addPhoto()">Accept</ion-button>
+
+        </ion-card>
+        <ion-item-sliding *ngFor="let image of photos | async">
+          <ion-item>
+            <ion-card>
+              <img class="photo" [src]="'data:image/'+image.formato.format+';base64,'+image.formato.base64String"
+                alt='{{image.ubicacion}}' />
+            </ion-card>
+          </ion-item>
+          <ion-item-options side="start">
+
+            <!-- <ion-item-option>
+              <ion-icon slot="icon-only" name="heart"></ion-icon>
+            </ion-item-option> -->
+
+            <ion-item-option color="primary" (click)="share(image)">
+              <ion-icon slot="icon-only" name="share"></ion-icon>
+            </ion-item-option>
+
+          </ion-item-options>
+
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="deletePhoto(image)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-col>
+
+      <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="150px" 
+                      (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Loading..">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon name="add" (click)="camera()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

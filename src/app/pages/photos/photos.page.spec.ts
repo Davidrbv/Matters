@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ShowHidePasswordComponent } from './show-hide-password.component';
+import { PhotosPage } from './photos.page';
 
-describe('ShowHidePasswordComponent', () => {
-  let component: ShowHidePasswordComponent;
-  let fixture: ComponentFixture<ShowHidePasswordComponent>;
+describe('PhotosPage', () => {
+  let component: PhotosPage;
+  let fixture: ComponentFixture<PhotosPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowHidePasswordComponent ],
+      declarations: [ PhotosPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ShowHidePasswordComponent);
+    fixture = TestBed.createComponent(PhotosPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -1,0 +1,31 @@
+<ion-menu side="start" menuId="main-menu" contentId="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Options</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngIf="authService.getCurrentUser()" href="/edit-user">
+        <ion-icon slot="start" name="person"></ion-icon>
+        <ion-label>
+          <ion-menu-toggle>Perfil</ion-menu-toggle>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let module of modulos"  (click)="goTo(module)">
+        <ion-icon slot="start" [name]='module.icon' ></ion-icon>
+        <ion-label>
+          <ion-menu-toggle>{{module.name}}</ion-menu-toggle>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="authService.getCurrentUser()" (click)="authService.logOut()" href="/home">
+        <ion-icon slot="start" name="exit"></ion-icon>
+        <ion-label>
+          <ion-menu-toggle>Exit</ion-menu-toggle>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

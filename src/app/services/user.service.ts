@@ -29,6 +29,7 @@ export class UserService {
     }) as Observable<User>
   }
 
+  /* Get the only user in getCurrent User's Firebase */
   getUsers(): Observable<User[]>{
     return collectionData(collection(this.fireStore, `users/${this.authService.getCurrentUser().uid}/user`), {
       idField: 'userId',

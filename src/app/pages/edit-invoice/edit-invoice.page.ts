@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Invoice } from 'src/app/model/invoice';
 import { InvoiceService } from 'src/app/services/invoice.service';
 
@@ -18,8 +18,7 @@ export class EditInvoicePage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private invoiceService: InvoiceService,
-    private toastController: ToastController,
-    private alertController: AlertController
+    private toastController: ToastController
   ) {}
 
   /* Inicio de modulo con id de empleado */
@@ -54,37 +53,10 @@ export class EditInvoicePage implements OnInit {
 
   /* Redirection Invoices Module */
   goInvoices() {
-    this.presentToast('changes cancelled...');
+    this.presentToast('Changes cancelled...');
     this.router.navigateByUrl('/invoices');
   }
 
-  /* Confirmacion eleminación invoice */
-  async presentAlertConfirm(invoice: Invoice) {
-    const alert = await this.alertController.create({
-      header: `Invoice code:  ${invoice.codigo}`,
-      message: `The invoice will be deleted. ¿Are you sure?`,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            this.presentToast('Action canceled..');
-          },
-        },
-        {
-          text: 'Ok',
-          handler: () => {
-            this.invoiceService.deleteInvoice(invoice.invoiceId);
-            this.presentToast('Delete invoice..');
-            this.router.navigateByUrl('/invoices');
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
 
   /* Presentacion de acciones realizadas */
   async presentToast(message: string) {

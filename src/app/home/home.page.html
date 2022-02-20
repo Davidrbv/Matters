@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content mode="md">
+<ion-content mode="ios">
   <ion-grid>
     <ion-row>
       <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
@@ -41,6 +41,15 @@
             <ion-icon  class="iconos" name="mail"></ion-icon>
             Password recovery
           </a>
+          <a class="recovery" (click)="googleAuthentication()">
+            <ion-icon  class="iconos" name="mail"></ion-icon>
+            Google
+          </a>
+          <a class="recovery" (click)="facebookAuthentication()">
+            <ion-icon  class="iconos" name="mail"></ion-icon>
+            Facebook
+          </a>
+
 
         </ion-card>
       </ion-col>

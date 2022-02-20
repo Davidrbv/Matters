@@ -88,9 +88,18 @@ const routes: Routes = [
   {
     path: 'edit-user/:id',
     loadChildren: () => import('./pages/edit-user/edit-user.module').then((m) => m.EditUserPageModule),
-  },  {
+  },
+  {
     path: 'recovery-pass',
     loadChildren: () => import('./pages/recovery-pass/recovery-pass.module').then( m => m.RecoveryPassPageModule)
+  },
+  {
+    path: 'photos',
+    loadChildren: () => import('./pages/photos/photos.module').then( m => m.PhotosPageModule)
+  },
+  {
+    path: 'photos/:id',
+    loadChildren: () => import('./pages/photos/photos.module').then( m => m.PhotosPageModule)
   },
 
 ];

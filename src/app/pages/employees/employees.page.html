@@ -1,15 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center" color="light">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      <ion-back-button href="/dashboard"></ion-back-button>
     </ion-buttons>
-
     <ion-title>Employees</ion-title>
-
     <ion-buttons slot="end">
-      <ion-button (click)="goEmployeesRegister()">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
+      <ion-menu-button menu="main-menu">
+      </ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -23,7 +20,7 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col class="employee" *ngFor="let employee of employees | async" size-lg="3" size-md="4" size-sm="6" size-xs="12">
-        <ion-card class="ion-padding ion-text-center scale-up-center" (click)="goEmployeesRegister(employee.employeeId)">
+        <ion-card class="ion-padding ion-text-center scale-up-center" (click)="presentActionSheet(employee)">
           <ion-row>
             <ion-col size="6">
               <ion-avatar>
@@ -55,4 +52,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon name="add" (click)="goEmployeesRegister()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

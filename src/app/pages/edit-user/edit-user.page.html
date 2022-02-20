@@ -1,7 +1,7 @@
 <ion-header translucent mode="md">
   <ion-toolbar color="light">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button href="/dashboard"></ion-back-button>
     </ion-buttons>
 
     <ion-title class="ion-no-border" class="ion-text-center"> {{user.nombre | titlecase}} </ion-title>
@@ -14,10 +14,14 @@
   </ion-toolbar>
 </ion-header>
 
-<div class="icono">
-  <img src="../../../assets/resources/user.png" alt="FotoRegistro" />
-</div>
-<ion-content mode="md">
+
+<ion-content mode="ios">
+  <ion-card class="icono" (click)="camera()">
+    <img *ngIf="user.image" [src]="'data:image/'+user.image.format+';base64,'+user.image.base64String"
+      alt="userImage" />
+    <img *ngIf="!user.image" src="../../../assets/resources/adios.png" />
+  </ion-card>
+
   <ion-card>
     <div class="cont">
       <div class="container">
@@ -30,13 +34,8 @@
         <!-- Entrada Email -->
         <ion-item>
           <ion-label color="light" position="floating">Email</ion-label>
-          <ion-input
-            name="email"
-            type="email"
-            [(ngModel)]="user.email"
-            required
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          ></ion-input>
+          <ion-input name="email" type="email" [(ngModel)]="user.email" required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
         </ion-item>
 
         <!-- Entrada Password -->
@@ -54,8 +53,10 @@
         <div class="espacio"></div>
 
         <!-- Boton Registro -->
-        <ion-button color="success" fill="outline" (click)="saveChange(user)">Save</ion-button>
-        <ion-button color="light" fill="outline" (click)="cancelChange()">Cancel</ion-button>
+        <div class="buttons">
+          <ion-button color="success" fill="outline" (click)="saveChange(user)">Save</ion-button>
+          <ion-button color="light" fill="outline" (click)="cancelChange()">Cancel</ion-button>
+        </div>
       </div>
     </div>
   </ion-card>

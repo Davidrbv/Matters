@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { Employee } from 'src/app/model/employee';
 import { DataService } from 'src/app/services/data.service';
 
@@ -18,7 +18,6 @@ export class EmployeeRegisterPage implements OnInit {
     private dataService: DataService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private alertController: AlertController,
     private toastController: ToastController
   ) {}
 
@@ -59,35 +58,6 @@ export class EmployeeRegisterPage implements OnInit {
     this.router.navigateByUrl('/employees');
   }
 
-  /* Confirmación de eliminación */
-  async presentAlertConfirm(employee: Employee) {
-    const alert = await this.alertController.create({
-      header: `${employee.nombre}`,
-      subHeader: `Con id: ${employee.employeeId}`,
-      message: `Será eliminado. ¿Está seguro?`,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            this.presentToast('Acción cancelada..');
-          },
-        },
-        {
-          text: 'Ok',
-          handler: () => {
-            this.dataService.deleteEmployee(employee.employeeId);
-            this.presentToast('Eliminando usuario..');
-            this.router.navigateByUrl('/employees');
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
-
   /* Presentacion de acciones realizadas */
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -99,4 +69,5 @@ export class EmployeeRegisterPage implements OnInit {
     });
     toast.present();
   }
+  
 }

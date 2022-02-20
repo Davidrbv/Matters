@@ -69,14 +69,5 @@
   <div class="botones">
     <ion-button class="btnsave" (click)="saveInvoice()" color="success" shape="round"> Save </ion-button>
     <ion-button class="btncancel" (click)="goInvoices()" color="light" shape="round"> Cancel </ion-button>
-    <ion-button
-      class="btncancel"
-      *ngIf="invoice.invoiceId !== undefined"
-      (click)="presentAlertConfirm(invoice)"
-      color="warning"
-      shape="round"
-    >
-      Delete
-    </ion-button>
   </div>
 </ion-content>

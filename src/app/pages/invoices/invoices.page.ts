@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { Invoice } from 'src/app/model/invoice';
 import { InvoiceService } from 'src/app/services/invoice.service';
@@ -20,11 +20,14 @@ export class InvoicesPage implements OnInit {
   constructor(
     public invoiceService: InvoiceService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController,
+    private actionSheetCtrl: ActionSheetController
   ) {}
 
   ngOnInit() {
     this.invoices = this.invoiceService.getInvoices();
+    this.invoices.subscribe(data => this.invoicesFilter = data);
   }
 
   /* Devuelve facturas según estado */
@@ -35,7 +38,7 @@ export class InvoicesPage implements OnInit {
     this.estado = !this.estado;
   }
 
-  /* Redirección a edición de factura */
+  /* Redirect to edit-invoice */
   goToEditInvoice(id?: string) {
     this.router.navigateByUrl(`/edit-invoice${id !== undefined ? '/' + id : ''}`);
   }
@@ -45,29 +48,79 @@ export class InvoicesPage implements OnInit {
     this.invoiceService.deleteInvoice(id);
   }
 
-  /* Confirmación eliminar factura */
+  /* Ventana emergente de opciones sobre empleado */
+
+  async presentActionSheet(invoice : Invoice) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      cssClass: 'my-custom-class',
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            this.presentAlertConfirm(invoice);
+          },
+        },
+        {
+          text: 'Edit',
+          icon: 'pencil',
+          handler: () => {
+            this.goToEditInvoice(invoice.invoiceId)
+          },
+        },
+        {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            this.presentToast('Cancel action...')
+          },
+        },
+      ],
+    });
+
+    await actionSheet.present();
+  }
+
+  /* Confirmacion eleminación invoice */
   async presentAlertConfirm(invoice: Invoice) {
     const alert = await this.alertController.create({
-      header: 'Delete Invoice',
-      message: `La factura ${invoice.invoiceId} será eliminada.\n Pulse ok para continuar.`,
+      header: `Invoice code:  ${invoice.codigo}`,
+      message: `The invoice will be deleted. ¿Are you sure?`,
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
+          cssClass: 'secondary',
           handler: () => {
-            console.log('Cancelado.');
+            this.presentToast('Action cancelled..');
           },
         },
         {
           text: 'Ok',
           handler: () => {
-            this.deleteInvoice(invoice.invoiceId);
-            console.log('Factura eliminada');
+            this.invoiceService.deleteInvoice(invoice.invoiceId);
+            this.presentToast('Delete invoice..');
+            this.router.navigateByUrl('/invoices');
           },
         },
       ],
     });
 
     await alert.present();
+  }
+
+  /* Presentacion de acciones realizadas */
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 600,
+      position: 'bottom',
+      animated: true,
+      color: 'dark  ',
+    });
+    toast.present();
   }
 }

@@ -1,13 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center" color="light">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+      <ion-back-button href="/dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title class="ion-text-center">Acounting</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only"></ion-icon>
-      </ion-button>
+      <ion-menu-button menu="main-menu">
+      </ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -41,7 +40,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <h2>Si quieres ver más sobre estre proyecto, nos vemos en HLC..</h2>
+    <h2>Si quieres ver más sobre este proyecto, nos vemos en HLC..</h2>
     <div>
       <img src="../../../assets/resources/logoAngular.png" alt="" />
     </div>

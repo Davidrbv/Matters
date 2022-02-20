@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Invoice } from '../model/invoice';
 import { AuthService } from './auth.service';
-import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  docData,
+  Firestore,
+  setDoc,
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvoiceService {
-
   pathToInvoices = `users/${this.authService.getCurrentUser().uid}/invoices`;
 
-  constructor(private authService: AuthService,
-              private fireStore: Firestore) {}
+  constructor(private authService: AuthService, private fireStore: Firestore) {}
 
   /* Get one Invoice */
   getInvoice(id: string): Observable<Invoice> {

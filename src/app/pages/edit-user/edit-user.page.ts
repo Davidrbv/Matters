@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { ToastController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { AlertController, ToastController } from '@ionic/angular';
+import { PhotoService } from 'src/app/services/photo.service';
+import { Photo } from 'src/app/model/photo';
 
 @Component({
   selector: 'app-edit-user',
@@ -11,50 +12,77 @@ import { Observable } from 'rxjs';
   styleUrls: ['./edit-user.page.scss'],
 })
 export class EditUserPage implements OnInit {
-  users: Observable<User[]>;
 
   user: User = {} as User;
+  users: User[];
+  image: any;
+  photo: Photo = {} as Photo
 
   constructor(
     private userService: UserService,
     private router: Router,
     private toastController: ToastController,
-    private activatedRoute: ActivatedRoute
+    private photoService : PhotoService,
   ) {}
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id != null) {
-      this.userService.getUser(id).subscribe((data) => {
-        this.user = data;
-      });
-    }
+    this.userService.getUsers().subscribe((data) => {
+      this.users = data;
+      this.user = this.users[0];      
+    });
   }
 
-  /* Comprueba validez de datos introducidos 
-  compruebaUsuario(usuario: User): Boolean {
-    if (usuario.email === '' || usuario.nombre === '' || usuario.password !== usuario.password2) return true;
-    let repetido = this.users.filter((user) => {
-      return user.nombre === usuario.nombre || user.email === usuario.email;
+  async camera(){
+    this.image = await this.photoService.addPicture();
+    this.user.image = this.image;
+    this.saveChange(this.user);
+    console.log(this.user.image.formato);   
+  }
+
+  /* Confirmación de eliminación 
+  async presentAlertConfirm(user: User) {
+    const alert = await this.alertController.create({
+      header: `${user.nombre}`,
+      message: `Without changes... ¿Are you sure?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            this.presentToast('Cancel Action..');
+          },
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            this.saveChange(this.user);
+            this.presentToast('Save changes..');
+            this.router.navigateByUrl('/dashboard');
+          },
+        },
+      ],
     });
-    return !(repetido.length < 1);
+
+    await alert.present();
   }*/
 
-  /* Cambios en usuario */
-  async saveChange(usuario: User) {
-    if (usuario.password !== usuario.password2) {
+  //TODO: MODIFICAR CONTRASEÑA E EMAIL EN FIREBASE
+  /* Cambios en user */
+  async saveChange(user: User) {
+    if (user.password !== user.password2) {
       this.presentToast('Constraseñas no validas...');
     } else {
       this.presentToast('Realizando cambios...');
-      await this.userService.addUser(usuario);
-      this.router.navigateByUrl(`/dashboard${this.user.userId !== undefined ? '/' + this.user.userId : ''}`);
+      await this.userService.updateUser(user);
+      this.router.navigateByUrl(`/dashboard`);
     }
   }
 
   /* Cancelación de cambios */
   cancelChange() {
     this.presentToast('Cambios cancelados..');
-    this.router.navigateByUrl(`/dashboard${this.user.userId !== undefined ? '/' + this.user.userId : ''}`);
+    this.router.navigateByUrl(`/dashboard`);
   }
 
   /* Presentacion de acciones */

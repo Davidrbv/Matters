@@ -41,8 +41,11 @@
   }
 }
 
-h1 {
-  text-align: center;
+ion-card {
+  max-height: 140px;
+  -webkit-box-shadow: 0px 0px 25px 5px rgba(59, 56, 56, 0.4);
+  -moz-box-shadow: 0px 0px 25px 5px rgba(59, 56, 56, 0.4);
+  box-shadow: 0px 0px 25px 5px rgba(59, 56, 56, 0.4);
 }
 
 h2 {
@@ -57,17 +60,18 @@ h2 {
   left: 50%;
 }
 
-.all{
+.all {
   max-height: fit-content;
 }
 
-ion-card {
-  max-height: 160px;
-  -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.4);
+.dashAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-p{
-  font-weight: bold;
+.avatar{
+  width: 100px;
+  height: 100px;
 }
+

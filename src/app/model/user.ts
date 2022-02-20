@@ -5,4 +5,5 @@ export class User {
   nombre: string;
   password: string;
   password2: string;
+  image?: any;
 }

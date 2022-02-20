@@ -1,9 +1,8 @@
-import { Component, ContentChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, IonInput } from '@ionic/angular';
-//Todo: Ver popInfoUser
-import { PopinfouserComponent } from '../components/popinfouser/popinfouser.component';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +10,13 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   email: string;
   password: string;
 
   constructor(private router: Router,
               private authService: AuthService,
-              private alertController: AlertController) {}
+              private alertController: AlertController,
+              private toastController: ToastController) {}
 
   async login() {
     const connectionSuccess = await this.authService.login(this.email, this.password);
@@ -25,10 +24,9 @@ export class HomePage {
     else this.presentAlert();
   }
 
-  goToRegister(){
-    this.router.navigateByUrl('/register');    
+  goToRegister() {
+    this.router.navigateByUrl('/register');
   }
-  
 
   //TODO: MODIFICAR ASPECTO PRESENTALERT!!!!!!!
   async presentAlert() {
@@ -40,5 +38,64 @@ export class HomePage {
     });
 
     await alert.present();
+  }
+
+  /* Presentacion de acciones realizadas */
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 600,
+      position: 'bottom',
+      animated: true,
+      color: 'dark  ',
+    });
+    toast.present();
+  }
+
+  googleAuthentication() {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        if(result) this.router.navigateByUrl('/dashboard');
+      })
+      .catch((error) => {
+        this.presentToast('Authenticacion with Google error..');
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  }
+
+  facebookAuthentication() {
+    const provider = new FacebookAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+      })
+      .catch((error) => {
+        this.presentToast('Authenticacion with Facebook error..');
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(errorMessage);
+      });
   }
 }
