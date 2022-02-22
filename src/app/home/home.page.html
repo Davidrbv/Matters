@@ -24,8 +24,8 @@
 
           <!-- Entrie Password -->
           <ion-item class="form">
-            <ion-label color="dark" position="floating">Password</ion-label>          
-            <ion-input name="password" type="password" [(ngModel)]="password">  
+            <ion-label color="dark" position="floating">Password</ion-label>
+            <ion-input name="password" type="password" [(ngModel)]="password">
             </ion-input>
           </ion-item>
 
@@ -37,19 +37,23 @@
           <!-- Buton Login -->
           <ion-button color="light" (click)="login()">Login</ion-button>
 
-          <a class="recovery" href="/recovery-pass">
-            <ion-icon  class="iconos" name="mail"></ion-icon>
-            Password recovery
-          </a>
-          <a class="recovery" (click)="googleAuthentication()">
-            <ion-icon  class="iconos" name="mail"></ion-icon>
-            Google
-          </a>
-          <a class="recovery" (click)="facebookAuthentication()">
-            <ion-icon  class="iconos" name="mail"></ion-icon>
-            Facebook
-          </a>
+          <div class="espacio"></div>
 
+          <ion-chip color="light" mode="ios" outline="true" [routerLink]="['/recovery-pass']"
+            routerLinkActive="router-link-active">
+            <ion-icon color="dark" name="mail"></ion-icon>
+            <ion-label>Recovery</ion-label>
+          </ion-chip>
+
+          <ion-chip color="light" mode="ios" outline="true" (click)="googleAuthentication()">
+            <ion-icon color="primary" name="logo-google"></ion-icon>
+            <ion-label>Google</ion-label>
+          </ion-chip>
+
+          <ion-chip color="light" mode="ios" outline="true" (click)="facebookAuthentication()">
+            <ion-icon color="primary" name="logo-facebook"></ion-icon>
+            <ion-label>Facebook</ion-label>
+          </ion-chip>
 
         </ion-card>
       </ion-col>

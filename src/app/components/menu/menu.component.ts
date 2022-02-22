@@ -30,6 +30,10 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  goToEditUser(){
+    this.router.navigateByUrl('/edit-user');
+  }
+
   goTo(module: Module) {
     this.router.navigateByUrl(`/${module.redirecTo}`);
   }

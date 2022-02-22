@@ -1,5 +1,5 @@
 export class Photo {
   photoId: string;
-  ubicacion?: string = "";
+  ubicacion?: string;
   formato : any;
 }

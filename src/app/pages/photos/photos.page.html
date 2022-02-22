@@ -23,7 +23,7 @@
       <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
         <ion-card *ngIf="select" class="ion-padding ion-text-center">
           <!-- Logo -->
-          <img [src]="'data:image/'+image.format+';base64,'+image.base64String" alt="imagePicked" />
+          <img [src]="image || '../../../assets/resources/adios.png'" />
           <ion-item class="form">
             <ion-label color="dark" position="floating">Ubicación</ion-label>
             <ion-input name="ubicación" type="text" [(ngModel)]="newPhoto.ubicacion">
@@ -40,9 +40,9 @@
 
         </ion-card>
         <ion-item-sliding *ngFor="let image of photos | async">
-          <ion-item>
+          <ion-item class="ion-no-padding">
             <ion-card>
-              <img class="photo" [src]="'data:image/'+image.formato.format+';base64,'+image.formato.base64String"
+              <img class="photo" [src]="image.formato"
                 alt='{{image.ubicacion}}' />
             </ion-card>
           </ion-item>
@@ -81,7 +81,8 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="light">
-      <ion-icon name="add" (click)="camera()"></ion-icon>
+      <ion-icon name="add"></ion-icon>
+      <ion-input style="opacity: 0; position: absolute;" (change)="newImageUpload($event)" type="file" accept="image/*"></ion-input>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

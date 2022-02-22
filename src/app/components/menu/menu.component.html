@@ -6,7 +6,7 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item *ngIf="authService.getCurrentUser()" href="/edit-user">
+      <ion-item *ngIf="authService.getCurrentUser()" (click)="goToEditUser()">
         <ion-icon slot="start" name="person"></ion-icon>
         <ion-label>
           <ion-menu-toggle>Perfil</ion-menu-toggle>

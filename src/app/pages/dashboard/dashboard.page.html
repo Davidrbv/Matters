@@ -9,9 +9,8 @@
             <ion-row>
               <ion-col class="dashAvatar" size="6">
                 <ion-avatar class="avatar">
-                  <img *ngIf="user.image" [src]="'data:image/'+user.image.format+';base64,'+user.image.base64String"
+                  <img [src]="user.image || '../../../assets/resources/trabajando.png' "
                     alt="userImage" />
-                  <img *ngIf="!user.image" src="../../../assets/resources/trabajando.png" />
                 </ion-avatar>
               </ion-col>
               <ion-col size="6">

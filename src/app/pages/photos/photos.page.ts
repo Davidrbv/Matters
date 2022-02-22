@@ -3,6 +3,7 @@ import { AlertController, IonInfiniteScroll, ToastController } from '@ionic/angu
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from 'src/app/model/photo';
 import { Observable } from 'rxjs';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-photos',
@@ -19,17 +20,31 @@ export class PhotosPage implements OnInit {
   newPhoto : Photo = {} as Photo;
   photos : Observable<Photo[]>;
 
+
   constructor(private photoService : PhotoService,
               private alertController : AlertController,
-              private toastController : ToastController) {}
+              private toastController : ToastController,
+              private shareService : ShareService) {}
 
   ngOnInit() {
     this.photos = this.photoService.getPhotos();
   }
 
-  async camera(){
-    this.image = await this.photoService.addPicture();
-    this.select = true; 
+  async newImageUpload(event : any){
+    if(event.target.files && event.target.files[0]){
+      const reader = new FileReader();
+      reader.onload = ((imagen) => {
+        this.image = imagen.target.result as string
+      });
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    const path = 'Galery';
+    const name = Math.random().toString(36).slice(-12);
+    const file = event.target.files[0];
+    const res = await this.photoService.uploadFile(file,path,name);
+    this.image = res;
+    this.newPhoto.formato = res;
+    this.select = true;
   }
 
   addPhoto(){
@@ -43,10 +58,9 @@ export class PhotosPage implements OnInit {
     
   }
 
-  share(image : Photo){
-    //TODO: lÓGICA PARA COMPARTIR FOTOS!!!!!!!!!
-    console.log("compartiendo................................");
-    
+  async share(image : Photo){
+
+    await this.shareService.sharePhoto(image.formato);    
   }
 
   /* Confirmacion eleminación photo */
@@ -109,37 +123,4 @@ export class PhotosPage implements OnInit {
     }, 1000);
   }
 
-
-
-  /* referencia() {
-    const file = this.takePicture();
-
-    const storage = getStorage();
-
-    // Points to the root reference
-    const storageRef = ref(storage);
-
-    // Points to 'images'
-    const imagesRef = ref(storageRef, 'images/'+ this.file);
-
-    // Points to 'images/space.jpg'
-    // Note that you can use variables to create child values
-    const fileName = 'space.jpg';
-    const spaceRef = ref(imagesRef, fileName);
-
-    // File path is 'images/space.jpg'
-    const path = spaceRef.fullPath;
-    console.log(path);
-    // File name is 'space.jpg'
-    const name = spaceRef.name;
-    console.log(name);
-    // Points to 'images'
-    const imagesRefAgain = spaceRef.parent;
-    console.log(imagesRefAgain);
-
-    uploadBytes(storageRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
-    });
-    
-  } */
 }

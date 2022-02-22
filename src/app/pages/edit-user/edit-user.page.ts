@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from 'src/app/model/photo';
 
@@ -18,6 +18,8 @@ export class EditUserPage implements OnInit {
   image: any;
   photo: Photo = {} as Photo
 
+  imagen : string = '';
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -32,48 +34,29 @@ export class EditUserPage implements OnInit {
     });
   }
 
-  async camera(){
-    this.image = await this.photoService.addPicture();
-    this.user.image = this.image;
-    this.saveChange(this.user);
-    console.log(this.user.image.formato);   
+  async newImageUpload(event : any){
+    if(event.target.files && event.target.files[0]){
+      const reader = new FileReader();
+      reader.onload = ((imagen) => {
+        this.imagen = imagen.target.result as string
+      });
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    const path = 'Photos'
+    const name = this.user.userId;
+    const file = event.target.files[0];
+    const res = await this.photoService.uploadFile(file,path,name);
+    this.user.image = res;    
   }
 
-  /* Confirmación de eliminación 
-  async presentAlertConfirm(user: User) {
-    const alert = await this.alertController.create({
-      header: `${user.nombre}`,
-      message: `Without changes... ¿Are you sure?`,
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            this.presentToast('Cancel Action..');
-          },
-        },
-        {
-          text: 'Ok',
-          handler: () => {
-            this.saveChange(this.user);
-            this.presentToast('Save changes..');
-            this.router.navigateByUrl('/dashboard');
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }*/
 
   //TODO: MODIFICAR CONTRASEÑA E EMAIL EN FIREBASE
   /* Cambios en user */
   async saveChange(user: User) {
     if (user.password !== user.password2) {
-      this.presentToast('Constraseñas no validas...');
+      this.presentToast('Error passwords...');
     } else {
-      this.presentToast('Realizando cambios...');
+      this.presentToast('Making changes...');
       await this.userService.updateUser(user);
       this.router.navigateByUrl(`/dashboard`);
     }
@@ -81,7 +64,7 @@ export class EditUserPage implements OnInit {
 
   /* Cancelación de cambios */
   cancelChange() {
-    this.presentToast('Cambios cancelados..');
+    this.presentToast('Changes cancelled..');
     this.router.navigateByUrl(`/dashboard`);
   }
 

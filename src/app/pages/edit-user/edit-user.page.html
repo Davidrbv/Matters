@@ -16,11 +16,15 @@
 
 
 <ion-content mode="ios">
-  <ion-card class="icono" (click)="camera()">
-    <img *ngIf="user.image" [src]="'data:image/'+user.image.format+';base64,'+user.image.base64String"
-      alt="userImage" />
-    <img *ngIf="!user.image" src="../../../assets/resources/adios.png" />
+  <ion-card class="icono">
+    <img [src]="user.image || '../../../assets/resources/adios.png'" alt="userImage" />
   </ion-card>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon name="images"></ion-icon>
+      <ion-input style="opacity: 0; position: absolute;" (change)="newImageUpload($event)" type="file" accept="image/*"></ion-input>
+    </ion-fab-button>
+  </ion-fab>
 
   <ion-card>
     <div class="cont">
@@ -56,6 +60,7 @@
         <div class="buttons">
           <ion-button color="success" fill="outline" (click)="saveChange(user)">Save</ion-button>
           <ion-button color="light" fill="outline" (click)="cancelChange()">Cancel</ion-button>
+
         </div>
       </div>
     </div>
