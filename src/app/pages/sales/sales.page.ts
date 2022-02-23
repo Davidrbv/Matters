@@ -11,16 +11,18 @@ import { ActionSheetController, AlertController, ToastController } from '@ionic/
   styleUrls: ['./sales.page.scss'],
 })
 export class SalesPage {
-  
   sales: Observable<Sale[]>;
+  salesFilter: Sale[];
   min: number = 0;
   max: number = 0;
 
-  constructor(public saleService: SaleService,
-              private router: Router,
-              private actionSheetCtrl: ActionSheetController,
-              private alertController: AlertController,
-              private toastController: ToastController) {
+  constructor(
+    public saleService: SaleService,
+    private router: Router,
+    private actionSheetCtrl: ActionSheetController,
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) {
     this.sales = this.saleService.getSales();
   }
 
@@ -28,29 +30,16 @@ export class SalesPage {
     this.router.navigateByUrl(`/sales-register${id !== undefined ? '/' + id : ''}`);
   }
 
-  /* Devuelve las ventas en el rango indicado sobre el total de la venta. */
+  /* Sales's filter */
 
-  //TODO: ESTO NO VA...INUTIL....REPIENSALO
   getSalesRange() {
-    this.sales = this.saleService.getSales();
-    if (this.min !== null && (this.max === null || this.max === 0)) {
-      this.sales.subscribe((data) => {
-        this.sales = of(data.filter((sale) => sale.total >= this.min));
-      });
-    }else if (this.max !== null && this.min === null) {
-      this.sales.subscribe((data) => {
-        this.sales = of(data.filter((sale) => sale.total >= 0 && sale.total <= this.max));
-      });
-    }else if ((this.min === null && this.max === null) || (this.min === 0 && this.max === 0)) {
-      this.sales = this.saleService.getSales();
-    }
-    this.sales.subscribe((data) => {
-      this.sales = of(data.filter((sale) => sale.total >= this.min && sale.total <= this.max));
+    this.saleService.getSales().subscribe((data) => {
+      this.salesFilter = data.filter((sale) => sale.total >= this.min && sale.total <= this.max);
+      this.sales = of(this.salesFilter);
     });
   }
 
-
-  async presentActionSheet(sale : Sale) {
+  async presentActionSheet(sale: Sale) {
     const actionSheet = await this.actionSheetCtrl.create({
       header: `${sale.fecha}`,
       mode: 'ios',
@@ -69,7 +58,7 @@ export class SalesPage {
           text: 'Edit',
           icon: 'pencil',
           handler: () => {
-            this.goToSaleRegister(sale.saleId)
+            this.goToSaleRegister(sale.saleId);
           },
         },
         {
@@ -77,7 +66,7 @@ export class SalesPage {
           icon: 'close',
           role: 'cancel',
           handler: () => {
-            this.presentToast('Cancel action...')
+            this.presentToast('Cancel action...');
           },
         },
       ],
@@ -87,7 +76,6 @@ export class SalesPage {
     await actionSheet.present();
 
     const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   /* Confirmación de eliminación */

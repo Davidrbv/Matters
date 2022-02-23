@@ -1,17 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ion-text-center" color="light">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dashboard"></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Sales</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-menu-button menu="main-menu">
-      </ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo='Sales'></app-header>
 
 <ion-content>
   <ion-card>
@@ -28,8 +15,8 @@
       </ion-row>
     </ion-grid>
     <ion-item class="busqueda">
-      <ion-input [(ngModel)]="min" (ngModelChange)="getSalesRange()" type="number" step="1" min="0"></ion-input>
-      <ion-input [(ngModel)]="max" (ngModelChange)="getSalesRange()" type="number" step="1" min="0"></ion-input>
+      <ion-input [(ngModel)]="min" (ionChange)="getSalesRange()" type="number" min="0"></ion-input>
+      <ion-input [(ngModel)]="max" (ionChange)="getSalesRange()" type="number" min="0"></ion-input>
     </ion-item>
     <div class="espacio"></div>
     <ion-row class="header">
@@ -61,6 +48,8 @@
       </ion-col>
     </ion-row>
   </ion-card>
+  {{min}}{{max}}
+  {{sales | async}}
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="light">

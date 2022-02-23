@@ -5,7 +5,7 @@ export class Employee {
   puesto: string;
   salario: number;
   email: string;
-  imagen: string;
+  imagen?: any;
   telefono: string;
   genero: string;
 }

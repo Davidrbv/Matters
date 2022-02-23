@@ -28,7 +28,6 @@ export class HomePage {
     this.router.navigateByUrl('/register');
   }
 
-  //TODO: MODIFICAR ASPECTO PRESENTALERT!!!!!!!
   async presentAlert() {
     const alert = await this.alertController.create({
       header: `User Not Found`,
@@ -44,7 +43,7 @@ export class HomePage {
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
-      duration: 600,
+      duration: 2000,
       position: 'bottom',
       animated: true,
       color: 'dark  ',
@@ -60,9 +59,10 @@ export class HomePage {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        if(result) this.router.navigateByUrl('/dashboard');
+        const userEmail = result.user.email;
+        this.authService.recoveryPass(userEmail);
+        this.presentToast('Email send to change password..');
+        
       })
       .catch((error) => {
         this.presentToast('Authenticacion with Google error..');

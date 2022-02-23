@@ -1,17 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ion-text-center" color="light">
-    <ion-buttons slot="start">
-      <ion-back-button href="/dashboard"></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Invoices</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-menu-button menu="main-menu">
-      </ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo='Invoices'></app-header>
 <ion-content>
   <ion-slides class="scale-up-ver-center" mode="ios" pager="true" scrollbar="ios">
     <ion-slide class="invoice" *ngFor="let invoice of invoices | async">

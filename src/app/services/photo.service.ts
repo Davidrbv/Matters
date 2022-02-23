@@ -69,7 +69,7 @@ export class PhotoService {
 
   uploadFile(file: any, path: string, nombre: string): Promise<string> {
     return new Promise((resolve) => {
-      const filePath = path + '/' + nombre;
+      const filePath = `${path}/${nombre}`;
       const ref = this.storage.ref(filePath);
       const task = ref.put(file);
       task

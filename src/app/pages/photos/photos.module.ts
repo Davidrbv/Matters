@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PhotosPageRoutingModule } from './photos-routing.module';
 
 import { PhotosPage } from './photos.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PhotosPageRoutingModule
+    PhotosPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [PhotosPage]
 })

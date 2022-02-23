@@ -11,56 +11,50 @@ import { ShareService } from 'src/app/services/share.service';
   styleUrls: ['./photos.page.scss'],
 })
 export class PhotosPage implements OnInit {
-
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   data: any[] = Array(20);
-  select : boolean = false;
-  image : any;
-  newPhoto : Photo = {} as Photo;
-  photos : Observable<Photo[]>;
 
+  select: boolean = false;
+  image: any;
+  newPhoto: Photo = {} as Photo;
+  photos: Observable<Photo[]>;
 
-  constructor(private photoService : PhotoService,
-              private alertController : AlertController,
-              private toastController : ToastController,
-              private shareService : ShareService) {}
+  constructor(
+    private photoService: PhotoService,
+    private alertController: AlertController,
+    private toastController: ToastController,
+    private shareService: ShareService
+  ) {}
 
   ngOnInit() {
     this.photos = this.photoService.getPhotos();
   }
 
-  async newImageUpload(event : any){
-    if(event.target.files && event.target.files[0]){
-      const reader = new FileReader();
-      reader.onload = ((imagen) => {
-        this.image = imagen.target.result as string
-      });
-      reader.readAsDataURL(event.target.files[0]);
+  async newImageUpload(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const path = 'Galery';
+      const name = Math.random().toString(36).slice(-12);
+      const [file] = event.target.files;
+      const res = await this.photoService.uploadFile(file, path, name);
+      this.image = res;
+      this.newPhoto.formato = res;
+      this.select = true;
     }
-    const path = 'Galery';
-    const name = Math.random().toString(36).slice(-12);
-    const file = event.target.files[0];
-    const res = await this.photoService.uploadFile(file,path,name);
-    this.image = res;
-    this.newPhoto.formato = res;
-    this.select = true;
   }
 
-  addPhoto(){
+  addPhoto() {
     this.newPhoto.formato = this.image;
     this.photoService.addPhoto(this.newPhoto);
     this.select = false;
   }
 
-  deletePhoto(image: Photo){
+  deletePhoto(image: Photo) {
     this.presentAlertConfirm(image);
-    
   }
 
-  async share(image : Photo){
-
-    await this.shareService.sharePhoto(image.formato);    
+  async share(image: Photo) {
+    await this.shareService.sharePhoto(image.formato);
   }
 
   /* Confirmacion eleminación photo */
@@ -90,8 +84,8 @@ export class PhotosPage implements OnInit {
     await alert.present();
   }
 
-   /* Presentacion de acciones realizadas */
-   async presentToast(message: string) {
+  /* Presentacion de acciones realizadas */
+  async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
       duration: 600,
@@ -101,7 +95,6 @@ export class PhotosPage implements OnInit {
     });
     toast.present();
   }
-  
 
   //TODO: CONFIGURAR INFINITIVEsCROLL PARA CARGA DE FOTOS
   loadData(event) {
@@ -122,5 +115,4 @@ export class PhotosPage implements OnInit {
       event.target.complete(); //Este metodo cancela la recarga de la pagina al hacer Scroll para seguir cargando contenido.
     }, 1000);
   }
-
 }

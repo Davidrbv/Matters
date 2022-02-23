@@ -41,4 +41,7 @@ export class AuthService {
   async recoveryPass(email : string) : Promise<void>{
     return await sendPasswordResetEmail(this.auth,email);
   }
+
+  
+
 }

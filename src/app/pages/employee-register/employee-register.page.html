@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center" color="light">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button href="/"></ion-back-button>
     </ion-buttons>
 
     <ion-title> {{(employee.nombre | titlecase) || 'New Employee'}} </ion-title>
@@ -19,10 +19,16 @@
   <ion-card>
     <form #formulario="ngForm">
       <ion-list>
-        <img *ngIf="employee.genero !== ''" [src]="'../../../assets/resources/' + employee.genero"
-          alt="Icono employee" />
-
-        <img *ngIf="employee.genero === ''" src="../../../assets/resources/personas.png" alt="Icono employees" />
+        <ion-fab vertical="top" horizontal="end" slot="fixed">
+          <ion-fab-button color="light">
+            <ion-icon name="images"></ion-icon>
+            <ion-input style="opacity: 0; position: absolute;" (change)="newImageUpload($event)" type="file"
+              accept="image/*"></ion-input>
+          </ion-fab-button>
+        </ion-fab>
+        <img *ngIf="edit" [src]="employee.imagen || '../../../assets/resources/'+employee.genero">
+        <img *ngIf="!edit && employee.genero" [src]="employee.imagen ||'../../../assets/resources/'+employee.genero">
+        <img *ngIf="!edit && !employee.genero && !employee.imagen" [src]="'../../../assets/resources/personas.png'">
 
         <ion-item>
           <ion-label position="floating">Name</ion-label>
@@ -39,7 +45,7 @@
 
         <ion-item>
           <ion-label position="floating">Salary</ion-label>
-          <ion-input name="salario" type="number" placeholder="Salario del employee.." [(ngModel)]="employee.salario"
+          <ion-input name="salario" type="number" placeholder="Employee's salary.." [(ngModel)]="employee.salario"
             required>
           </ion-input>
         </ion-item>

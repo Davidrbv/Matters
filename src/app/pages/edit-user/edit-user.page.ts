@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from 'src/app/model/photo';
+import { updateEmail, updatePassword, deleteUser } from 'firebase/auth';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -12,63 +14,101 @@ import { Photo } from 'src/app/model/photo';
   styleUrls: ['./edit-user.page.scss'],
 })
 export class EditUserPage implements OnInit {
-
   user: User = {} as User;
-  users: User[];
-  image: any;
-  photo: Photo = {} as Photo
-
-  imagen : string = '';
+  photo: Photo = {} as Photo;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private toastController: ToastController,
-    private photoService : PhotoService,
+    private photoService: PhotoService,
+    private authService: AuthService,
+    private alertController : AlertController
   ) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe((data) => {
-      this.users = data;
-      this.user = this.users[0];      
+      [this.user] = data;
     });
   }
 
-  async newImageUpload(event : any){
-    if(event.target.files && event.target.files[0]){
-      const reader = new FileReader();
-      reader.onload = ((imagen) => {
-        this.imagen = imagen.target.result as string
-      });
-      reader.readAsDataURL(event.target.files[0]);
+  async newImageUpload(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const path = 'Photos';
+      const name = this.user.userId;
+      const file = event.target.files[0];
+      const res = await this.photoService.uploadFile(file, path, name);
+      this.user.image = res;
     }
-    const path = 'Photos'
-    const name = this.user.userId;
-    const file = event.target.files[0];
-    const res = await this.photoService.uploadFile(file,path,name);
-    this.user.image = res;    
   }
 
-
-  //TODO: MODIFICAR CONTRASEÑA E EMAIL EN FIREBASE
-  /* Cambios en user */
-  async saveChange(user: User) {
+  /* User's changes */
+  saveChange(user: User) {
     if (user.password !== user.password2) {
       this.presentToast('Error passwords...');
     } else {
-      this.presentToast('Making changes...');
-      await this.userService.updateUser(user);
-      this.router.navigateByUrl(`/dashboard`);
+      updateEmail(this.authService.getCurrentUser(), user.email)
+        .then(() => {
+          updatePassword(this.authService.getCurrentUser(), user.password2)
+            .then(() => {
+              this.userService.updateUser(user);
+              this.presentToast('Making changes...');
+              this.router.navigateByUrl(`/dashboard`);
+            })
+            .catch((error) => {
+              this.presentToast('Password change error...try again..');
+            });
+        })
+        .catch((error) => {
+          this.presentToast('Email change error...try again..');
+        });
     }
   }
 
-  /* Cancelación de cambios */
+  deleteUser(){
+    deleteUser(this.authService.getCurrentUser()).then(() => {
+    }).catch((error) => {
+      this.presentToast('Delete error..');
+    });
+  }
+
+  /* Cancel Change */
   cancelChange() {
     this.presentToast('Changes cancelled..');
     this.router.navigateByUrl(`/dashboard`);
   }
 
-  /* Presentacion de acciones */
+  /* Delete User */
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: `Email: ${this.authService.getCurrentUser().email}`,
+      subHeader: `¿Why ${this.user.nombre}?`,
+      message: `Your account will be deleted. ¿Are you sure?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            this.presentToast('Cancel Action..fiiiiuuu..');
+          },
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            this.presentToast('User Deleted..See you soon!!!');
+            this.deleteUser();
+            this.router.navigateByUrl('/home');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  /* Messages Alert */
   async presentToast(message?: string) {
     const toast = await this.toastController.create({
       message,

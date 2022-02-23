@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Employee } from 'src/app/model/employee';
+import { Photo } from 'src/app/model/photo';
 import { DataService } from 'src/app/services/data.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-employee-register',
@@ -12,13 +14,15 @@ import { DataService } from 'src/app/services/data.service';
 export class EmployeeRegisterPage implements OnInit {
 
   employee: Employee = {} as Employee;
-  edit : boolean = false;
+  edit: boolean = false;
+  newPhoto: Photo = {} as Photo;
 
   constructor(
     private dataService: DataService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private photoService : PhotoService
   ) {}
 
   ngOnInit() {
@@ -33,23 +37,36 @@ export class EmployeeRegisterPage implements OnInit {
 
   /* Grabamos nuevo employee */
   saveEmployee() {
-    if(this.employee.nombre == '' ||
-       this.employee.puesto == '' ||
-       this.employee.salario == undefined ||
-       this.employee.email == '' ||
-       this.employee.imagen == '' ||
-       this.employee.telefono == '' ||
-       this.employee.genero == ''){
-         this.presentToast(`Fields must be filled in..`)
-       }else{
-          this.presentToast('Save user..');
+    if (
+      this.employee.nombre === '' ||
+      this.employee.puesto === '' ||
+      this.employee.salario === undefined ||
+      this.employee.email === '' ||
+      this.employee.imagen === '' ||
+      this.employee.telefono === '' ||
+      this.employee.genero === ''
+    ) {
+      this.presentToast(`Fields must be filled in..`);
+    } else {
+      this.presentToast('Save user..');
 
-          if(this.edit) this.dataService.updateEmployee(this.employee)
-          else this.dataService.addEmployee(this.employee);
+      if (this.edit) this.dataService.updateEmployee(this.employee);
+      else this.dataService.addEmployee(this.employee);
 
-          this.router.navigateByUrl('/employees');
-       }
-    
+      this.router.navigateByUrl('/employees');
+    }
+  }
+
+  /* Employee's Photo */
+
+  async newImageUpload(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const path = 'Employees';
+      const name = Math.random().toString(36).slice(-12);
+      const [file] = event.target.files;
+      const res = await this.photoService.uploadFile(file, path, name);
+      this.employee.imagen = res;
+    }
   }
 
   /* Regresamos a la tabla de empleados */
@@ -69,5 +86,4 @@ export class EmployeeRegisterPage implements OnInit {
     });
     toast.present();
   }
-  
 }
