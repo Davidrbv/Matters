@@ -16,6 +16,7 @@ export class EmployeeRegisterPage implements OnInit {
   employee: Employee = {} as Employee;
   edit: boolean = false;
   newPhoto: Photo = {} as Photo;
+  image : any;
 
   constructor(
     private dataService: DataService,
@@ -35,7 +36,7 @@ export class EmployeeRegisterPage implements OnInit {
     }
   }
 
-  /* Grabamos nuevo employee */
+  /* Save employee */
   saveEmployee() {
     if (
       this.employee.nombre === '' ||
@@ -59,23 +60,20 @@ export class EmployeeRegisterPage implements OnInit {
 
   /* Employee's Photo */
 
-  async newImageUpload(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const path = 'Employees';
-      const name = Math.random().toString(36).slice(-12);
-      const [file] = event.target.files;
-      const res = await this.photoService.uploadFile(file, path, name);
-      this.employee.imagen = res;
-    }
+  async newImageUpload() {
+    const path = 'UsersGalery';
+    this.image = await this.photoService.addPicture();
+    const res = await this.photoService.uploadFile(this.image, path);
+    this.employee.imagen = res;
   }
 
-  /* Regresamos a la tabla de empleados */
+  /* Goback */
   goEmployees() {
     this.presentToast('Come back..');
     this.router.navigateByUrl('/employees');
   }
 
-  /* Presentacion de acciones realizadas */
+  /* Presents actions */
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,

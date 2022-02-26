@@ -50,7 +50,7 @@ export class EmployeesPage implements OnInit {
 
   async presentActionSheet(employee : Employee) {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: `${employee.nombre}`,
+      header: `${employee.nombre.toUpperCase()}`,
       mode: 'ios',
       cssClass: 'my-custom-class',
       buttons: [

@@ -13,8 +13,6 @@ import { UserService } from 'src/app/services/user.service';
 export class MenuComponent implements OnInit {
 
   modulos: Module[] = [];
-  user: User = {} as User;
-  users: User[];
 
   constructor(public authService : AuthService,
               private userService : UserService,

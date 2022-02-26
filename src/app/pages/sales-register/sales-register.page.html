@@ -1,18 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ion-text-center" color="light">
-    <ion-buttons slot="start">
-      <ion-back-button text="" defaultHref="/"></ion-back-button>
-    </ion-buttons>
-
-    <ion-title> {{sale.fecha | date: 'dd / MM / yy'}} </ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="{{(sale.fecha | date: 'dd / MM / yy') || 'New Sale'}} "></app-header>
 
 <ion-content>
   <div class="espacio"></div>

@@ -1,59 +1,38 @@
 <app-header titulo='Sales'></app-header>
 
 <ion-content>
-  <ion-card>
-    <ion-grid fixed>
-      <ion-row class="cabecera">
-        <ion-col size="6" class="maxmin">
-          <img src="../../../assets/resources/minimo.png" alt="Minimo venta" />
-          <p class="ion-text-center">Mínimo</p>
-        </ion-col>
-        <ion-col size="6" class="maxmin">
-          <img src="../../../assets/resources/maximo.png" alt="Máximo venta" />
-          <p class="ion-text-center">Máximo</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-item class="busqueda">
-      <ion-input [(ngModel)]="min" (ionChange)="getSalesRange()" type="number" min="0"></ion-input>
-      <ion-input [(ngModel)]="max" (ionChange)="getSalesRange()" type="number" min="0"></ion-input>
-    </ion-item>
-    <div class="espacio"></div>
-    <ion-row class="header">
-      <ion-col class="header" col-3>
-        <ion-label>Fecha</ion-label>
-      </ion-col>
-      <ion-col class="header" col-3>
-        <ion-label>Efectivo</ion-label>
-      </ion-col>
-      <ion-col class="header" col-3>
-        <ion-label>Tarjeta</ion-label>
-      </ion-col>
-      <ion-col class="header" col-3>
-        <ion-label>Total</ion-label>
-      </ion-col>
-    </ion-row>
-    <ion-row class="sale" *ngFor="let sale of sales | async" (click)="presentActionSheet(sale)">
-      <ion-col col-3>
-        <ion-label> {{sale.fecha | date: 'dd/MM/yy'}} </ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label> {{' '+ sale.efectivo | currency : 'EUR' : 'symbol' : '1.2-2'}}</ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label> {{' '+ sale.tarjeta | currency : 'EUR' : 'symbol' : '1.2-2'}}</ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label> {{' '+ sale.total | currency : 'EUR' : 'symbol' : '1.2-2'}}</ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-  {{min}}{{max}}
-  {{sales | async}}
+  <p class="tittle">Filter your sales</p>
+    <div class="search">     
+      <ion-item class="busqueda">
+        <ion-label class="ion-text-center" position="floating">Minimum</ion-label>
+        <ion-input class="ion-text-center"  [(ngModel)]="min" (ionChange)="getSalesRange()" type="number" min="0"></ion-input>    
+      </ion-item>
+  
+      <ion-item>
+        <ion-label class="ion-text-center"  position="floating">Maximum</ion-label>
+        <ion-input class="ion-text-center"  [(ngModel)]="max" (ionChange)="getSalesRange()" type="number" min="0"></ion-input>
+      </ion-item>
+    </div>
+
+    <ion-button (click)="getAll()" expand="block" fill="outline" color="warning">
+      All sales
+    </ion-button>
+
+    <ion-list>
+      <ion-item class="sale" *ngFor="let sale of sales | async" (click)="presentActionSheet(sale)">
+        <ion-card class="cards">
+          <p>Date: {{sale.fecha | date: 'dd/MM/yy'}}</p>
+          <p>Cash: {{sale.efectivo | currency : 'EUR' : 'symbol' : '1.2-2'}}</p>
+          <p>Card: {{sale.tarjeta | currency : 'EUR' : 'symbol' : '1.2-2'}}</p>
+          <p>Total: {{sale.total | currency : 'EUR' : 'symbol' : '1.2-2'}}</p>
+        </ion-card>
+      </ion-item>
+    </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="light">
       <ion-icon name="add" (click)="goToSaleRegister()"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
 </ion-content>

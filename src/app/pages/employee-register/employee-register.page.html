@@ -1,35 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ion-text-center" color="light">
-    <ion-buttons slot="start">
-      <ion-back-button href="/"></ion-back-button>
-    </ion-buttons>
-
-    <ion-title> {{(employee.nombre | titlecase) || 'New Employee'}} </ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="{{(employee.nombre | titlecase) || 'New Employee'}}"></app-header>
 
 <ion-content>
-  <div class="espacio"></div>
   <ion-card>
     <form #formulario="ngForm">
       <ion-list>
-        <ion-fab vertical="top" horizontal="end" slot="fixed">
-          <ion-fab-button color="light">
-            <ion-icon name="images"></ion-icon>
-            <ion-input style="opacity: 0; position: absolute;" (change)="newImageUpload($event)" type="file"
-              accept="image/*"></ion-input>
-          </ion-fab-button>
-        </ion-fab>
-        <img *ngIf="edit" [src]="employee.imagen || '../../../assets/resources/'+employee.genero">
-        <img *ngIf="!edit && employee.genero" [src]="employee.imagen ||'../../../assets/resources/'+employee.genero">
-        <img *ngIf="!edit && !employee.genero && !employee.imagen" [src]="'../../../assets/resources/personas.png'">
-
+          <div class="avatar">
+            <ion-avatar (click)="newImageUpload()">
+              <img *ngIf="edit" [src]="employee.imagen || '../../../assets/resources/'+ employee.genero">
+              <img *ngIf="!edit && employee.genero" [src]="employee.imagen ||'../../../assets/resources/'+ employee.genero">
+              <img *ngIf="!edit && !employee.genero && !employee.imagen" [src]="'../../../assets/resources/personas.png'">
+            </ion-avatar>
+          </div>
         <ion-item>
           <ion-label position="floating">Name</ion-label>
           <ion-input name="nombre" type="text" placeholder="Introduzca nombre.." [(ngModel)]="employee.nombre" required>
@@ -60,8 +41,8 @@
           <ion-label>Job</ion-label>
           <ion-select [(ngModel)]="employee.puesto" [ngModelOptions]="{standalone: true}" okText="Ok"
             cancelText="Cancel">
-            <ion-select-option value="cocinero">Chef</ion-select-option>
-            <ion-select-option value="camarero">Waiter</ion-select-option>
+            <ion-select-option value="Chef">Chef</ion-select-option>
+            <ion-select-option value="Waiter">Waiter</ion-select-option>
           </ion-select>
         </ion-item>
 
@@ -69,15 +50,15 @@
           <ion-label>Genre</ion-label>
           <ion-select [(ngModel)]="employee.genero" [ngModelOptions]="{standalone: true}" okText="Ok"
             cancelText="Cancel">
-            <ion-select-option value="hombre.png">Man</ion-select-option>
-            <ion-select-option value="mujer.png">Woman</ion-select-option>
+            <ion-select-option value="man.png">Man</ion-select-option>
+            <ion-select-option value="woman.png">Woman</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
     </form>
   </ion-card>
 
-  <div class="botones">
+  <div class="btns">
     <ion-button (click)="saveEmployee()" color="success" shape="round"> Save </ion-button>
     <ion-button (click)="goEmployees()" color="light" shape="round"> Cancel </ion-button>
   </div>

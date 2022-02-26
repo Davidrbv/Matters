@@ -1,61 +1,48 @@
-ion-card {
-  -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
+@keyframes degraded {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-ion-row {
-  border-bottom: groove;
-}
 
-ion-row:nth-child(2n) {
-  background-color: rgb(229, 253, 94);
-}
-
-.header {
-  background-color: red;
-  font-weight: bold;
-  color: white;
-}
-
-ion-item {
-  padding: 0;
-  background-color: rgb(158, 90, 0);
-  border-radius: 5px;
-  border: 2px solid rgb(209, 1, 1);
-}
-
-.espacio {
-  min-height: 2vh;
-}
-
-img {
-  position: relative;
-  left: 40%;
-  width: 30px;
-}
-
-p {
-  font-weight: bold;
-  color: white;
-}
-
-ion-grid {
-  padding: 0;
-}
-
-.cabecera {
-  padding: 0;
-  margin: 0;
-  border: 2px solid red;
-  max-height: 10vh;
-}
-
-.sale{
+.cards {
   cursor: pointer;
+  width: 100%;
+  padding: 0;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  transition: all 1s linear;
+  background: linear-gradient(
+    45deg,
+    #ee7752,
+    #e73c7e,
+    #23a6d5,
+    #23d5ab
+  );
+  background-size: 400% 400%;
+  animation: degraded 5s infinite alternate;
 }
 
-.maxmin {
-  background-color: rgb(209, 1, 1);
+.cards:hover{
+  transform: scale(1.2);
+}
+
+.search{
+  display: flex;
+  border-radius: 10px;
+  border: 3px solid rgb(255, 0, 0);
+}
+
+.tittle{
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
 }
 

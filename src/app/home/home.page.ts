@@ -56,9 +56,6 @@ export class HomePage {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         const userEmail = result.user.email;
         this.authService.recoveryPass(userEmail);
         this.presentToast('Email send to change password..');
@@ -66,13 +63,6 @@ export class HomePage {
       })
       .catch((error) => {
         this.presentToast('Authenticacion with Google error..');
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
       });
   }
 
@@ -81,21 +71,21 @@ export class HomePage {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
-        // The signed-in user info.
-        const user = result.user;
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
+        const userEmail = result.user.email;
+        this.authService.recoveryPass(userEmail);
+        this.presentToast('Email send to change password..');
       })
       .catch((error) => {
         this.presentToast('Authenticacion with Facebook error..');
         // Handle Errors here.
         const errorCode = error.code;
+
         const errorMessage = error.message;
         // The email of the user's account used.
-        const email = error.email;
+        const email = error.email;        
         // The AuthCredential type that was used.
         const credential = FacebookAuthProvider.credentialFromError(errorMessage);
+        
       });
   }
 }

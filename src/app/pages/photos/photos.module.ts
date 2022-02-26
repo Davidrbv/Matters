@@ -8,6 +8,7 @@ import { PhotosPageRoutingModule } from './photos-routing.module';
 
 import { PhotosPage } from './photos.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     PhotosPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    SwiperModule
   ],
-  declarations: [PhotosPage]
+  declarations: [PhotosPage],
 })
 export class PhotosPageModule {}

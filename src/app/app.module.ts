@@ -20,6 +20,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -37,7 +39,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     provideStorage(() => getStorage()),
     AngularFireStorageModule,
   ],
-  providers: [SocialSharing, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SocialSharing],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

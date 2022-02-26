@@ -30,6 +30,12 @@ export class SalesPage {
     this.router.navigateByUrl(`/sales-register${id !== undefined ? '/' + id : ''}`);
   }
 
+  /* Get all Sales */
+
+  getAll(){
+    this.sales = this.saleService.getSales();
+  }
+
   /* Sales's filter */
 
   getSalesRange() {
@@ -72,13 +78,11 @@ export class SalesPage {
       ],
     });
 
-    //Una vez creado, se utiliza.
     await actionSheet.present();
-
-    const { role } = await actionSheet.onDidDismiss();
   }
 
-  /* Confirmación de eliminación */
+  /* Delete sale confirm */
+
   async presentAlertConfirm(venta: Sale) {
     const alert = await this.alertController.create({
       header: `Fecha: ${venta.fecha}`,
@@ -107,7 +111,8 @@ export class SalesPage {
     await alert.present();
   }
 
-  /* Presentacion de acciones realizadas */
+  /* Actions show */
+
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,

@@ -8,9 +8,10 @@ import { InvoicesPageRoutingModule } from './invoices-routing.module';
 
 import { InvoicesPage } from './invoices.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, InvoicesPageRoutingModule, ComponentsModule],
+  imports: [CommonModule, FormsModule, IonicModule, InvoicesPageRoutingModule, ComponentsModule,SwiperModule],
   declarations: [InvoicesPage],
 })
 export class InvoicesPageModule {}

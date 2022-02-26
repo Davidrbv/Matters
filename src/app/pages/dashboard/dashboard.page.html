@@ -1,10 +1,10 @@
 <app-header titulo='Dashboard'></app-header>
 
-<ion-content mode="md">
+<ion-content mode="ios">
   <ion-grid class="all" fixed>
     <ion-row>
       <ion-col size="12">
-        <ion-card color="secondary" class="ion-padding tilt-in-top-1" (click)="goToEditeUser()">
+        <ion-card class="welcome" (click)="goToEditeUser()">
           <ion-grid fixed>
             <ion-row>
               <ion-col class="dashAvatar" size="6">
@@ -13,8 +13,8 @@
                 </ion-avatar>
               </ion-col>
               <ion-col size="6">
-                <h3 class="ion-text-center">Welcome</h3>
-                <h2 class="ion-text-center">{{(user.nombre | titlecase) || 'what is yo name?'}}</h2>
+                <p class="ion-text-center">Welcome</p>
+                <p class="ion-text-center">{{(user.nombre | titlecase) || 'what is yo name?'}}</p>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -23,9 +23,9 @@
     </ion-row>
     <ion-row>
       <ion-col size="6" *ngFor="let module of modulos">
-        <ion-card class="ion-padding tilt-in-top-1" (click)="goTo(module)">
+        <ion-card class="cards" (click)="goTo(module)">
           <ion-badge color="danger" slot="start">{{ pending }}</ion-badge>
-          <img [src]="'../assets/resources/'+ module.image" alt="{{module.name}}" />
+          <img class="icon" [src]="'../assets/resources/'+ module.image" alt="{{module.name}}" />
         </ion-card>
       </ion-col>
     </ion-row>

@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content mode="ios">
+<ion-content>
   <ion-grid>
     <ion-row>
       <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
@@ -39,21 +39,23 @@
 
           <div class="espacio"></div>
 
-          <ion-chip color="light" mode="ios" outline="true" [routerLink]="['/recovery-pass']"
-            routerLinkActive="router-link-active">
-            <ion-icon color="dark" name="mail"></ion-icon>
-            <ion-label>Recovery</ion-label>
-          </ion-chip>
+          <div class="chips">
+            <ion-chip color="light" mode="ios" outline="true" [routerLink]="['/recovery-pass']"
+              routerLinkActive="router-link-active">
+              <ion-icon color="dark" name="mail"></ion-icon>
+              <ion-label>Recovery</ion-label>
+            </ion-chip>
 
-          <ion-chip color="light" mode="ios" outline="true" (click)="googleAuthentication()">
-            <ion-icon color="primary" name="logo-google"></ion-icon>
-            <ion-label>Google</ion-label>
-          </ion-chip>
+            <ion-chip color="light" mode="ios" outline="true" (click)="googleAuthentication()">
+              <ion-icon color="primary" name="logo-google"></ion-icon>
+              <ion-label>GoogleAuth</ion-label>
+            </ion-chip>
 
-          <ion-chip color="light" mode="ios" outline="true" (click)="facebookAuthentication()">
-            <ion-icon color="primary" name="logo-facebook"></ion-icon>
-            <ion-label>Facebook</ion-label>
-          </ion-chip>
+            <!-- <ion-chip color="light" mode="ios" outline="true" (click)="facebookAuthentication()">
+              <ion-icon color="primary" name="logo-facebook"></ion-icon>
+              <ion-label>Facebook</ion-label>
+            </ion-chip> -->
+          </div>
 
         </ion-card>
       </ion-col>

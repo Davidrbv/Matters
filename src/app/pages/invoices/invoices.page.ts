@@ -1,39 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
-import { Observable, of } from 'rxjs';
+import { AlertController, ToastController } from '@ionic/angular';
+import { Observable, of} from 'rxjs';
 import { Invoice } from 'src/app/model/invoice';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import SwiperCore, { Pagination, EffectCoverflow} from 'swiper';
 
+SwiperCore.use([Pagination,EffectCoverflow]);
 @Component({
   selector: 'app-invoices',
   templateUrl: './invoices.page.html',
   styleUrls: ['./invoices.page.scss'],
 })
-export class InvoicesPage implements OnInit {
+export class InvoicesPage implements OnInit{
 
   invoices: Observable<Invoice[]>;
-
-  invoicesFilter: Invoice[] = [];
-  estado: boolean;
+  estado: boolean = null;
 
   constructor(
     public invoiceService: InvoiceService,
     private router: Router,
     private alertController: AlertController,
-    private toastController: ToastController,
-    private actionSheetCtrl: ActionSheetController
+    private toastController: ToastController
   ) {}
 
+
   ngOnInit() {
-    this.invoices = this.invoiceService.getInvoices();
-    this.invoices.subscribe(data => this.invoicesFilter = data);
+    this.estado = false;
+    this.allInvoices();
   }
 
-  /* Devuelve facturas según estado */
+  /* All invoices */
+
+  allInvoices(){
+    this.invoices = this.invoiceService.getInvoices();
+  }
+
+  /* Invoices order by state */
   invoiceStatus(estado: boolean) {
     this.invoiceService.getInvoices().subscribe((data) => {
-      this.invoicesFilter = data.filter((invoice) => invoice.estado === estado);
+      this.invoices = of(data.filter((invoice) => invoice.estado === estado));
     });
     this.estado = !this.estado;
   }
@@ -43,48 +49,13 @@ export class InvoicesPage implements OnInit {
     this.router.navigateByUrl(`/edit-invoice${id !== undefined ? '/' + id : ''}`);
   }
 
-  /* Eliminación de factura */
+  /* Delete invoice */
   deleteInvoice(id: string) {
     this.invoiceService.deleteInvoice(id);
   }
 
-  /* Ventana emergente de opciones sobre empleado */
+  /* Invoice confirm delete */
 
-  async presentActionSheet(invoice : Invoice) {
-    const actionSheet = await this.actionSheetCtrl.create({
-      cssClass: 'my-custom-class',
-      mode: 'ios',
-      buttons: [
-        {
-          text: 'Delete',
-          role: 'destructive',
-          icon: 'trash',
-          handler: () => {
-            this.presentAlertConfirm(invoice);
-          },
-        },
-        {
-          text: 'Edit',
-          icon: 'pencil',
-          handler: () => {
-            this.goToEditInvoice(invoice.invoiceId)
-          },
-        },
-        {
-          text: 'Cancel',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => {
-            this.presentToast('Cancel action...')
-          },
-        },
-      ],
-    });
-
-    await actionSheet.present();
-  }
-
-  /* Confirmacion eleminación invoice */
   async presentAlertConfirm(invoice: Invoice) {
     const alert = await this.alertController.create({
       header: `Invoice code:  ${invoice.codigo}`,
@@ -112,7 +83,8 @@ export class InvoicesPage implements OnInit {
     await alert.present();
   }
 
-  /* Presentacion de acciones realizadas */
+  /* Information messsages */
+
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,

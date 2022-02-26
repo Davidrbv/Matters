@@ -1,27 +1,14 @@
-ion-button {
-  position: relative;
-  width: 30%;
+.avatar{
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-ion-card {
-  padding: 10px;
+.btns{
+  margin-top:10% ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-img {
-  position: relative;
-  width: 30%;
-  height: 30%;
-  left: 33%;
-}
-
-ion-label {
-  font-weight: bold;
-}
-
-.espacio {
-  min-height: 5vh;
-}
-
-.botones {
-  text-align: center;
-}

@@ -1,68 +1,44 @@
-<ion-header translucent mode="md">
-  <ion-toolbar color="light">
-    <ion-buttons slot="start">
-      <ion-back-button href="/dashboard"></ion-back-button>
-    </ion-buttons>
+<app-header titulo="{{user.nombre | titlecase}}"></app-header>
 
-    <ion-title class="ion-no-border" class="ion-text-center"> {{user.nombre | titlecase}} </ion-title>
+<ion-content>
 
-    <ion-buttons slot="end">
-      <ion-button expand="block" shape="round">
-        <ion-icon slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+  <div class="header">
+    <ion-avatar class="photo" (click)="newImageUpload()">
+      <img [src]="user.image || '../../../assets/resources/adios.png'" alt="userImage" />
+    </ion-avatar>
+  </div>
+  <ion-card class="slide-fwd-center">
 
+    <!-- Entry name -->
+    <ion-item>
+      <ion-label color="light" position="floating">Name</ion-label>
+      <ion-input name="nombre" type="text" [(ngModel)]="user.nombre" required> </ion-input>
+    </ion-item>
 
-<ion-content mode="ios">
-  <ion-card class="icono">
-    <img [src]="user.image || '../../../assets/resources/adios.png'" alt="userImage" />
+    <!-- Entry email -->
+    <ion-item>
+      <ion-label color="light" position="floating">Email</ion-label>
+      <ion-input name="email" type="email" [(ngModel)]="user.email" required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+    </ion-item>
+
+    <!-- Entry password -->
+    <ion-item>
+      <ion-label color="light" position="floating">Password</ion-label>
+      <ion-input name="password" type="password" [(ngModel)]="user.password" required></ion-input>
+    </ion-item>
+
+    <!-- Entry Password 1 more -->
+    <ion-item>
+      <ion-label color="light" position="floating">Repeat password</ion-label>
+      <ion-input name="password" type="password" [(ngModel)]="user.password2" required></ion-input>
+    </ion-item>
   </ion-card>
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button color="light">
-      <ion-icon name="images"></ion-icon>
-      <ion-input style="opacity: 0; position: absolute;" (change)="newImageUpload($event)" type="file" accept="image/*"></ion-input>
-    </ion-fab-button>
-  </ion-fab>
 
-  <ion-card>
-    <div class="cont">
-      <div class="container">
-        <!-- Entrada nombre -->
-        <ion-item>
-          <ion-label color="light" position="floating">Nombre</ion-label>
-          <ion-input name="nombre" type="text" [(ngModel)]="user.nombre" required> </ion-input>
-        </ion-item>
-
-        <!-- Entrada Email -->
-        <ion-item>
-          <ion-label color="light" position="floating">Email</ion-label>
-          <ion-input name="email" type="email" [(ngModel)]="user.email" required
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
-        </ion-item>
-
-        <!-- Entrada Password -->
-        <ion-item>
-          <ion-label color="light" position="floating">Password</ion-label>
-          <ion-input name="password" type="password" [(ngModel)]="user.password" required></ion-input>
-        </ion-item>
-
-        <!-- Entrada Password Repetida -->
-        <ion-item>
-          <ion-label color="light" position="floating">Repita password</ion-label>
-          <ion-input name="password" type="password" [(ngModel)]="user.password2" required></ion-input>
-        </ion-item>
-
-        <div class="espacio"></div>
-
-        <!-- Boton Registro -->
-        <div class="buttons">
-          <ion-button color="success" fill="outline" (click)="saveChange(user)">Save</ion-button>
-          <ion-button color="light" fill="outline" (click)="cancelChange()">Cancel</ion-button>
-
-        </div>
-      </div>
-    </div>
-  </ion-card>
+  <!-- Register Button -->
+  <div class="buttons">
+    <ion-button color="success" fill="outline" (click)="saveChange(user)">Save</ion-button>
+    <ion-button color="light" fill="outline" (click)="cancelChange()">Cancel</ion-button>
+  </div>
+  
 </ion-content>

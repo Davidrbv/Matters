@@ -1,19 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ion-text-center" color="light">
-    <ion-buttons slot="start">
-      <ion-back-button text="" defaultHref="/"></ion-back-button>
-    </ion-buttons>
-
-    <ion-title *ngIf="invoice.estado">Pagada</ion-title>
-    <ion-title *ngIf="!invoice.estado">Pendiente</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="{{(invoice.fecha | date: 'dd/MM/yy') || 'New Invoice'}}"></app-header>
 
 <ion-content>
   <div class="espacio"></div>
@@ -21,20 +6,21 @@
   <ion-card>
     <form #formulario="ngForm">
       <img
-        *ngIf="invoice.estado === false"
+        *ngIf="!invoice.estado"
         src="../../../assets/resources/facturaPendiente.png"
         alt="Factura pendiente"
       />
 
-      <img *ngIf="invoice.estado === true" src="../../../assets/resources/facturaPagada.png" alt="Factura pagada" />
+      <img *ngIf="invoice.estado" src="../../../assets/resources/facturaPagada.png" alt="Factura pagada" />
+      <img *ngIf="invoice.estado === null" src="../../../assets/resources/facturaPagada.png" />
       <ion-list>
         <ion-item>
-          <ion-label position="floating">Código Factura</ion-label>
+          <ion-label position="floating">Invoice code</ion-label>
           <ion-input name="codigo" type="text" [(ngModel)]="invoice.codigo" required> </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Fecha</ion-label>
+          <ion-label position="floating">Date</ion-label>
           <ion-datetime
             placeholder="Fecha"
             name="fecha"
@@ -43,25 +29,24 @@
             cancelText="Cancel"
             [(ngModel)]="invoice.fecha"
             required="true"
-            [ngModelOptions]="{standalone: true}"
-          >
+            [ngModelOptions]="{standalone: true}">
           </ion-datetime>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Cantidad</ion-label>
+          <ion-label position="floating">Quantity</ion-label>
           <ion-input name="cantidad" type="number" min="0" [(ngModel)]="invoice.cantidad" required> </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Proveedor</ion-label>
+          <ion-label position="floating">Provider</ion-label>
           <ion-input name="proveedor" type="text" [(ngModel)]="invoice.proveedor" required> </ion-input>
         </ion-item>
       </ion-list>
     </form>
 
     <ion-item>
-      <ion-label>Estado invoice</ion-label>
+      <ion-label>Invoice state</ion-label>
       <ion-toggle [(ngModel)]="invoice.estado" color="success">{{invoice.estado}}</ion-toggle>
     </ion-item>
   </ion-card>

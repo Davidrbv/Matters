@@ -27,10 +27,9 @@ export class RegisterPage implements OnInit {
       this.user.email !== '' &&
       this.user.nombre !== '' &&
       this.user.password !== '' &&
-      this.user.password.length >= 6 &&
       this.user.password === this.user.password2
     ) {
-      if (await this.authService.registerUser(this.user.email, this.user.password)) {
+      if (await this.authService.registerUser(this.user.email, this.user.password) && this.user.password.length >= 6) {
         this.userService.addUser(this.user);
         this.router.navigateByUrl('/dashboard');
       } else {

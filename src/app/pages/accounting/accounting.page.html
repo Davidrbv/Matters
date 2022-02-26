@@ -1,19 +1,8 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ion-text-center" color="light">
-    <ion-buttons slot="start">
-      <ion-back-button href="/dashboard"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">Acounting</ion-title>
-    <ion-buttons slot="end">
-      <ion-menu-button menu="main-menu">
-      </ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Accounting"></app-header>
 
 <ion-content>
   <ion-list *ngIf="!delay">
-    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1]">
       <ion-label>
         <h3>
           <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
