@@ -19,6 +19,7 @@ SwiperCore.use([Pagination,EffectCube]);
 })
 
 export class PhotosPage implements OnInit, AfterContentChecked  {
+  
   @ViewChild('swiper') swiper : SwiperComponent
   config: SwiperOptions = {
     grabCursor: true,
@@ -53,7 +54,7 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
     this.photos = this.photoService.getPhotos();
   }
 
-  async foto(){
+  async browsePhoto(){
     const path = 'UsersGalery';
     this.image = await this.photoService.addPicture();
     const res = await this.photoService.uploadFile(this.image, path);

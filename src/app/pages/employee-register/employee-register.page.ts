@@ -61,7 +61,7 @@ export class EmployeeRegisterPage implements OnInit {
   /* Employee's Photo */
 
   async newImageUpload() {
-    const path = 'UsersGalery';
+    const path = 'UsersEmployees';
     this.image = await this.photoService.addPicture();
     const res = await this.photoService.uploadFile(this.image, path);
     this.employee.imagen = res;
