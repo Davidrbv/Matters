@@ -46,10 +46,18 @@ persistencia de datos.
 </a>
 
 ## Mockup App
-<img src="media/home.png" alt="Logo" width="300" height="300">
-<img src="media/popover.png" alt="Logo" width="300" height="300">
-<img src="media/registroMock.png" alt="Logo" width="300" height="300">
-<img src="media/empleadosMock.png" alt="Logo" width="300" height="300">
-<img src="media/registroVentas.png" alt="Logo" width="300" height="300">
-<img src="media/ajustesUsuario.png" alt="Logo" width="300" height="300">
+<ul>
+  <li><img src="media/home.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/popover.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/registroMock.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/empleadosMock.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/registroVentas.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/ajustesUsuario.png" alt="Logo" width="300" height="300"></li>
+</ul>
+
+
+
+
+
+
 
