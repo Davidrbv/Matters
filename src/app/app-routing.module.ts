@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 
-//Guarda para denegación de acceso a las urls si no se está logueado.
+/* Guards */
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['home']);
-//Guarda para redireccionar a list cuando estas logueado.
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
 
 const routes: Routes = [
@@ -123,8 +122,6 @@ const routes: Routes = [
     path: 'recovery-pass',
     loadChildren: () => import('./pages/recovery-pass/recovery-pass.module')
                           .then( m => m.RecoveryPassPageModule),
-                          canActivate: [AuthGuard],
-                          data: { authGuardPipe: redirectUnauthorizedToHome}
   },
   {
     path: 'photos',
@@ -133,7 +130,7 @@ const routes: Routes = [
                           canActivate: [AuthGuard],
                           data: { authGuardPipe: redirectUnauthorizedToHome}
   },
-  { //Si no encuentras la url, vete a la página principal (** -> significa cualquier cosa)
+  { 
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'

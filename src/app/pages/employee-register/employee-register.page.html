@@ -2,6 +2,8 @@
 
 <ion-content>
   <ion-card>
+
+    <!-- Employee's register form -->
     <form #formulario="ngForm">
       <ion-list>
           <div class="avatar">
@@ -56,10 +58,14 @@
         </ion-item>
       </ion-list>
     </form>
+
+    <!-- Register buttons -->
+    <div class="btns">
+      <ion-button (click)="saveEmployee()" color="success" shape="round"> Save </ion-button>
+      <ion-button (click)="goEmployees()" color="light" shape="round"> Cancel </ion-button>
+    </div>
+
   </ion-card>
 
-  <div class="btns">
-    <ion-button (click)="saveEmployee()" color="success" shape="round"> Save </ion-button>
-    <ion-button (click)="goEmployees()" color="light" shape="round"> Cancel </ion-button>
-  </div>
+  
 </ion-content>

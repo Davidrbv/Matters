@@ -25,28 +25,28 @@ export class EmployeesPage implements OnInit {
 
   ngOnInit(): void {}
 
-  /* Filtro de empleados. Busca referencias al escribir en el Search */
+  /* Employee's filter */
 
   getBusqueda(event: any) {
     this.dataService.getEmployees().subscribe((data) => {
       this.employeesFilter = data.filter(
         (employee) =>
-          employee.nombre.includes(event.detail.value) ||
-          employee.puesto.includes(event.detail.value) ||
-          employee.email.includes(event.detail.value) ||
-          employee.genero.includes(event.detail.value)
+          employee.nombre.toUpperCase().includes(event.detail.value.toUpperCase()) ||
+          employee.puesto.toUpperCase().includes(event.detail.value.toUpperCase()) ||
+          employee.email.toUpperCase().includes(event.detail.value.toUpperCase()) ||
+          employee.genero.toUpperCase().includes(event.detail.value.toUpperCase())
       );
       this.employees = of(this.employeesFilter);
     });
   }
 
-  /* Redirección a edición de empleados */
+  /* Employees's register refirect */
   goEmployeesRegister(id?: string) {
     this.router.navigateByUrl(`/employee-register${id !== undefined ? '/' + id : ''}`);
   }
 
 
-  /* Ventana emergente de opciones sobre empleado */
+  /* Window message */
 
   async presentActionSheet(employee : Employee) {
     const actionSheet = await this.actionSheetCtrl.create({
@@ -84,10 +84,10 @@ export class EmployeesPage implements OnInit {
     await actionSheet.present();
   }
 
-  /* Confirmación de eliminación */
+  /* Confirm delete */
   async presentAlertConfirm(employee: Employee) {
     const alert = await this.alertController.create({
-      header: `${employee.nombre}`,
+      header: `${employee.nombre.toUpperCase()}`,
       message: `This employee was deleted. ¿Are you sure?`,
       buttons: [
         {
@@ -112,7 +112,7 @@ export class EmployeesPage implements OnInit {
     await alert.present();
   }
 
-  /* Presentacion de acciones realizadas */
+  /* Show actions */
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,

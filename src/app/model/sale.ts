@@ -1,4 +1,3 @@
-/* Definición propiedades de las ventas */
 export class Sale {
   saleId: string;
   fecha: Date;

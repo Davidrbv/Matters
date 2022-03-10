@@ -40,8 +40,7 @@
           <div class="espacio"></div>
 
           <div class="chips">
-            <ion-chip color="light" mode="ios" outline="true" [routerLink]="['/recovery-pass']"
-              routerLinkActive="router-link-active">
+            <ion-chip color="light" mode="ios" outline="true" (click)="goToRecovery()">
               <ion-icon color="dark" name="mail"></ion-icon>
               <ion-label>Recovery</ion-label>
             </ion-chip>
@@ -50,11 +49,6 @@
               <ion-icon color="primary" name="logo-google"></ion-icon>
               <ion-label>GoogleAuth</ion-label>
             </ion-chip>
-
-            <!-- <ion-chip color="light" mode="ios" outline="true" (click)="facebookAuthentication()">
-              <ion-icon color="primary" name="logo-facebook"></ion-icon>
-              <ion-label>Facebook</ion-label>
-            </ion-chip> -->
           </div>
 
         </ion-card>

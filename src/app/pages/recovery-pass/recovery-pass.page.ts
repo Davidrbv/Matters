@@ -19,6 +19,7 @@ export class RecoveryPassPage implements OnInit {
   ngOnInit() {
   }
 
+  /* Email recovery pass */
   resetPassword(){
     if(this.email !== ""){
       this.authService.recoveryPass(this.email)
@@ -34,6 +35,7 @@ export class RecoveryPassPage implements OnInit {
     }else this.presentAlert('Fields must be filled in.')
   }
 
+  /* Show messages */
   async presentAlert(message : string) {
     const alert = await this.alertController.create({
       header: 'Recovery Password.',

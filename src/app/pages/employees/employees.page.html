@@ -6,6 +6,8 @@
       <ion-searchbar (ionChange)="getBusqueda($event)"></ion-searchbar>
     </ion-col>
   </ion-row>
+
+  <!-- Employees list -->
   <ion-grid fixed>
     <ion-row>
       <ion-col *ngFor="let employee of employees | async" size-lg="3" size-md="4" size-sm="6"
@@ -48,6 +50,7 @@
     </ion-row>
   </ion-grid>
 
+  <!-- Fab Add Button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="light" (click)="goEmployeesRegister()">
       <ion-icon name="add"></ion-icon>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Employee } from 'src/app/model/employee';
-import { Photo } from 'src/app/model/photo';
 import { DataService } from 'src/app/services/data.service';
 import { PhotoService } from 'src/app/services/photo.service';
 
@@ -15,7 +14,6 @@ export class EmployeeRegisterPage implements OnInit {
 
   employee: Employee = {} as Employee;
   edit: boolean = false;
-  newPhoto: Photo = {} as Photo;
   image : any;
 
   constructor(
@@ -41,10 +39,10 @@ export class EmployeeRegisterPage implements OnInit {
     if (
       this.employee.nombre === '' ||
       this.employee.puesto === '' ||
-      this.employee.salario === undefined ||
+      this.employee.salario === null ||
       this.employee.email === '' ||
       this.employee.imagen === '' ||
-      this.employee.telefono === '' ||
+      this.employee.telefono === null ||
       this.employee.genero === ''
     ) {
       this.presentToast(`Fields must be filled in..`);

@@ -1,33 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
+import { UserService } from '../services/user.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
   email: string;
   password: string;
+  user: User;
 
   constructor(private router: Router,
               private authService: AuthService,
               private alertController: AlertController,
-              private toastController: ToastController) {}
+              private toastController: ToastController,
+              private userService : UserService) {}
 
-  async login() {
-    const connectionSuccess = await this.authService.login(this.email, this.password);
-    if (connectionSuccess) this.router.navigateByUrl('/dashboard');
-    else this.presentAlert();
+  ngOnInit(): void {
+    if(getAuth().currentUser !== null){
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
+
+  /* User Login */
+  async login() {
+
+    if(this.email !== "" && this.password !== ""){
+      const connectionSuccess = await this.authService.login(this.email, this.password);
+      if (connectionSuccess) this.router.navigateByUrl('/dashboard');
+      else this.presentAlert();
+    }
+    
+  }
+
+  /* Redirect user's register */
   goToRegister() {
     this.router.navigateByUrl('/register');
   }
 
+  /* Redirect user's recovery account pass */
+  goToRecovery(){
+    this.router.navigateByUrl('/recovery-pass');
+  }
+
+  /* Show user not found */
   async presentAlert() {
     const alert = await this.alertController.create({
       header: `User Not Found`,
@@ -39,7 +62,7 @@ export class HomePage {
     await alert.present();
   }
 
-  /* Presentacion de acciones realizadas */
+  /* Show actions */
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
@@ -51,6 +74,7 @@ export class HomePage {
     toast.present();
   }
 
+  /* Google Authentication */
   googleAuthentication() {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -58,14 +82,16 @@ export class HomePage {
       .then((result) => {
         const userEmail = result.user.email;
         this.authService.recoveryPass(userEmail);
+        this.userService.updateUser({userId: '',email : `${result.user.email}`, nombre : '', password : '', password2 : '', image : null})
+        this.router.navigateByUrl('/dashboard');
         this.presentToast('Email send to change password..');
-        
       })
       .catch((error) => {
         this.presentToast('Authenticacion with Google error..');
       });
   }
 
+  /* FaceBook Authentication unused */
   facebookAuthentication() {
     const provider = new FacebookAuthProvider();
     const auth = getAuth();
@@ -77,13 +103,9 @@ export class HomePage {
       })
       .catch((error) => {
         this.presentToast('Authenticacion with Facebook error..');
-        // Handle Errors here.
         const errorCode = error.code;
-
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.email;        
-        // The AuthCredential type that was used.
         const credential = FacebookAuthProvider.credentialFromError(errorMessage);
         
       });

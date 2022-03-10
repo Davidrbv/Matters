@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { Invoice } from 'src/app/model/invoice';
-import { Observable } from 'rxjs';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,21 +19,28 @@ export class DashboardPage implements OnInit {
   users: User[];
   invoices : Invoice[];
   pending : number;
+  date : String;
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private invoiceService : InvoiceService
+    private invoiceService : InvoiceService,
+    private toastController: ToastController
   ) {}
 
  
   ngOnInit() {
+    this.userService.getDateFromStorage().then(data => {
+      if(data !== null) this.date = data
+      else this.date = 'Welcome human!!'  
+      this.presentToast(this.date.toString());   
+    });
     
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
       this.user = this.users[0];   
     });
-
+    this.userService.saveDateIntoStorage();
     this.getmodules();
     this.invoiceService.getInvoices().subscribe( data => {
       this.pending = data.length;
@@ -55,6 +62,18 @@ export class DashboardPage implements OnInit {
   /* Redirección a modulo */
   goTo(module: Module) {
     this.router.navigateByUrl(`/${module.redirecTo}`);
+  }
+
+  /* Show actions */
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'bottom',
+      animated: true,
+      color: 'dark  ',
+    });
+    toast.present();
   }
 
 }
