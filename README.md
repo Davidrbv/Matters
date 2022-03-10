@@ -22,9 +22,10 @@ HomePAge: https://github.com/Davidrbv/Matters/tree/master/src/app/home
 
 ## Estructura del proyecto
 <ul>
-  <li>11 Páginas</li>
-  <li>4 Servicios</li>
-  <li>4 Clases</li>
+  <li>12 Páginas</li>
+  <li>2 Componentes</li>
+  <li>7 Servicios</li>
+  <li>5 Clases</li>
   <li>1 Interfaz</li>
 </ul>
 
@@ -46,10 +47,20 @@ persistencia de datos.
 </a>
 
 ## Mockup App
-<img src="media/home.png" alt="Logo" width="300" height="300">
-<img src="media/popover.png" alt="Logo" width="300" height="300">
-<img src="media/registroMock.png" alt="Logo" width="300" height="300">
-<img src="media/empleadosMock.png" alt="Logo" width="300" height="300">
-<img src="media/registroVentas.png" alt="Logo" width="300" height="300">
-<img src="media/ajustesUsuario.png" alt="Logo" width="300" height="300">
+<ul>
+  <li><img src="media/loginmatter.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/registermatter.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/dashboardmatter.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/menumatter.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/employeematter.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/invoicematter.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/salematter.png" alt="Logo" width="300" height="300"></li>
+  <li><img src="media/galerymatter.png" alt="Logo" width="300" height="300"></li>
+</ul>
+
+
+
+
+
+
 
