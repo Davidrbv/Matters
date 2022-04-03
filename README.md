@@ -1,4 +1,4 @@
-<!-- LOGO PROYECTO -->
+<h2 align="center">ANTEPROYECTO GRADO SUPERIOR EN DESARROLLO DE APLICACIONES MULTIPLATAFORMA I.E.S. CAMPANILLAS 21/22</h2>
 <br />
 <p align="center">
 
@@ -10,29 +10,38 @@
 
 <br>
 
-## Sobre el proyecto
-Matters es un ERP de código abierto que trata de poner solución a la gestión de la
-información que desprende cualquier empresa..
-Enfocado en el sector de la hostelería, pero con capacidad de crecimiento en módulos,
-se ocupa de la gestión de facturas, ventas, empleados, contabilidad, etc.
-Con una interfaz sencilla y amigable, te permite gestionar tu negocio sin que suponer
-esfuerzo alguno.
+## INTRODUCCIÓN
 
-HomePAge: https://github.com/Davidrbv/Matters/tree/master/src/app/home
+Tras 22 años dedicado al sector de la hostelería, y siendo conocedor de las herramientas
+que se encuentran en estos momentos en el mercado, y que nos permiten administrar los diferentes
+aspectos que componen el desarrollo diario de una empresa, decidí que era el momento idoneo para
+llevar a cabo una herramienta que sintetizara y facilitara la administración de los ambitos más determinantes
+que influyen en el buen devenir de nuestra empresa.
 
-## Estructura del proyecto
-<ul>
-  <li>12 Páginas</li>
-  <li>2 Componentes</li>
-  <li>7 Servicios</li>
-  <li>5 Clases</li>
-  <li>1 Interfaz</li>
-</ul>
+Para el nombre de la aplicación nos inspiramos en aquellas cosas que de verdad nos importan, aquellas a las
+que no nos importará dedicarles el tiempo que sea necesario, y que, aunque requieren de grandes sacrificios,
+siempre nos retornarán las mayores satisfacciones.
+
+
+## OBJETIVOS
+
+Matters pretende ser un ERP de código abierto que trata de poner solución a la gestión de la
+información que se desprende del funcionamiento habitual de cualquier empresa,
+enfocandonos en la gestión de establecimientos hosteleros en su primera versión oficial.
+Con capacidad de crecimiento en módulos, esta aplicación se encarga de la gestión de las facturas,
+ventas, empleados, contabilidad, gráficas de estado, etc.
+Con una interfaz sencilla y amigable, permitirá gestinoar facilmente los aspectos clave de nuestra empresa,
+mejorando la toma de decisiones, y facilitanto la labor diaria que conlleva la gestiñon de una empresa.
+
+
+## DESARROLLO
+
+Para la ejecución de este proyecto, haremos uso de Ionic, Angular, Firebase, Cordova, además de otras
+muchas herramientas que a lo largo del proyecto iremos incorporando al proyecto.
+Se muestra a continuación algunas de ellas, así como el boceto inicial del que partiremos para la consecución
+del mismo.
 
 <br>
-
-Todas ellas interconectadas, haciendose uso de LocalStorage para la
-persistencia de datos.
 
 ## Technologies Used
 <a href="https://github.com/ionic-team/ionic-framework">
@@ -47,6 +56,12 @@ persistencia de datos.
 </a>
 
 ## Mockup App
+
+Esta es una muestra de algunas de las pantallas y modulos que comprondrán la aplicación.
+Ha de tenerse en cuenta que este es el boceto inicial, y que el proyecto sufrirá muchos cambios para
+una mayor versatilidad y potencial de uso.
+
+
 <ul>
   <li><img src="media/loginmatter.png" alt="Logo" width="300" height="300"></li>
   <li><img src="media/registermatter.png" alt="Logo" width="300" height="300"></li>
