@@ -37,7 +37,7 @@ mejorando la toma de decisiones, y facilitanto la labor diaria que conlleva la g
 ## DESARROLLO
 
 Para la ejecución de este proyecto, haremos uso de Ionic, Angular, Firebase, Cordova, además de otras
-muchas herramientas que a lo largo del proyecto iremos incorporando al proyecto.
+muchas herramientas que a lo largo del proyecto iremos incorporando al este.
 Se muestra a continuación algunas de ellas, así como el boceto inicial del que partiremos para la consecución
 del mismo.
 
