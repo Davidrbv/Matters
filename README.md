@@ -62,16 +62,14 @@ Ha de tenerse en cuenta que este es el boceto inicial, y que el proyecto sufrir√
 una mayor versatilidad y potencial de uso.
 
 
-<ul>
-  <li><img src="media/loginmatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/registermatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/dashboardmatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/menumatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/employeematter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/invoicematter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/salematter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/galerymatter.png" alt="Logo" width="300" height="300"></li>
-</ul>
+<img src="media/loginmatter.png" alt="Logo" width="170" height="330">
+<img src="media/registermatter.png" alt="Logo" width="170" height="330">
+<img src="media/dashboardmatter.png" alt="Logo" width="170" height="330">
+<img src="media/menumatter.png" alt="Logo" width="170" height="330">
+<img src="media/employeematter.png" alt="Logo" width="170" height="330">
+<img src="media/invoicematter.png" alt="Logo" width="170" height="330">
+<img src="media/salematter.png" alt="Logo" width="170" height="330">
+<img src="media/galerymatter.png" alt="Logo" width="170" height="330">
 
 
 
