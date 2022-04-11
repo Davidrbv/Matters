@@ -47,16 +47,15 @@ persistencia de datos.
 </a>
 
 ## Mockup App
-<ul>
-  <li><img src="media/loginmatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/registermatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/dashboardmatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/menumatter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/employeematter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/invoicematter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/salematter.png" alt="Logo" width="300" height="300"></li>
-  <li><img src="media/galerymatter.png" alt="Logo" width="300" height="300"></li>
-</ul>
+<img src="media/loginmatter.png" alt="Login">
+<img src="media/registermatter.png" alt="Register">
+<img src="media/dashboardmatter.png" alt="Dashboard">
+<img src="media/menumatter.png" alt="Menu">
+<img src="media/employeematter.png" alt="Employees">
+<img src="media/invoicematter.png" alt="Invoices">
+<img src="media/salematter.png" alt="Sales">
+<img src="media/galerymatter.png" alt="Galery">
+
 
 
 

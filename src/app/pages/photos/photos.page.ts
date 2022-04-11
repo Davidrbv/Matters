@@ -64,7 +64,6 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
   }
 
   /* Save Photo */
-
   addPhoto() {
     this.newPhoto.formato = this.image;
     this.photoService.addPhoto(this.newPhoto);
@@ -73,19 +72,16 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
 
 
   /* Delete Photo */
-
   deletePhoto(image: Photo) {
     this.presentAlertConfirm(image);
   }
 
   /* Share Photo */
-
   share(image: Photo) {
     this.shareService.sharePhoto(image.formato);
   }
 
   /* Delete photo confirm */
-
   async presentAlertConfirm(image: Photo) {
     const alert = await this.alertController.create({
       header: `${image.ubicacion || 'Photo'}`,
@@ -113,7 +109,6 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
   }
 
   /* Actions present */
-
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,

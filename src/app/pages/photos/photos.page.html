@@ -16,9 +16,9 @@
           </ng-template>
         </swiper>
 
-        <ion-card *ngIf="select" class="ion-padding ion-text-center">
+        <ion-card *ngIf="select" class="ion-padding ion-text-center newPhoto">
           <!-- Logo -->
-          <img [src]="image || '../../../assets/resources/adios.png'" />
+          <img [src]="image || '../../../assets/resources/adios.png'" alt="Select image"/>
           <ion-item class="form">
             <ion-label color="dark" position="floating">Ubicación</ion-label>
             <ion-input name="ubicación" type="text" [ngModel]="newPhoto.ubicacion">

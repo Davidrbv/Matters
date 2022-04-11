@@ -1,6 +1,6 @@
 {
 	"appId": "com.drbv.matters",
-	"appName": "Photographic Record",
+	"appName": "MattersIonicFirebase",
 	"bundledWebRuntime": false,
 	"npmClient": "npm",
 	"webDir": "www",

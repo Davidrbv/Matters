@@ -1,6 +1,7 @@
 .slide-fwd-center {
   -webkit-animation: slide-fwd-center 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-fwd-center 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  margin-top: 15%;
 }
 
 /* ----------------------------------------------
@@ -8,9 +9,9 @@
    * Licensed under FreeBSD License.
    * See http://animista.net/license for more info. 
    * w: http://animista.net, t: @cssanimista
-   * ---------------------------------------------- */
+   * ---------------------------------------------- 
 
-/**
+
    * ----------------------------------------
    * animation slide-fwd-center
    * ----------------------------------------

@@ -54,7 +54,7 @@ p{
 }
 
 .welcome{
-  margin: 3%;
+  margin: 0;
   padding: 4%;
   background: linear-gradient(45deg,#df3b3b, #f08731);
   color: white;
@@ -70,6 +70,10 @@ p{
 .avatar{
   width: 90px;
   height: 90px;
+  background-size: cover;
+}
+img{
+  background-size:cover;
 }
 
 .cards{
@@ -78,6 +82,7 @@ p{
   margin: 2%;
   justify-content: center;
   align-items: center;
+  background-color: grey;
 }
 
 .icon{

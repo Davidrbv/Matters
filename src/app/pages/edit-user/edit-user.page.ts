@@ -44,7 +44,7 @@ export class EditUserPage implements OnInit {
 
   saveChange(user: User) {
     if (user.password !== user.password2) {
-      this.presentToast('Error passwords...');
+      this.presentToast('Passwords should be the same..');
     } else {
       updateEmail(this.authService.getCurrentUser(), user.email)
         .then(() => {
@@ -55,11 +55,11 @@ export class EditUserPage implements OnInit {
               this.router.navigateByUrl(`/dashboard`);
             })
             .catch((error) => {
-              this.presentToast('Password change error...try again..');
+              this.presentToast('Password change error. Try again.');
             });
         })
-        .catch((error) => {
-          this.presentToast('Email change error...try again..');
+        .catch(() => {
+          this.presentToast('Email change error. Try again.');
         });
     }
   }

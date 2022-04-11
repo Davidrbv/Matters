@@ -33,13 +33,11 @@ export class SalesPage implements OnInit {
   }
 
   /* Get all Sales */
-
   getAll() {
     this.sales = this.saleService.getSales();
   }
 
   /* Sales's filter */
-
   getSalesRange() {
     if (this.min === 0 && this.max === 0) this.sales = this.saleService.getSales();
     else {
@@ -49,6 +47,7 @@ export class SalesPage implements OnInit {
       });
     }
   }
+
   /* Show window's message */
   async presentActionSheet(sale: Sale) {
     const actionSheet = await this.actionSheetCtrl.create({
@@ -117,7 +116,6 @@ export class SalesPage implements OnInit {
   }
 
   /* Show actions */
-
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
