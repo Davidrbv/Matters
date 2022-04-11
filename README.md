@@ -56,17 +56,6 @@ del mismo.
 </a>
 
 ## Mockup App
-<<<<<<< HEAD
-<img src="media/loginmatter.png" alt="Login">
-<img src="media/registermatter.png" alt="Register">
-<img src="media/dashboardmatter.png" alt="Dashboard">
-<img src="media/menumatter.png" alt="Menu">
-<img src="media/employeematter.png" alt="Employees">
-<img src="media/invoicematter.png" alt="Invoices">
-<img src="media/salematter.png" alt="Sales">
-<img src="media/galerymatter.png" alt="Galery">
-
-=======
 
 Esta es una muestra de algunas de las pantallas y modulos que comprondrán la aplicación.
 Ha de tenerse en cuenta que este es el boceto inicial, y que el proyecto sufrirá muchos cambios para
@@ -81,7 +70,6 @@ una mayor versatilidad y potencial de uso.
 <img src="media/invoicematter.png" alt="Logo">
 <img src="media/salematter.png" alt="Logo">
 <img src="media/galerymatter.png" alt="Logo">
->>>>>>> 007db70d7d9036811f65bdb7898e82645ab427c5
 
 
 
