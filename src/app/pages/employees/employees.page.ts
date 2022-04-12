@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Employee } from 'src/app/model/employee';
 import { DataService } from 'src/app/services/data.service';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
 @Component({
   selector: 'app-employees',
@@ -19,25 +20,35 @@ export class EmployeesPage implements OnInit {
               private router: Router,
               private actionSheetCtrl: ActionSheetController,
               private alertController: AlertController,
-              private toastController: ToastController) {
+              private toastController: ToastController,
+              private callNumber: CallNumber) {
     this.employees = this.dataService.getEmployees();
   }
 
   ngOnInit(): void {}
 
   /* Employee's filter */
-
   getBusqueda(event: any) {
     this.dataService.getEmployees().subscribe((data) => {
       this.employeesFilter = data.filter(
         (employee) =>
           employee.nombre.toUpperCase().includes(event.detail.value.toUpperCase()) ||
           employee.puesto.toUpperCase().includes(event.detail.value.toUpperCase()) ||
-          employee.email.toUpperCase().includes(event.detail.value.toUpperCase()) ||
-          employee.genero.toUpperCase().includes(event.detail.value.toUpperCase())
+          employee.email.toUpperCase().includes(event.detail.value.toUpperCase())
       );
       this.employees = of(this.employeesFilter);
     });
+  }
+
+  callEmployee(employee){
+    this.callNumber.callNumber(employee.phone,true)
+      .then(res => {
+        this.presentToast('Calling employee. Wait a moment..')
+      })
+      .catch(error => {
+        this.presentToast('Call error. Try again.');
+        console.log(error)
+      })
   }
 
   /* Employees's register refirect */
@@ -47,7 +58,6 @@ export class EmployeesPage implements OnInit {
 
 
   /* Window message */
-
   async presentActionSheet(employee : Employee) {
     const actionSheet = await this.actionSheetCtrl.create({
       header: `${employee.nombre.toUpperCase()}`,
@@ -61,6 +71,13 @@ export class EmployeesPage implements OnInit {
           cssClass: 'rojo',
           handler: () => {
             this.presentAlertConfirm(employee);
+          },
+        },
+        {
+          text: 'Call',
+          icon: 'call-outline',
+          handler: () => {
+            this.callEmployee(employee);
           },
         },
         {

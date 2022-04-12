@@ -1,27 +1,31 @@
-.espacio {
-  min-height: 5vh;
-}
-
-.botones {
-  text-align: center;
-}
-
-ion-button {
-  position: relative;
-  width: 30%;
+ion-label {
+  font-weight: bold;
 }
 
 ion-card {
   padding: 10px;
 }
 
-img {
-  position: relative;
-  width: 30%;
-  height: 30%;
-  left: 33%;
+.card{
+  margin-top: 15%;
 }
 
-ion-label {
-  font-weight: bold;
+.buttons {
+  display: flex;
+  margin-top: 7%;
+  margin-bottom: 5%;
+  justify-content: center;
+  align-items: center;
 }
+
+.image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  img{
+    width: 6em;
+  }
+}
+
+

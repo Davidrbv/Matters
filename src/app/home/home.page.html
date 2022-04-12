@@ -9,20 +9,20 @@
     <ion-row>
       <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
 
-      <!-- Contenido -->
+      <!-- Content -->
       <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
         <ion-card class="ion-padding ion-text-center rotate-vert-center">
           <!-- Logo -->
           <img src="../../assets/resources/matters.png" alt="LogoMatters" />
 
-          <!-- Entrada Email -->
+          <!-- Email -->
           <ion-item class="form">
             <ion-label color="dark" position="floating">Email</ion-label>
             <ion-input name="email" type="email" [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
             </ion-input>
           </ion-item>
 
-          <!-- Entrie Password -->
+          <!-- Password -->
           <ion-item class="form">
             <ion-label color="dark" position="floating">Password</ion-label>
             <ion-input name="password" type="password" [(ngModel)]="password">
@@ -31,20 +31,22 @@
 
           <div class="espacio"></div>
 
-          <!-- Buton Registro -->
+          <!-- Register button -->
           <ion-button color="light" fill="outline" (click)="goToRegister()">Register</ion-button>
 
-          <!-- Buton Login -->
+          <!-- Login button -->
           <ion-button color="light" (click)="login()">Login</ion-button>
 
           <div class="espacio"></div>
 
+          <!-- Recovery pass -->
           <div class="chips">
             <ion-chip color="light" mode="ios" outline="true" (click)="goToRecovery()">
               <ion-icon color="dark" name="mail"></ion-icon>
               <ion-label>Recovery</ion-label>
             </ion-chip>
 
+            <!-- Google Authentication -->
             <ion-chip color="light" mode="ios" outline="true" (click)="googleAuthentication()">
               <ion-icon color="primary" name="logo-google"></ion-icon>
               <ion-label>GoogleAuth</ion-label>

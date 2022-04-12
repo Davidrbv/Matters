@@ -53,20 +53,5 @@ ion-card{
   background: linear-gradient(45deg, rgb(240, 73, 73) 15%, rgb(245, 178, 83) 47%);  margin: 0;
 }
 
-img{
-  object-fit: cover;
-  object-position: center center;
-}
-
-.avatar{
-  transition: all 2s linear;
-}
-
-
-ion-card:hover {
-  .avatar{
-    transform: scale(2);
-  }
-}
 
 

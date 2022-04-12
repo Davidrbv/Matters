@@ -15,6 +15,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class EditUserPage implements OnInit {
   user: User = {} as User;
   image: any;
+  pass: string = '';
+  passRepeat: string = '';
+
 
   constructor(
     private userService: UserService,
@@ -43,12 +46,12 @@ export class EditUserPage implements OnInit {
   /* User's data changes */
 
   saveChange(user: User) {
-    if (user.password !== user.password2) {
+    if (this.pass !== this.passRepeat) {
       this.presentToast('Passwords should be the same..');
     } else {
       updateEmail(this.authService.getCurrentUser(), user.email)
         .then(() => {
-          updatePassword(this.authService.getCurrentUser(), user.password)
+          updatePassword(this.authService.getCurrentUser(), this.pass)
             .then(() => {
               this.userService.updateUser(user);
               this.presentToast('Making changes...');

@@ -26,7 +26,7 @@ export class EmployeeRegisterPage implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id != null) {
+    if (id !== null) {
       this.dataService.getEmployee(id).subscribe((data) => {
         this.employee = data;
         this.edit = true;
@@ -37,13 +37,12 @@ export class EmployeeRegisterPage implements OnInit {
   /* Save employee */
   saveEmployee() {
     if (
-      this.employee.nombre === '' ||
-      this.employee.puesto === '' ||
-      this.employee.salario === null ||
-      this.employee.email === '' ||
-      this.employee.imagen === '' ||
-      this.employee.telefono === null ||
-      this.employee.genero === ''
+      this.employee.nombre === undefined ||
+      this.employee.puesto === undefined ||
+      this.employee.salario === undefined ||
+      this.employee.email === undefined ||
+      this.employee.telefono === undefined ||
+      this.employee.genero === undefined
     ) {
       this.presentToast(`Fields must be filled in..`);
     } else {
@@ -69,6 +68,7 @@ export class EmployeeRegisterPage implements OnInit {
   goEmployees() {
     this.presentToast('Come back..');
     this.router.navigateByUrl('/employees');
+    this.employee = {} as Employee;
   }
 
   /* Presents actions */

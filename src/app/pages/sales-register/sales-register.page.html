@@ -1,30 +1,38 @@
 <app-header titulo="{{(sale.fecha | date: 'dd / MM / yy') || 'New Sale'}} "></app-header>
 
 <ion-content>
-  <div class="espacio"></div>
-  <ion-card>
+
+  <ion-card class="card">
+    <!-- Sale form -->
     <form #formulario="ngForm">
-      <img src="../../../assets/resources/venta.png" alt="" />
+      <div class="image">
+        <img src="../../../assets/resources/venta.png" alt="Sale logo" />
+      </div>
       <ion-list>
         <ion-item>
-          <ion-label position="floating"></ion-label>
-          <ion-input name="fecha" type="date" [(ngModel)]="sale.fecha"> </ion-input>
+          <ion-label position="floating">Date</ion-label>
+          <ion-datetime name="fecha" type="date" display-format="YYYY MMMM DD" cancelText="Cancel"
+            [(ngModel)]="sale.fecha" required="true" [ngModelOptions]="{standalone: true}">
+          </ion-datetime>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Efectivo</ion-label>
+          <ion-label position="floating">Cash</ion-label>
           <ion-input name="efectivo" type="number" min="0" [(ngModel)]="sale.efectivo"> </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Tarjeta</ion-label>
+          <ion-label position="floating">Card</ion-label>
           <ion-input name="tarjeta" type="number" min="0" [(ngModel)]="sale.tarjeta"> </ion-input>
         </ion-item>
       </ion-list>
     </form>
+    <!-- Save or cancel change buttons -->
+    <div class="buttons">
+      <ion-button (click)="saveSale()" color="success" shape="round"> Save </ion-button>
+      <ion-button (click)="goSales()" color="light" shape="round"> Cancel </ion-button>
+    </div>
+
   </ion-card>
-  <div class="botones">
-    <ion-button (click)="saveSale()" color="success" shape="round"> Save </ion-button>
-    <ion-button (click)="goSales()" color="light" shape="round"> Cancel </ion-button>
-  </div>
+
 </ion-content>

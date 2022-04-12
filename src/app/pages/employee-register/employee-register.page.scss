@@ -1,3 +1,7 @@
+.card{
+  margin-top: 10%;
+}
+
 .avatar{
   margin-top: 10%;
   display: flex;
@@ -6,9 +10,15 @@
 }
 
 .btns{
-  margin-top:10% ;
+  margin-top:5%;
+  margin-bottom: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.image{
+  width: 7em;
+  height: 7em;
 }
 

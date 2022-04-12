@@ -26,7 +26,7 @@ export class PhotoService {
   constructor(private fireStore: Firestore, private authService: AuthService, private storage: AngularFireStorage) {}
 
   /* Take Picture */
-
+  //TODO: Cambiar source:CameraSource.Prompt para apk. En web no funciona, solo permite photos de galeria
   async addPicture() {
     const image = await Camera.getPhoto({
       quality: 60,

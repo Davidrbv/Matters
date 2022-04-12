@@ -13,6 +13,13 @@
         </ion-label>
       </ion-item>
 
+      <ion-item *ngIf="authService.getCurrentUser()" (click)="goToDashboard()">
+        <ion-icon color="tertiary" slot="start" name="apps-outline"></ion-icon>
+        <ion-label color="primary">
+          <ion-menu-toggle>Dashboard</ion-menu-toggle>
+        </ion-label>
+      </ion-item>
+
       <ion-item *ngFor="let module of modulos"  (click)="goTo(module)">
         <ion-icon color="tertiary" slot="start" [name]='module.icon'></ion-icon>
         <ion-label color="primary">

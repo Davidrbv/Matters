@@ -32,6 +32,10 @@ export class MenuComponent implements OnInit {
     this.router.navigateByUrl('/edit-user');
   }
 
+  goToDashboard(){
+    this.router.navigateByUrl('/dashboard');
+  }
+
   goTo(module: Module) {
     this.router.navigateByUrl(`/${module.redirecTo}`);
   }

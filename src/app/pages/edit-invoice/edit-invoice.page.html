@@ -1,18 +1,15 @@
-<app-header titulo="{{(invoice.fecha | date: 'dd/MM/yy') || 'New Invoice'}}"></app-header>
+<app-header titulo="{{(invoice.fecha | date: 'dd / MM / yy') || 'New Invoice'}}"></app-header>
 
 <ion-content>
-  <div class="espacio"></div>
 
-  <ion-card>
+  <ion-card class="card">
+    <!-- Invoice form -->
     <form #formulario="ngForm">
-      <img
-        *ngIf="!invoice.estado"
-        src="../../../assets/resources/facturaPendiente.png"
-        alt="Factura pendiente"
-      />
-
-      <img *ngIf="invoice.estado" src="../../../assets/resources/facturaPagada.png" alt="Factura pagada" />
-      <img *ngIf="invoice.estado === null" src="../../../assets/resources/facturaPagada.png" />
+      <div class="image">
+        <img *ngIf="!invoice.estado" src="../../../assets/resources/facturaPendiente.png" alt="Factura pendiente" />
+        <img *ngIf="invoice.estado" src="../../../assets/resources/facturaPagada.png" alt="Factura pagada" />
+        <img *ngIf="invoice.estado === null" src="../../../assets/resources/facturaPagada.png" />
+      </div>
       <ion-list>
         <ion-item>
           <ion-label position="floating">Invoice code</ion-label>
@@ -21,15 +18,8 @@
 
         <ion-item>
           <ion-label position="floating">Date</ion-label>
-          <ion-datetime
-            placeholder="Fecha"
-            name="fecha"
-            type="date"
-            display-format="YYYY MMMM DD"
-            cancelText="Cancel"
-            [(ngModel)]="invoice.fecha"
-            required="true"
-            [ngModelOptions]="{standalone: true}">
+          <ion-datetime name="fecha" type="date" display-format="YYYY MMMM DD" cancelText="Cancel"
+            [(ngModel)]="invoice.fecha" required="true" [ngModelOptions]="{standalone: true}">
           </ion-datetime>
         </ion-item>
 
@@ -42,17 +32,21 @@
           <ion-label position="floating">Provider</ion-label>
           <ion-input name="proveedor" type="text" [(ngModel)]="invoice.proveedor" required> </ion-input>
         </ion-item>
+
+        <ion-item>
+          <ion-label>Invoice state</ion-label>
+          <ion-toggle name="estado" [(ngModel)]="invoice.estado" color="success">{{invoice.estado}}</ion-toggle>
+        </ion-item>
+
       </ion-list>
     </form>
 
-    <ion-item>
-      <ion-label>Invoice state</ion-label>
-      <ion-toggle [(ngModel)]="invoice.estado" color="success">{{invoice.estado}}</ion-toggle>
-    </ion-item>
-  </ion-card>
 
-  <div class="botones">
-    <ion-button class="btnsave" (click)="saveInvoice()" color="success" shape="round"> Save </ion-button>
-    <ion-button class="btncancel" (click)="goInvoices()" color="light" shape="round"> Cancel </ion-button>
-  </div>
+    <!-- Save or cancel buttons -->
+    <div class="buttons">
+      <ion-button class="btnsave" (click)="saveInvoice()" color="success" shape="round"> Save </ion-button>
+      <ion-button class="btncancel" (click)="goInvoices()" color="light" shape="round"> Cancel </ion-button>
+    </div>
+
+  </ion-card>
 </ion-content>

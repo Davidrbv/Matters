@@ -18,9 +18,8 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-
-
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +38,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     provideStorage(() => getStorage()),
     AngularFireStorageModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SocialSharing],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },CallNumber, SocialSharing],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

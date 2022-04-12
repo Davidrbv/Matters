@@ -3,11 +3,12 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from 'src/app/model/photo';
 import { Observable } from 'rxjs';
-import { ShareService } from 'src/app/services/share.service';
+//import { ShareService } from 'src/app/services/share.service';
 
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Pagination, EffectCube} from 'swiper';
+//import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 SwiperCore.use([Pagination,EffectCube]);
 
@@ -43,7 +44,7 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
     private photoService: PhotoService,
     private alertController: AlertController,
     private toastController: ToastController,
-    private shareService: ShareService
+    //private shareService: ShareService,
   ) {}
 
   ngAfterContentChecked(): void {
@@ -77,9 +78,9 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
   }
 
   /* Share Photo */
-  share(image: Photo) {
-    this.shareService.sharePhoto(image.formato);
-  }
+  // share(image: Photo) {
+  //   this.shareService.sharePhoto(image.formato);
+  // }
 
   /* Delete photo confirm */
   async presentAlertConfirm(image: Photo) {
