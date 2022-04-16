@@ -43,7 +43,7 @@
         <ion-item required>
           <ion-label color="primary">Job</ion-label>
           <ion-select [(ngModel)]="employee.puesto" [ngModelOptions]="{standalone: true}" okText="Ok"
-            cancelText="Cancel">
+            cancelText="Cancel" required>
             <ion-select-option value="Chef">Chef</ion-select-option>
             <ion-select-option value="Waiter">Waiter</ion-select-option>
           </ion-select>
@@ -52,7 +52,7 @@
         <ion-item required>
           <ion-label color="primary">Genre</ion-label>
           <ion-select [(ngModel)]="employee.genero" [ngModelOptions]="{standalone: true}" okText="Ok"
-            cancelText="Cancel">
+            cancelText="Cancel" required>
             <ion-select-option value="man.png">Man</ion-select-option>
             <ion-select-option value="woman.png">Woman</ion-select-option>
           </ion-select>

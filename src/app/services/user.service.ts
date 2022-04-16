@@ -52,6 +52,11 @@ export class UserService {
     await deleteDoc(doc(this.fireStore, `users/${this.authService.getCurrentUser().uid}/user/${id}`));
   }
 
+  // /* Full delte user */
+  // async deleteUser(uid:string) {
+  //   await deleteDoc(doc(this.fireStore, `users/${uid}`));
+  // }
+
   /* Update User */
   async updateUser(user: User) {
     await setDoc(doc(this.fireStore, `users/${this.authService.getCurrentUser().uid}/user/${user.userId}`), user);

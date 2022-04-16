@@ -53,8 +53,21 @@
 }
 
 .buttons {
-  margin: 8%;
+  margin-top: 8%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.deleteUser{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  color: red;
+  font-weight: bold;
+  text-decoration: underline red;
+   p{
+      cursor: pointer;
+    }
 }

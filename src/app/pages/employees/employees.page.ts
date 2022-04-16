@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Employee } from 'src/app/model/employee';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/services/employee.service';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
@@ -40,14 +40,15 @@ export class EmployeesPage implements OnInit {
     });
   }
 
-  callEmployee(employee){
-    this.callNumber.callNumber(employee.phone,true)
+  /* Call employees */
+  callEmployee(employee : Employee){
+    this.callNumber.callNumber(employee.telefono.toString(),true)
       .then(res => {
-        this.presentToast('Calling employee. Wait a moment..')
+        this.presentToast('Calling employee. Wait a moment..');
       })
       .catch(error => {
         this.presentToast('Call error. Try again.');
-        console.log(error)
+        console.log(error);
       })
   }
 

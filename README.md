@@ -2,7 +2,7 @@
 <br />
 <p align="center">
 
-  <img src="media/matters.png" alt="Logo" width="200" height="250">
+  <img src="media/logoCompleto.svg" alt="Logo" width="300" height="350">
 
   <h3 align="center">Matters</h3>
   
@@ -36,10 +36,10 @@ mejorando la toma de decisiones, y facilitanto la labor diaria que conlleva la g
 
 ## DESARROLLO
 
-Para la ejecución de este proyecto, haremos uso de Ionic, Angular, Firebase, Cordova, además de otras
-muchas herramientas que a lo largo del proyecto iremos incorporando al este.
-Se muestra a continuación algunas de ellas, así como el boceto inicial del que partiremos para la consecución
-del mismo.
+Para la ejecución de este proyecto, haremos uso de Ionic, Angular, Firebase, Cordova, Typescript, Python además de otras herramientas que a lo largo del proyecto iremos incorporando.
+Se muestra a continuación algunas de ellas, así como el boceto inicial del que partiremos para la consecución del mismo.
+El proyecto constará de la aplicación movil, una página para las gestiones de administración de la app, una Landing Page informativa sobre el producto y un sistema para recuperar información desarrollado en Python.
+Se irá describiendo en el diario de trabajo las adesiones y cambios de las diferentes partes del proyecto en el momento en que se sucedan. 
 
 ## BIBLIOGRAFÍA
   - <a href="https://ionicframework.com/docs/"><p>Ionic</p></a>
@@ -49,30 +49,39 @@ del mismo.
   - <a href="https://www.typescriptlang.org/docs/"><p>TypeScript</p></a>
   - <a href="https://angular.io/"><p>Angular</p></a>
   - <a href="https://es.stackoverflow.com/"><p>StackOverflow</p></a>
+  - <a href="https://docs.python.org/3/"><p>Python</p></a>
 
 ## DIARIO DE TRABAJO
   ### APK
-  <a href="media/app-debug.apk">APK 12/04/2022</a>
+  <a href="media/app-debug.apk">APK Actual 16/04/2022</a>
   - ### Semana 1:
     - Inicio del proyecto.
-    - Codificación de la base del proyecto, incluyendo la estructura principal del mismo, así como parte de las funcionalidades a desarrollar. Correción de bugs, e implementación de la versión 1.0 beta.
-    -Cración de estructura y conexión con base de datos (Firebase).
+    - Codificación de la base del proyecto, incluyendo la estructura principal de la app, así como parte de las funcionalidades a desarrollar.
+    - Cración de estructura y conexión con base de datos (Firebase).
+    - Se ha rediseñado el logo y marca de la aplicación.
+    - Cambio en cabeceras de páginas.
+    - Solucionado bugs llamadas empleados.
+    - Elección de tipográfias (Microgramma y Roboto Condensed).
+    - Elección de paleta de colores (Negro-Rojo).
 
-## TECHNOLOGIES USED
+  - ### Semana 2:
+    - 
 
-<a href="https://github.com/ionic-team/ionic-framework">
-    <img src="media/ionic.png" alt="Logo" width="220" height="100">
-</a>
+  - ### Semana 3:
+    - 
 
-<a href="https://github.com/angular/angular">
-    <img src="media/logoAngular.png" alt="Logo" width="220" height="100">
-</a>
+  - ### Semana 4:
+    - 
 
-## Mockup App
+  - ### Semana 5:
+    - 
+
+## Mockup App Inicial
 
 Esta es una muestra de algunas de las pantallas y modulos que comprondrán la aplicación.
 Ha de tenerse en cuenta que este es el boceto inicial, y que el proyecto sufrirá muchos cambios para
-una mayor versatilidad y potencial de uso.
+una mayor versatilidad y potencial de uso, además de un rediseño
+para mejorar la interfaz inicial.
 
 
 <img src="media/loginmatter.png" alt="Logo">

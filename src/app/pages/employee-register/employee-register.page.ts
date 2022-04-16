@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Employee } from 'src/app/model/employee';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/services/employee.service';
 import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
@@ -42,7 +42,13 @@ export class EmployeeRegisterPage implements OnInit {
       this.employee.salario === undefined ||
       this.employee.email === undefined ||
       this.employee.telefono === undefined ||
-      this.employee.genero === undefined
+      this.employee.genero === undefined ||
+      this.employee.nombre === '' ||
+      this.employee.puesto === '' ||
+      this.employee.salario === null ||
+      this.employee.email === '' ||
+      this.employee.telefono === null ||
+      this.employee.genero === ''
     ) {
       this.presentToast(`Fields must be filled in..`);
     } else {

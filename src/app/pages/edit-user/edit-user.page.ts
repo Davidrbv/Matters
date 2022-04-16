@@ -35,7 +35,6 @@ export class EditUserPage implements OnInit {
   }
 
   /* User's image change */
-
   async newImageUpload() {
     const path = 'UsersPhoto';
     this.image = await this.photoService.addPicture();
@@ -44,7 +43,6 @@ export class EditUserPage implements OnInit {
   }
 
   /* User's data changes */
-
   saveChange(user: User) {
     if (this.pass !== this.passRepeat) {
       this.presentToast('Passwords should be the same..');
@@ -70,15 +68,23 @@ export class EditUserPage implements OnInit {
 
   /* Delete User */
 
-  deleteUser(){
-    deleteUser(this.authService.getCurrentUser()).then(() => {
-    }).catch((error) => {
-      this.presentToast('Delete error..');
+  // TODO: Ver que hacer con eliminación usuario.
+  // Opciones: Correo a administrador para delete users/uid de forma manual.
+  //           Firebase CLI creando bash.
+  //           Eliminar de forma recursiva.
+  deleteUser(uid :string){
+    deleteUser(this.authService.getCurrentUser())
+    .then(() => {
+      this.userService.deleteUser(uid);
+      this.presentToast('Why??.. :\'(');
+      this.router.navigateByUrl('/home');
+    })
+    .catch((error) => {
+      this.presentToast('User delete error..');
     });
   }
 
   /* Cancel Change */
-
   cancelChange() {
     this.presentToast('Changes cancelled..');
     this.router.navigateByUrl(`/dashboard`);
@@ -86,7 +92,6 @@ export class EditUserPage implements OnInit {
 
 
   /* Delete User confirm*/
-
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       header: `Email: ${this.authService.getCurrentUser().email}`,
@@ -104,9 +109,7 @@ export class EditUserPage implements OnInit {
         {
           text: 'Ok',
           handler: () => {
-            this.presentToast('User Deleted..See you soon!!!');
-            this.deleteUser();
-            this.router.navigateByUrl('/home');
+            this.deleteUser(this.authService.getCurrentUser().uid);        
           },
         },
       ],
