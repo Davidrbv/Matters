@@ -1,14 +1,10 @@
 <h2 align="center">PROYECTO GRADO SUPERIOR EN DESARROLLO DE APLICACIONES MULTIPLATAFORMA I.E.S. CAMPANILLAS 21/22</h2>
-<br />
 <p align="center">
 
   <img src="media/logoCompleto.svg" alt="Logo" width="300" height="350">
-
-  <h3 align="center">Matters</h3>
   
 </p>
 
-<br>
 
 ## INTRODUCCIÓN
 
