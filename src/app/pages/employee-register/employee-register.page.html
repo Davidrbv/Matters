@@ -1,6 +1,6 @@
 <app-header titulo="{{(employee.nombre | titlecase) || 'New Employee'}}"></app-header>
 
-<ion-content>
+<ion-content mode="md">
   <ion-card class="card">
 
     <!-- Employee's register form -->
@@ -15,33 +15,33 @@
             </ion-avatar>
           </div>
         <ion-item>
-          <ion-label color="primary" position="floating">Name</ion-label>
+          <ion-label color="dark" position="floating">Name</ion-label>
           <ion-input name="nombre" type="text" placeholder="Introduzca nombre.." [(ngModel)]="employee.nombre" required>
           </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" position="floating">Email</ion-label>
+          <ion-label color="dark" position="floating">Email</ion-label>
           <ion-input name="email" type="email" placeholder="Introduzca email.." [(ngModel)]="employee.email" required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
           </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" position="floating">Salary</ion-label>
+          <ion-label color="dark" position="floating">Salary</ion-label>
           <ion-input name="salario" type="number" placeholder="Employee's salary.." [(ngModel)]="employee.salario"
             required>
           </ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label color="primary" position="floating">Phone</ion-label>
+          <ion-label color="dark" position="floating">Phone</ion-label>
           <ion-input name="telefono" type="number" placeholder="Telefono.." [(ngModel)]="employee.telefono" required>
           </ion-input>
         </ion-item>
 
         <ion-item required>
-          <ion-label color="primary">Job</ion-label>
+          <ion-label color="dark">Job</ion-label>
           <ion-select [(ngModel)]="employee.puesto" [ngModelOptions]="{standalone: true}" okText="Ok"
             cancelText="Cancel" required>
             <ion-select-option value="Chef">Chef</ion-select-option>
@@ -50,7 +50,7 @@
         </ion-item>
 
         <ion-item required>
-          <ion-label color="primary">Genre</ion-label>
+          <ion-label color="dark">Genre</ion-label>
           <ion-select [(ngModel)]="employee.genero" [ngModelOptions]="{standalone: true}" okText="Ok"
             cancelText="Cancel" required>
             <ion-select-option value="man.png">Man</ion-select-option>
@@ -61,10 +61,17 @@
     </form>
 
     <!-- Register buttons -->
-    <div class="btns">
-      <ion-button (click)="saveEmployee()" color="success" shape="round"> Save </ion-button>
-      <ion-button (click)="goEmployees()" color="light" shape="round"> Cancel </ion-button>
-    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="light" fill="outline" (click)="saveEmployee()">Save</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="light" (click)="goEmployees()">Cancel</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </ion-card>
 

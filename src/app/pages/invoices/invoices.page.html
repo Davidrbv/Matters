@@ -1,20 +1,32 @@
 <app-header titulo='Invoices'></app-header>
 
-<ion-content>
-  <ion-button class="btn_state" *ngIf="estado; else pending" (click)="invoiceStatus(true)" expand="block" fill="outline"
-    color="light">
-    <ion-label>Pending</ion-label>
-  </ion-button>
-  <ng-template #pending>
-    <ion-button class="btn_state" (click)="invoiceStatus(false)" expand="block" fill="outline" color="success">
-      <ion-label>Paid</ion-label>
-    </ion-button>
-  </ng-template>
+<ion-content mode="md">
 
-  <ion-button class="btn_state" (click)="allInvoices()" expand="block" fill="outline" color="warning">
-    <ion-label>All invoices</ion-label>
-  </ion-button>
+  <!-- Invoices's filter -->
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button class="btn_state" *ngIf="estado; else pending" (click)="invoiceStatus(true)" expand="block"
+          fill="outline" color="light">
+          <ion-label>Pending</ion-label>
+        </ion-button>
+        <ng-template #pending>
+          <ion-button expand="block" class="btn_state" (click)="invoiceStatus(false)" expand="block" fill="outline"
+            color="success">
+            <ion-label>Paid</ion-label>
+          </ion-button>
+        </ng-template>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" class="btn_state" (click)="allInvoices()" expand="block" fill="outline"
+          color="warning">
+          <ion-label>All invoices</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <!-- Invoices's list -->
   <ion-item-sliding *ngFor="let invoice of invoices | async">
 
     <ion-item>
@@ -37,16 +49,17 @@
     </ion-item-options>
 
     <ion-item-options side="end">
-      <ion-item-option color="danger" (click)="presentAlertConfirm(invoice)">
+      <ion-item-option color="light" (click)="presentAlertConfirm(invoice)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-item-option>
     </ion-item-options>
 
   </ion-item-sliding>
 
+  <!-- Add invoice button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="light">
-      <ion-icon name="add" (click)="goToEditInvoice()"></ion-icon>
+    <ion-fab-button (click)="goToEditInvoice()">
+      <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

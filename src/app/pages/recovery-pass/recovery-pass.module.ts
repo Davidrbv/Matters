@@ -8,12 +8,15 @@ import { RecoveryPassPageRoutingModule } from './recovery-pass-routing.module';
 
 import { RecoveryPassPage } from './recovery-pass.page';
 
+import { ComponentsModule } from 'src/app/components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecoveryPassPageRoutingModule
+    RecoveryPassPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [RecoveryPassPage]
 })

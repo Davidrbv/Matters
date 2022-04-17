@@ -21,6 +21,7 @@
     transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
     opacity: 0;
   }
+
   100% {
     -webkit-transform: rotateY(0deg) translateY(0) skewY(0deg);
     transform: rotateY(0deg) translateY(0) skewY(0deg);
@@ -34,6 +35,7 @@
     transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
     opacity: 0;
   }
+
   100% {
     -webkit-transform: rotateY(0deg) translateY(0) skewY(0deg);
     transform: rotateY(0deg) translateY(0) skewY(0deg);
@@ -41,23 +43,16 @@
   }
 }
 
-ion-card {
-  max-height: 140px;
-  -webkit-box-shadow: 0px 0px 25px 5px rgba(59, 56, 56, 0.4);
-  -moz-box-shadow: 0px 0px 25px 5px rgba(59, 56, 56, 0.4);
-  box-shadow: 0px 0px 25px 5px rgba(59, 56, 56, 0.4);
-}
-
-p{
+p {
   font-weight: bold;
-
 }
 
-.welcome{
+.welcome {
   margin: 0;
-  background: linear-gradient(45deg,#df3b3b, #f08731);
+  background: linear-gradient(45deg, rgba(255, 0, 0, 1) 50%, rgb(48, 48, 48) 100%);
   color: white;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .dashAvatar {
@@ -66,21 +61,22 @@ p{
   align-items: center;
 }
 
-.avatar{
+.avatar {
   width: 5em;
   height: 5em;
 }
 
-.cards{
+.cards {
   display: flex;
   padding: 3%;
   margin: 2%;
   justify-content: center;
   align-items: center;
-  background-color: rgb(177, 175, 175);
+  background-color: rgb(76, 76, 83);
+  cursor: pointer;
 }
 
-.icon{
+.icon {
   height: 5rem;
 }
 

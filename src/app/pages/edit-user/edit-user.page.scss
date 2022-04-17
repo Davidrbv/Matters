@@ -37,9 +37,12 @@
   }
 }
 
-.header{
+ion-card{
+  padding: 10px;
+}
+
+.image{
   margin-top: 7%;
-  margin-bottom: 10%;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -48,15 +51,12 @@
 }
 
 .photo{
-  width: 100px;
-  height: 100px;
+  width: 30%;
+  height: 30%;
 }
 
-.buttons {
+ion-row{
   margin-top: 8%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .deleteUser{
@@ -69,5 +69,6 @@
   text-decoration: underline red;
    p{
       cursor: pointer;
+      font-weight: bold;
     }
 }

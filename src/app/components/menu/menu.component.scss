@@ -1,11 +1,12 @@
-ion-label{
-    font-weight: bold;
+ion-label {
+  font-weight: bold;
 }
 
-ion-item{
-    cursor: pointer;
+ion-item {
+  cursor: pointer;
 }
 
-/* ::ng-deep ion-item{
-    background-color: blue !important;
-} */
+ion-title {
+  font-size: 1em;
+  color: white;
+}

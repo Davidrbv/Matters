@@ -1,6 +1,6 @@
 <app-header titulo='Photos'></app-header>
 
-<ion-content>
+<ion-content mode="md">
 
   <ion-grid>
     <ion-row>
@@ -25,10 +25,13 @@
             </ion-input>
           </ion-item>
           <div class="espacio"></div>
-          <!-- Button Cancel -->
-          <ion-button color="light" fill="outline" (click)="select = false">Cancel</ion-button>
+
           <!-- Button Accept -->
-          <ion-button color="light" (click)="addPhoto()">Accept</ion-button>
+          <ion-button color="light" fill="outline" (click)="addPhoto()">Save</ion-button>
+
+          <!-- Button Cancel -->
+          <ion-button color="light" (click)="select = false">Cancel</ion-button>
+          
         </ion-card>
       </ion-col>
 
@@ -36,8 +39,8 @@
     </ion-row>
   </ion-grid>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="browsePhoto()">
-    <ion-fab-button color="light">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="browsePhoto()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

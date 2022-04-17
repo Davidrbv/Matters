@@ -1,13 +1,12 @@
 <app-header titulo="{{(user.nombre | titlecase) || 'Your name?'}}"></app-header>
 
-<ion-content>
+<ion-content mode="md">
   <ion-card class="slide-fwd-center">
-    <div class="header">
+    <div class="image">
       <ion-avatar class="photo" (click)="newImageUpload()">
         <img [src]="user.image || '../../../assets/resources/personas.png'" alt="userImage" />
       </ion-avatar>
     </div>
-
 
     <ion-list>
       <!-- Entry name -->
@@ -36,11 +35,17 @@
       </ion-item>
     </ion-list>
 
-    <!-- Register Button -->
-    <div class="buttons">
-      <ion-button color="success" fill="outline" (click)="saveChange(user)">Save</ion-button>
-      <ion-button color="light" fill="outline" (click)="cancelChange()">Cancel</ion-button>
-    </div>
+    <!-- Confirm Buttons -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="light" fill="outline" (click)="saveChange(user)">Save</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="light" (click)="cancelChange()">Cancel</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
     <!-- Delete User -->
     <div class="deleteUser" (click)="presentAlertConfirm()">

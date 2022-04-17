@@ -42,6 +42,10 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  goToHome(){
+    this.router.navigateByUrl('/home');
+  }
+
   async presentToast(message : string) {
     const toast = await this.toastController.create({
       message,

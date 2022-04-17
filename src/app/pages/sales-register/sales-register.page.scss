@@ -21,17 +21,6 @@ ion-label {
   }
 }
 
-.espacio {
-  min-height: 5vh;
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ion-button {
-    margin-top: 7%;
-    margin-bottom: 6%;
-  }
+ion-row{
+  margin: 5%;
 }

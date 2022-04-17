@@ -1,10 +1,10 @@
 <ion-menu side="start" menuId="main-menu" contentId="main">
   <ion-header>
     <ion-toolbar class="header">
-      <ion-title style="">Menu</ion-title>
+      <ion-title class="ion-text-center">MENU</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
+  <ion-content mode="md">
     <ion-list class="list">
       <ion-item *ngIf="authService.getCurrentUser()" (click)="goToEditUser()">
         <ion-icon color="dark" slot="start" name="person"></ion-icon>

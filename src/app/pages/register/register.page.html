@@ -9,16 +9,15 @@
         <ion-card class="slide-bck-center">
           <ion-grid>
             <ion-row class="photo">
-              <ion-col size="4"></ion-col>
-              <ion-col size="4">
-                  <img src="../../assets/resources/matters.png" alt="LogoMatters" />
+              <ion-col size="12">
+                  <img src="../../assets/resources/logoCompleto.svg" alt="LogoMatter" />
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col size="12">
                 <ion-item>
-                  <ion-label color="light" position="floating">Name</ion-label>
+                  <ion-label color="dark" position="floating">Name</ion-label>
                   <ion-input name="nombre" type="text" [(ngModel)]="user.nombre" required> </ion-input>
                 </ion-item>
               </ion-col>
@@ -27,7 +26,7 @@
             <ion-row>
               <ion-col size="12">
                 <ion-item>
-                  <ion-label color="light" position="floating">Email</ion-label>
+                  <ion-label color="dark" position="floating">Email</ion-label>
                   <ion-input name="email" type="email" [(ngModel)]="user.email" required
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
                 </ion-item>
@@ -37,7 +36,7 @@
             <ion-row>
               <ion-col size="12">
                 <ion-item>
-                  <ion-label color="light" position="floating">Password</ion-label>
+                  <ion-label color="dark" position="floating">Password</ion-label>
                   <ion-input name="password" type="password" [(ngModel)]="pass" required></ion-input>
                 </ion-item>
               </ion-col>
@@ -46,15 +45,18 @@
             <ion-row>
               <ion-col size="12">
                 <ion-item>
-                  <ion-label color="light" position="floating">Repeat password</ion-label>
+                  <ion-label color="dark" position="floating">Repeat password</ion-label>
                   <ion-input name="password" type="password" [(ngModel)]="passRepeat" required></ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
 
-            <ion-row>
-              <ion-col size="12">
-                <ion-button expand="block" color="light" (click)="register()">Register</ion-button>
+            <ion-row class="buttons">
+              <ion-col size="6">
+                <ion-button expand="block" fill="outline" color="light" (click)="register()">Register</ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button expand="block" color="light" (click)="goToHome()">Cancel</ion-button>
               </ion-col>
             </ion-row>
 

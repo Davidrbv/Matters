@@ -20,38 +20,52 @@
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
   }
+
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
+
 @keyframes scale-up-center {
   0% {
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
   }
+
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
 
-p{
+p {
   margin: 0;
   font-weight: bold;
-}
-
-ion-card{
-  cursor: pointer;
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  color: black;
-  font-weight: 200;
-  background: linear-gradient(45deg, rgb(240, 73, 73) 15%, rgb(245, 178, 83) 47%);  margin: 0;
+  align-items: center;
 }
 
 
+ion-card {
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-weight: 200;
+  background: linear-gradient(40deg, rgb(0, 0, 0) 41%, rgb(172, 15, 15) 41%);
+  margin: 0;
+  padding: 0;
+}
 
+ion-icon{
+  margin: 2%;
+  padding: 0;
+}
+
+.avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

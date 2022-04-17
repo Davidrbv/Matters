@@ -1,6 +1,6 @@
 <app-header titulo="{{(sale.fecha | date: 'dd / MM / yy') || 'New Sale'}} "></app-header>
 
-<ion-content>
+<ion-content mode="md">
 
   <ion-card class="card">
     <!-- Sale form -->
@@ -27,11 +27,18 @@
         </ion-item>
       </ion-list>
     </form>
+    
     <!-- Save or cancel change buttons -->
-    <div class="buttons">
-      <ion-button (click)="saveSale()" color="success" shape="round"> Save </ion-button>
-      <ion-button (click)="goSales()" color="light" shape="round"> Cancel </ion-button>
-    </div>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" (click)="saveSale()" color="light" fill="outline">Save</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" (click)="goSales()" color="light"> Cancel </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </ion-card>
 

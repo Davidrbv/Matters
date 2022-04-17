@@ -1,14 +1,14 @@
 <app-header titulo="{{(invoice.fecha | date: 'dd / MM / yy') || 'New Invoice'}}"></app-header>
 
-<ion-content>
+<ion-content mode="md">
 
   <ion-card class="card">
     <!-- Invoice form -->
     <form #formulario="ngForm">
       <div class="image">
-        <img *ngIf="!invoice.estado" src="../../../assets/resources/facturaPendiente.png" alt="Factura pendiente" />
-        <img *ngIf="invoice.estado" src="../../../assets/resources/facturaPagada.png" alt="Factura pagada" />
-        <img *ngIf="invoice.estado === null" src="../../../assets/resources/facturaPagada.png" />
+        <img *ngIf="!invoice.estado" src="../../../assets/resources/unpaid.png" alt="Factura pendiente" />
+        <img *ngIf="invoice.estado" src="../../../assets/resources/paid.png" alt="Factura pagada" />
+        <img *ngIf="invoice.estado === null" src="../../../assets/resources/paid.png" />
       </div>
       <ion-list>
         <ion-item>
@@ -41,12 +41,17 @@
       </ion-list>
     </form>
 
-
     <!-- Save or cancel buttons -->
-    <div class="buttons">
-      <ion-button class="btnsave" (click)="saveInvoice()" color="success" shape="round"> Save </ion-button>
-      <ion-button class="btncancel" (click)="goInvoices()" color="light" shape="round"> Cancel </ion-button>
-    </div>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="light" fill="outline" (click)="saveInvoice()">Save</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="light" (click)="goInvoices()">Cancel</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </ion-card>
 </ion-content>

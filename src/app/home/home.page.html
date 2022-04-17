@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-toolbar style="--background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(0,0,0,1) 45%);" class="header">
+  <ion-toolbar>
     <ion-title style="color: white;" class="ion-text-center">MATTER</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="md">
   <ion-grid>
     <ion-row>
       <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
@@ -29,25 +29,21 @@
             </ion-input>
           </ion-item>
 
-          <div class="espacio"></div>
-
-          <!-- Register button -->
-          <ion-button color="light" fill="outline" (click)="goToRegister()">Register</ion-button>
-
-          <!-- Login button -->
-          <ion-button color="light" (click)="login()">Login</ion-button>
-
-          <div class="espacio"></div>
+          <!-- Login & Register buttons -->
+          <div class="buttons">
+            <ion-button expand="block" color="light" fill="outline" (click)="goToRegister()">Register</ion-button>
+            <ion-button expand="block" color="light" (click)="login()">Login</ion-button>
+          </div>
 
           <!-- Recovery pass -->
           <div class="chips">
-            <ion-chip color="light" mode="ios" outline="true" (click)="goToRecovery()">
+            <ion-chip color="light" outline="true" (click)="goToRecovery()">
               <ion-icon color="dark" name="mail"></ion-icon>
               <ion-label>Recovery</ion-label>
             </ion-chip>
 
             <!-- Google Authentication -->
-            <ion-chip color="light" mode="ios" outline="true" (click)="googleAuthentication()">
+            <ion-chip color="light" outline="true" (click)="googleAuthentication()">
               <ion-icon color="primary" name="logo-google"></ion-icon>
               <ion-label>GoogleAuth</ion-label>
             </ion-chip>
@@ -55,7 +51,6 @@
 
         </ion-card>
       </ion-col>
-
       <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
     </ion-row>
   </ion-grid>
