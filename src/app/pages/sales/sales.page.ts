@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Sale } from 'src/app/model/sale';
 import { SaleService } from 'src/app/services/sale.service';
 import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-sales',
@@ -15,6 +16,10 @@ export class SalesPage implements OnInit {
   salesFilter: Sale[];
   min: number = 0;
   max: number = 0;
+  searchSaleType : string = '';
+  dateFrom : Date = null;
+  dateTo: Date = null;
+  dateWithPipe = null;
 
   constructor(
     public saleService: SaleService,
@@ -39,19 +44,35 @@ export class SalesPage implements OnInit {
 
   /* Sales's filter */
   getSalesRange() {
-    if (this.min === 0 && this.max === 0) this.sales = this.saleService.getSales();
+    if ((this.min === 0 && this.max === 0) ||
+       (this.min === null || this.max === null) ) this.sales = this.saleService.getSales();
     else {
       this.saleService.getSales().subscribe((data) => {
-        this.salesFilter = data.filter((sale) => sale.total >= this.min && sale.total <= this.max);
-        this.sales = of(this.salesFilter);
+        this.sales = of(data.filter((sale) => sale.total >= this.min && sale.total <= this.max));
       });
+    }
+  }
+
+  searchDate(){
+    if(this.dateFrom != null && this.dateTo != null){
+      if(this.dateFrom > this.dateTo){
+        this.presentToast('First date bigger than second date!!')
+      }else{
+        this.saleService.getSales().subscribe(data => {
+          this.sales = of(data.filter(sale => 
+            sale.fecha > this.dateFrom &&
+            sale.fecha < this.dateTo))
+        });
+      }     
     }
   }
 
   /* Show window's message */
   async presentActionSheet(sale: Sale) {
+    const pipe = new DatePipe('en-US');
+    this.dateWithPipe = pipe.transform(sale.fecha, 'dd/MM/yyyy');
     const actionSheet = await this.actionSheetCtrl.create({
-      header: `${sale.fecha}`,
+      header: `Date invoice: ${this.dateWithPipe}`,
       mode: 'ios',
       cssClass: 'my-custom-class',
       buttons: [

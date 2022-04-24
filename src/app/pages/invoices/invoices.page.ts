@@ -16,6 +16,8 @@ export class InvoicesPage implements OnInit{
 
   invoices: Observable<Invoice[]>;
   estado: boolean = null;
+  dateFrom : Date = null;
+  dateTo: Date = null;
 
   constructor(
     public invoiceService: InvoiceService,
@@ -42,6 +44,21 @@ export class InvoicesPage implements OnInit{
       this.invoices = of(data.filter((invoice) => invoice.estado === estado));
     });
     this.estado = !this.estado;
+  }
+
+  /* Search invoice date */
+  searchDate(){
+    if(this.dateFrom != null && this.dateTo != null){
+      if(this.dateFrom > this.dateTo){
+        this.presentToast('First date bigger than second date!!')
+      }else{
+        this.invoiceService.getInvoices().subscribe(data => {
+          this.invoices = of(data.filter(invoice => 
+            invoice.fecha > this.dateFrom &&
+            invoice.fecha < this.dateTo))
+        });
+      }     
+    }
   }
 
   /* Redirect to edit-invoice */

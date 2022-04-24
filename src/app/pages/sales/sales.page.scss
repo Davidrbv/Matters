@@ -2,20 +2,19 @@ ion-card {
   box-shadow: none;
 }
 
-ion-button{
+ion-button {
   margin: 3%;
 }
 
-ion-col{
+ion-col {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-p{
+p {
   color: white;
 }
-
 
 .cards {
   cursor: pointer;
@@ -25,13 +24,7 @@ p{
   color: black;
   font-weight: bold;
   text-align: center;
-  background: linear-gradient(45deg,#3b3837, #eb0000);
-}
-
-.search {
-  margin: 3%;
-  display: flex;
-  border: 3px solid rgb(255, 0, 0);
+  background: linear-gradient(45deg, #3b3837, #eb0000);
 }
 
 .tittle {
@@ -40,3 +33,23 @@ p{
   font-size: large;
 }
 
+.row-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 0 !important;
+}
+
+.search-grid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date {
+  border: 1px solid red;
+  border-radius: 5%;
+  padding: 0;
+  margin: 2%;
+}

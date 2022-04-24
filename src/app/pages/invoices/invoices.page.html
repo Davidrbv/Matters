@@ -24,6 +24,22 @@
         </ion-button>
       </ion-col>
     </ion-row>
+    <div class="row">
+      <ion-row class="rowSearch">
+        <ion-col class="date" size="5">
+          <ion-item >
+            <ion-label>FROM</ion-label>
+            <ion-datetime display-format="DD.MM.YYYY" [(ngModel)]="dateFrom" (ionChange)="searchDate()"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col class="date" size="5">
+          <ion-item>
+            <ion-label>TO</ion-label>
+            <ion-datetime display-format="DD.MM.YYYY" [(ngModel)]="dateTo" (ionChange)="searchDate()"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 
   <!-- Invoices's list -->

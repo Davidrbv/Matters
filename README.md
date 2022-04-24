@@ -1,9 +1,7 @@
 <h2 align="center">PROYECTO GRADO SUPERIOR EN DESARROLLO DE APLICACIONES MULTIPLATAFORMA I.E.S. CAMPANILLAS 21/22</h2>
-<p align="center">
-
+<div align="center">
   <img src="media/logoCompleto.svg" alt="Logo" width="300" height="350">
-  
-</p>
+</div>
 
 
 ## INTRODUCCIÓN
@@ -48,9 +46,13 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   - <a href="https://docs.python.org/3/"><p>Python</p></a>
 
 ## DIARIO DE TRABAJO
-  ### APK
+  ### VERSION MOVIL (APK)
   <a href="media/app-debug.apk">APK Actual 16/04/2022</a>
-  - ### Semana 1:
+
+  ### VERSION WEB (Angular & PrimeNg)
+  <a href="https://github.com/Davidrbv/MatterAccounting">Matter Accounting</a>
+
+  - ### Semana 1 y 2:
     - Inicio del proyecto.
     - Codificación de la base del proyecto, incluyendo la estructura principal de la app, así como parte de las funcionalidades a desarrollar.
     - Cración de estructura y conexión con base de datos (Firebase).
@@ -60,17 +62,33 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
     - Elección de tipográfias (Microgramma y Roboto Condensed).
     - Elección de paleta de colores (Negro-Rojo).
 
-  - ### Semana 2:
-    - 
-
   - ### Semana 3:
-    - 
+    - Agregado módulo dashboard a menu lateral.
+    - Cambios en formatos de fecha en facturas y ventas.
+    - Remodelación de busquedas tanto en ventas como en facturas para mayor versatilidad.
+    - Inicio de la versión web creando las clases, componentes, paginas, modulos, servicios, almacenamiento en base de datos , así como toda la estructura base del proyecto.
+    - Inicio de la LandingPage correspondiente a la parte comercial del proyecto dedicada a la promoción y venta del producto. Creación de la estructura de la web e insertado de los elementos
+    básicos que compondrán la misma.
 
   - ### Semana 4:
     - 
 
   - ### Semana 5:
     - 
+
+  - ### Semana 6:
+    - 
+
+## Interfaz Actual
+
+<img src="media/loginnew.png" alt="LoginPhoto">
+<img src="media/registernew.png" alt="RegisterPhoto">
+<img src="media/dashboardnew.png" alt="DashboardPhoto">
+<img src="media/menunew.png" alt="MenuPhoto">
+<img src="media/employeesnew.png" alt="EmployeesPhoto">
+<img src="media/invoicesnew.png" alt="InvoicesPhoto">
+<img src="media/salesnew.png" alt="SalesPhoto">
+<img src="media/galerynew.png" alt="GaleryPhoto">
 
 ## Mockup App Inicial
 
