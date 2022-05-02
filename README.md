@@ -75,8 +75,9 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
     básicos que compondrán la misma.
 
   - ### Semana 4:
-    - Cambios sustanciales en los buscadores en los modulos de ventas y facturas.
+    - Cambios sustanciales en los buscadores en los modulos de ventas y facturas App Ionic.
     - Construcción de la versión 1.0 Beta de la Landing Page, Readme inicial y primer mockup.
+    - Cambios sustanciales en el módulo de estadísticas.
 
   - ### Semana 5:
     - 
