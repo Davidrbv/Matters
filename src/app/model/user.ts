@@ -1,6 +1,6 @@
 export class User {
-  userId?: string = '';
-  email: string = '';
-  nombre: string = '';
+  userId?: string = "";
+  email: string = "";
+  nombre: string = "";
   image?: any = null;
 }

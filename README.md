@@ -46,6 +46,10 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   - <a href="https://docs.python.org/3/"><p>Python</p></a>
 
 ## DIARIO DE TRABAJO
+
+  ### LANDING PAGE
+  <a href="https://github.com/Davidrbv/LandingPageMatter">Matter Landing</a>
+
   ### VERSION MOVIL (APK)
   <a href="media/app-debug.apk">APK Actual 16/04/2022</a>
 
@@ -71,7 +75,8 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
     básicos que compondrán la misma.
 
   - ### Semana 4:
-    - 
+    - Cambios sustanciales en los buscadores en los modulos de ventas y facturas.
+    - Construcción de la versión 1.0 Beta de la Landing Page, Readme inicial y primer mockup.
 
   - ### Semana 5:
     - 

@@ -2,7 +2,7 @@
 
 <ion-content mode="md">
 
-  <!-- Invoices's filter -->
+  <!-- Invoices's buttons filter -->
   <ion-grid fixed>
     <ion-row>
       <ion-col size="6">
@@ -24,18 +24,49 @@
         </ion-button>
       </ion-col>
     </ion-row>
-    <div class="row">
-      <ion-row class="rowSearch">
-        <ion-col class="date" size="5">
-          <ion-item >
-            <ion-label>FROM</ion-label>
-            <ion-datetime display-format="DD.MM.YYYY" [(ngModel)]="dateFrom" (ionChange)="searchDate()"></ion-datetime>
+
+    <!-- Search's types -->
+    <ion-item required>
+      <ion-label class="what">What are you looking for?</ion-label>
+      <ion-select (ionChange)="reset()" [(ngModel)]="searchSaleType" [ngModelOptions]="{standalone: true}" okText="Ok"
+        cancelText="Cancel" required>
+        <ion-select-option value="date">Date</ion-select-option>
+        <ion-select-option value="total">Total</ion-select-option>
+        <ion-select-option value="">Nothing</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Search by quantity -->
+    <div *ngIf="searchSaleType == 'total'">
+      <ion-row class="row">
+        <ion-col size="5">
+          <ion-item>
+            <ion-input class="ion-text-center" [(ngModel)]="min" (ionChange)="getSalesRange()" type="number" min="0">
+            </ion-input>
           </ion-item>
         </ion-col>
-        <ion-col class="date" size="5">
+        <ion-col size="5">
           <ion-item>
-            <ion-label>TO</ion-label>
-            <ion-datetime display-format="DD.MM.YYYY" [(ngModel)]="dateTo" (ionChange)="searchDate()"></ion-datetime>
+            <ion-input class="ion-text-center" [(ngModel)]="max" (ionChange)="getSalesRange()" type="number" min="0">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- Search by date -->
+    <div *ngIf="searchSaleType == 'date'">
+      <ion-row class="row">
+        <ion-col size="5">
+          <ion-item>
+            <ion-datetime placeholder="From.." display-format="DD.MM.YYYY" [(ngModel)]="dateFrom"
+              (ionChange)="searchDate()"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="5">
+          <ion-item>
+            <ion-datetime placeholder="To.." display-format="DD.MM.YYYY" [(ngModel)]="dateTo"
+              (ionChange)="searchDate()"></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>

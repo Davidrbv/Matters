@@ -2,62 +2,55 @@
 
 <ion-content mode="md">
 
+  <!-- All sales button -->
+  <ion-button expand="block" fill="outline" color="warning" (click)="getAll()">All sales</ion-button>
+
   <ion-item required>
-    <ion-label color="dark">Select search type..</ion-label>
-    <ion-select [(ngModel)]="searchSaleType" [ngModelOptions]="{standalone: true}" okText="Ok"
+    <ion-label color="dark">What are you looking for?</ion-label>
+    <ion-select (ionChange)="reset()" [(ngModel)]="searchSaleType" [ngModelOptions]="{standalone: true}" okText="Ok"
       cancelText="Cancel" required>
       <ion-select-option value="date">Date</ion-select-option>
       <ion-select-option value="total">Total</ion-select-option>
+      <ion-select-option value="">Nothing</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <!-- Search sale -->
-  <div class="container-search">
-    <div *ngIf="searchSaleType == 'total'; else date">
-    <ion-grid class="search-grid" fixed>
-      <ion-row class="row-search">
-        <ion-col class="date" size="5">
-          <ion-item>
-            <ion-label class="ion-text-center" position="floating">From</ion-label>
-            <ion-input class="ion-text-center" [(ngModel)]="min" (ionChange)="getSalesRange()" type="number" min="0">
-            </ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col class="date" size="5">
-          <ion-item>
-            <ion-label class="ion-text-center" position="floating">To</ion-label>
-            <ion-input class="ion-text-center" [(ngModel)]="max" (ionChange)="getSalesRange()" type="number" min="0">
-            </ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  
-  </div>
-  <ng-template #date>
-    <div>
-      <ion-grid class="search-grid" fixed>
-        <ion-row class="row-search">
-          <ion-col class="date" size="5">
-            <ion-item >
-              <ion-label>From date</ion-label>
-              <ion-datetime display-format="DD.MM.YYYY" [(ngModel)]="dateFrom" (ionChange)="searchDate()"></ion-datetime>
-            </ion-item>
-          </ion-col>
-          <ion-col class="date" size="5">
-            <ion-item>
-              <ion-label>To date</ion-label>
-              <ion-datetime display-format="DD.MM.YYYY" [(ngModel)]="dateTo" (ionChange)="searchDate()"></ion-datetime>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </ng-template>
+  <!-- Search by quantity -->
+  <div *ngIf="searchSaleType == 'total'">
+    <ion-row class="row">
+      <ion-col size="5">
+        <ion-item>
+          <ion-input class="ion-text-center" [(ngModel)]="min" (ionChange)="getSalesRange()" type="number" min="0">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="5">
+        <ion-item>
+          <ion-input class="ion-text-center" [(ngModel)]="max" (ionChange)="getSalesRange()" type="number" min="0">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
   </div>
 
-  <!-- All sales button -->
-  <ion-button expand="block" fill="outline" color="warning" (click)="getAll()">All sales</ion-button>
+  <!-- Search by date -->
+  <div *ngIf="searchSaleType == 'date'">
+    <ion-row class="row">
+      <ion-col size="5">
+        <ion-item>
+          <ion-datetime placeholder="From.." display-format="DD.MM.YYYY" [(ngModel)]="dateFrom"
+            (ionChange)="searchDate()"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col size="5">
+        <ion-item>
+          <ion-datetime placeholder="To.." display-format="DD.MM.YYYY" [(ngModel)]="dateTo" (ionChange)="searchDate()">
+          </ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+
 
   <!-- Sale's list -->
   <ion-grid fixed>
