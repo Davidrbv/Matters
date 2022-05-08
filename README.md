@@ -53,6 +53,14 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   ### VERSION MOVIL (APK)
   <a href="media/app-debug.apk">APK Actual 16/04/2022</a>
 
+  ### VIDEO DESARROLLO ACTUAL DE LA APP
+
+  <a href="https://www.youtube.com/watch?v=cfXmQmpYGcg&ab_channel=davidrodriguez"></a>
+
+  ### API PYTHON/FLASK
+
+  <a href="https://github.com/Davidrbv/AdminPython"></a>
+
   ### VERSION WEB (Angular & PrimeNg)
   <a href="https://github.com/Davidrbv/MatterAccounting">Matter Accounting</a>
 
@@ -80,7 +88,9 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
     - Cambios sustanciales en el módulo de estadísticas.
 
   - ### Semana 5:
-    - 
+    - Video explicativo de las diferentes funcionalidades que ofrece esta aplicación.
+
+    - Desarrollo de la estructura de la API construida con Python y Flask con integración en Angular.
 
   - ### Semana 6:
     - 
