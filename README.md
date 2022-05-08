@@ -54,10 +54,10 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   <a href="media/app-debug.apk">APK Actual 16/04/2022</a>
 
   ### VIDEO DESARROLLO ACTUAL DE LA APP
-  <a href="https://www.youtube.com/watch?v=cfXmQmpYGcg&ab_channel=davidrodriguez"></a>
+  <a href="https://www.youtube.com/watch?v=cfXmQmpYGcg&ab_channel=davidrodriguez">Video</a>
 
   ### API PYTHON/FLASK
-  <a href="https://github.com/Davidrbv/AdminPython"></a>
+  <a href="https://github.com/Davidrbv/AdminPython">API</a>
 
   ### VERSION WEB (Angular & PrimeNg)
   <a href="https://github.com/Davidrbv/MatterAccounting">Matter Accounting</a>
