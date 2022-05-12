@@ -51,15 +51,13 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   <a href="https://github.com/Davidrbv/LandingPageMatter">Matter Landing</a>
 
   ### VERSION MOVIL (APK)
-  <a href="media/app-debug.apk">APK Actual 16/04/2022</a>
+  <a href="media/app-debug.apk">APK Actual 08/05/2022</a>
 
   ### VIDEO DESARROLLO ACTUAL DE LA APP
-
-  <a href="https://www.youtube.com/watch?v=cfXmQmpYGcg&ab_channel=davidrodriguez"></a>
+  <a href="https://www.youtube.com/watch?v=cfXmQmpYGcg&ab_channel=davidrodriguez">Video</a>
 
   ### API PYTHON/FLASK
-
-  <a href="https://github.com/Davidrbv/AdminPython"></a>
+  <a href="https://github.com/Davidrbv/MatterAPI">API</a>
 
   ### VERSION WEB (Angular & PrimeNg)
   <a href="https://github.com/Davidrbv/MatterAccounting">Matter Accounting</a>
