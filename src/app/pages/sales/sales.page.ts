@@ -34,7 +34,7 @@ export class SalesPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchSaleType = '';
+    this.searchSaleType = "";
     this.sales = this.saleService.getSales();
   }
 
@@ -75,7 +75,7 @@ export class SalesPage implements OnInit {
         this.saleService.getSales().subscribe(data => {
           this.sales = of(
             data.filter(
-              sale => sale.fecha > this.dateFrom && sale.fecha < this.dateTo
+              sale => sale.fecha >= this.dateFrom && sale.fecha <= this.dateTo
             )
           );
         });
@@ -84,9 +84,9 @@ export class SalesPage implements OnInit {
   }
 
   /* Reset range when search type change */
-  reset(){
-    this.min=0;
-    this.max=0;
+  reset() {
+    this.min = 0;
+    this.max = 0;
     this.dateFrom = null;
     this.dateTo = null;
   }

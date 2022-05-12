@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { finalize } from 'rxjs/operators';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Injectable } from "@angular/core";
+import { finalize } from "rxjs/operators";
+import { AngularFireStorage } from "@angular/fire/compat/storage";
 import {
   addDoc,
   collection,
@@ -9,41 +9,43 @@ import {
   Firestore,
   deleteDoc,
   setDoc,
-  docData,
-} from '@angular/fire/firestore';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Observable } from 'rxjs';
-import { Photo } from '../model/photo';
-import { AuthService } from './auth.service';
+  docData
+} from "@angular/fire/firestore";
+import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import { Observable } from "rxjs";
+import { Photo } from "../model/photo";
+import { AuthService } from "./auth.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class PhotoService {
-  
   pathToPhotos = `users/${this.authService.getCurrentUser().uid}/photos`;
 
-  constructor(private fireStore: Firestore, private authService: AuthService, private storage: AngularFireStorage) {}
+  constructor(
+    private fireStore: Firestore,
+    private authService: AuthService,
+    private storage: AngularFireStorage
+  ) {}
 
   /* Take Picture */
-  //TODO: Cambiar source:CameraSource.Prompt para apk. En web no funciona, solo permite photos de galeria
   async addPicture() {
     const image = await Camera.getPhoto({
       quality: 60,
       allowEditing: false,
       resultType: CameraResultType.Uri,
-      source: CameraSource.Photos,
+      source: CameraSource.Prompt
     });
-    const blob = await fetch(image.webPath).then((i) => i.blob());
+    const blob = await fetch(image.webPath).then(i => i.blob());
     return blob;
   }
 
   /* Save Photo in Storage */
 
   uploadFile(file: any, path: string): Promise<string> {
-
-    const nameIdPhoto = this.authService.getCurrentUser().uid + '/' + Date.now().toString();
-    return new Promise((resolve) => {
+    const nameIdPhoto =
+      this.authService.getCurrentUser().uid + "/" + Date.now().toString();
+    return new Promise(resolve => {
       const filePath = `${path}/${nameIdPhoto}`;
       const ref = this.storage.ref(filePath);
       const task = ref.put(file);
@@ -51,7 +53,7 @@ export class PhotoService {
         .snapshotChanges()
         .pipe(
           finalize(() => {
-            ref.getDownloadURL().subscribe((res) => {
+            ref.getDownloadURL().subscribe(res => {
               const downloadURL = res;
               resolve(downloadURL);
               return;
@@ -65,14 +67,14 @@ export class PhotoService {
   /* Get one Photo of database */
   getPhoto(id: string): Observable<Photo> {
     return docData(doc(this.fireStore, `${this.pathToPhotos}/${id}`), {
-      idField: 'photoId',
+      idField: "photoId"
     }) as Observable<Photo>;
   }
 
   /* Get All Photo of database */
   getPhotos(): Observable<Photo[]> {
     return collectionData(collection(this.fireStore, this.pathToPhotos), {
-      idField: 'photoId',
+      idField: "photoId"
     }) as Observable<Photo[]>;
   }
 
@@ -88,8 +90,9 @@ export class PhotoService {
 
   /* Update Photo in database */
   async updatePhoto(photo: Photo) {
-    await setDoc(doc(this.fireStore, `${this.pathToPhotos}/${photo.photoId}`), photo);
+    await setDoc(
+      doc(this.fireStore, `${this.pathToPhotos}/${photo.photoId}`),
+      photo
+    );
   }
-
-  
 }

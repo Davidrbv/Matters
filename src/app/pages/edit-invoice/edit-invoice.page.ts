@@ -28,7 +28,7 @@ export class EditInvoicePage implements OnInit {
         this.invoice = data;
         this.edit = true;
       });
-    }else{
+    } else {
       this.invoice.estado = false;
     }
   }

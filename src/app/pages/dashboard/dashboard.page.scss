@@ -72,11 +72,10 @@ p {
   margin: 2%;
   justify-content: center;
   align-items: center;
-  background-color: rgb(76, 76, 83);
+  background: linear-gradient(135deg, rgb(255, 38, 0) 50%, rgb(48, 48, 48) 100%);
   cursor: pointer;
 }
 
 .icon {
   height: 5rem;
 }
-

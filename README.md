@@ -89,11 +89,12 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
 
   - ### Semana 5:
     - Video explicativo de las diferentes funcionalidades que ofrece esta aplicación.
-
     - Desarrollo de la estructura de la API construida con Python y Flask con integración en Angular.
 
   - ### Semana 6:
-    - 
+    - Galeria de fotos habilitada, implantación de tipografía, cambios en el diseño principal de la web, desarrollo de autentificación con Google, recuperación de contraseña, modificación estadísticas, creación de la página de administración en el proyecto SPA (Angular).
+    - Remodelación de API con Flask para integración con el proyecto desarrollado con Angular.
+    - Corrección de bugs en filtros de la App y modificación de aspecto en Dashboard.
 
 ## Interfaz Actual
 

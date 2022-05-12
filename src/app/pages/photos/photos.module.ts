@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { PhotosPageRoutingModule } from './photos-routing.module';
+import { PhotosPageRoutingModule } from "./photos-routing.module";
 
-import { PhotosPage } from './photos.page';
-import { ComponentsModule } from 'src/app/components/components.module';
-import { SwiperModule } from 'swiper/angular';
+import { PhotosPage } from "./photos.page";
+import { ComponentsModule } from "src/app/components/components.module";
+import { SwiperModule } from "swiper/angular";
 
 @NgModule({
   imports: [
@@ -19,6 +19,6 @@ import { SwiperModule } from 'swiper/angular';
     ComponentsModule,
     SwiperModule
   ],
-  declarations: [PhotosPage],
+  declarations: [PhotosPage]
 })
 export class PhotosPageModule {}

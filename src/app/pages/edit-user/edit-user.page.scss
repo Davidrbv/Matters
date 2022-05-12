@@ -21,27 +21,30 @@
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
+
   100% {
     -webkit-transform: translateZ(160px);
     transform: translateZ(160px);
   }
 }
+
 @keyframes slide-fwd-center {
   0% {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
+
   100% {
     -webkit-transform: translateZ(160px);
     transform: translateZ(160px);
   }
 }
 
-ion-card{
+ion-card {
   padding: 10px;
 }
 
-.image{
+.image {
   margin-top: 7%;
   padding: 0;
   display: flex;
@@ -50,16 +53,16 @@ ion-card{
 
 }
 
-.photo{
+.photo {
   width: 30%;
   height: 30%;
 }
 
-ion-row{
+ion-row {
   margin-top: 8%;
 }
 
-.deleteUser{
+.deleteUser {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,8 +70,9 @@ ion-row{
   color: red;
   font-weight: bold;
   text-decoration: underline red;
-   p{
-      cursor: pointer;
-      font-weight: bold;
-    }
+
+  p {
+    cursor: pointer;
+    font-weight: bold;
+  }
 }

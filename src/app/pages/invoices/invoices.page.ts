@@ -77,7 +77,7 @@ export class InvoicesPage implements OnInit {
           this.invoices = of(
             data.filter(
               invoice =>
-                invoice.fecha > this.dateFrom && invoice.fecha < this.dateTo
+                invoice.fecha >= this.dateFrom && invoice.fecha <= this.dateTo
             )
           );
         });

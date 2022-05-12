@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Invoice } from '../model/invoice';
-import { AuthService } from './auth.service';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Invoice } from "../model/invoice";
+import { AuthService } from "./auth.service";
 import {
   addDoc,
   collection,
@@ -10,11 +10,11 @@ import {
   doc,
   docData,
   Firestore,
-  setDoc,
-} from '@angular/fire/firestore';
+  setDoc
+} from "@angular/fire/firestore";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class InvoiceService {
   pathToInvoices = `users/${this.authService.getCurrentUser().uid}/invoices`;
@@ -24,14 +24,14 @@ export class InvoiceService {
   /* Get one Invoice */
   getInvoice(id: string): Observable<Invoice> {
     return docData(doc(this.fireStore, `${this.pathToInvoices}/${id}`), {
-      idField: 'invoiceId',
+      idField: "invoiceId"
     }) as Observable<Invoice>;
   }
 
   /* Get All Invoices */
   getInvoices(): Observable<Invoice[]> {
     return collectionData(collection(this.fireStore, this.pathToInvoices), {
-      idField: 'invoiceId',
+      idField: "invoiceId"
     }) as Observable<Invoice[]>;
   }
 
@@ -47,6 +47,9 @@ export class InvoiceService {
 
   /* Update Invoice */
   async updateInvoice(invoice: Invoice) {
-    await setDoc(doc(this.fireStore, `${this.pathToInvoices}/${invoice.invoiceId}`), invoice);
+    await setDoc(
+      doc(this.fireStore, `${this.pathToInvoices}/${invoice.invoiceId}`),
+      invoice
+    );
   }
 }

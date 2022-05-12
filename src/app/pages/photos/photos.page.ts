@@ -1,39 +1,43 @@
-import { AfterContentChecked, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { AlertController, ToastController } from '@ionic/angular';
-import { PhotoService } from 'src/app/services/photo.service';
-import { Photo } from 'src/app/model/photo';
-import { Observable } from 'rxjs';
+import {
+  AfterContentChecked,
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from "@angular/core";
+import { AlertController, ToastController } from "@ionic/angular";
+import { PhotoService } from "src/app/services/photo.service";
+import { Photo } from "src/app/model/photo";
+import { Observable } from "rxjs";
 //import { ShareService } from 'src/app/services/share.service';
 
-import { SwiperOptions } from 'swiper';
-import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Pagination, EffectCube} from 'swiper';
+import { SwiperOptions } from "swiper";
+import { SwiperComponent } from "swiper/angular";
+import SwiperCore, { Pagination, EffectCube } from "swiper";
 //import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
-SwiperCore.use([Pagination,EffectCube]);
+SwiperCore.use([Pagination, EffectCube]);
 
 @Component({
-  selector: 'app-photos',
-  templateUrl: './photos.page.html',
-  styleUrls: ['./photos.page.scss'],
+  selector: "app-photos",
+  templateUrl: "./photos.page.html",
+  styleUrls: ["./photos.page.scss"],
   encapsulation: ViewEncapsulation.None
 })
-
-export class PhotosPage implements OnInit, AfterContentChecked  {
-  
-  @ViewChild('swiper') swiper : SwiperComponent
+export class PhotosPage implements OnInit, AfterContentChecked {
+  @ViewChild("swiper") swiper: SwiperComponent;
   config: SwiperOptions = {
     grabCursor: true,
-    slidesPerView: 'auto',
+    slidesPerView: "auto",
     pagination: true,
-    effect: 'cube',
+    effect: "cube",
     cubeEffect: {
       shadow: true,
       slideShadows: true,
       shadowOffset: 20,
       shadowScale: 0.94
     }
-  }
+  };
 
   select: boolean = false;
   image: any;
@@ -43,20 +47,21 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
   constructor(
     private photoService: PhotoService,
     private alertController: AlertController,
-    private toastController: ToastController,
-    //private shareService: ShareService,
-  ) {}
+    private toastController: ToastController
+  ) //private shareService: ShareService,
+  {
+  }
 
   ngAfterContentChecked(): void {
-    if(this.swiper) this.swiper.updateSwiper({});
+    if (this.swiper) this.swiper.updateSwiper({});
   }
 
   ngOnInit() {
     this.photos = this.photoService.getPhotos();
   }
 
-  async browsePhoto(){
-    const path = 'UsersGalery';
+  async browsePhoto() {
+    const path = "UsersGalery";
     this.image = await this.photoService.addPicture();
     const res = await this.photoService.uploadFile(this.image, path);
     this.image = res;
@@ -71,12 +76,12 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
     this.select = false;
   }
 
-
   /* Delete Photo */
   deletePhoto(image: Photo) {
     this.presentAlertConfirm(image);
   }
 
+  //TODO: Compartir fotos en redes
   /* Share Photo */
   // share(image: Photo) {
   //   this.shareService.sharePhoto(image.formato);
@@ -85,25 +90,25 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
   /* Delete photo confirm */
   async presentAlertConfirm(image: Photo) {
     const alert = await this.alertController.create({
-      header: `${image.ubicacion || 'Photo'}`,
+      header: `${image.ubicacion || "Photo"}`,
       message: `The image will be deleted. ¿Are you sure?`,
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
           handler: () => {
-            this.presentToast('Action cancelled..');
-          },
+            this.presentToast("Action cancelled..");
+          }
         },
         {
-          text: 'Ok',
+          text: "Ok",
           handler: () => {
             this.photoService.deletePhoto(image.photoId);
-            this.presentToast('Delete image..');
-          },
-        },
-      ],
+            this.presentToast("Delete image..");
+          }
+        }
+      ]
     });
 
     await alert.present();
@@ -114,9 +119,9 @@ export class PhotosPage implements OnInit, AfterContentChecked  {
     const toast = await this.toastController.create({
       message,
       duration: 600,
-      position: 'bottom',
+      position: "bottom",
       animated: true,
-      color: 'dark  ',
+      color: "dark  "
     });
     toast.present();
   }

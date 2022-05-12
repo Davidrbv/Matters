@@ -1,25 +1,25 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouteReuseStrategy } from "@angular/router";
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { ComponentsModule } from './components/components.module';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { ComponentsModule } from "./components/components.module";
+import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
+import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
+import { environment } from "../environments/environment";
 
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { provideStorage, getStorage } from '@angular/fire/storage';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFireModule } from '@angular/fire/compat';
+import { provideAuth, getAuth } from "@angular/fire/auth";
+import { provideFirestore, getFirestore } from "@angular/fire/firestore";
+import { provideStorage, getStorage } from "@angular/fire/storage";
+import { AngularFireStorageModule } from "@angular/fire/compat/storage";
+import { AngularFireModule } from "@angular/fire/compat";
 
-import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
-import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+import { SocialSharing } from "@awesome-cordova-plugins/social-sharing/ngx";
+import { CallNumber } from "@awesome-cordova-plugins/call-number/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,9 +36,13 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    AngularFireStorageModule,
+    AngularFireStorageModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },CallNumber, SocialSharing],
-  bootstrap: [AppComponent],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    CallNumber,
+    SocialSharing
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

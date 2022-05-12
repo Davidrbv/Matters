@@ -6,14 +6,15 @@
     <!-- Employee's register form -->
     <form #formulario="ngForm">
       <ion-list>
-          <div class="avatar">
-            <ion-avatar (click)="newImageUpload()"m class="image">
-              <img *ngIf="edit" [src]="employee.imagen || '../../../assets/resources/'+ employee.genero">
-              <img *ngIf="!edit && employee.genero" [src]="employee.imagen ||'../../../assets/resources/'+ employee.genero">
-              <img *ngIf="!edit && !employee.genero && !employee.imagen" [src]="'../../../assets/resources/personas.png'">
-              <img *ngIf="!edit && !employee.genero && employee.imagen" [src]="employee.imagen">
-            </ion-avatar>
-          </div>
+        <div class="avatar">
+          <ion-avatar (click)="newImageUpload()" m class="image">
+            <img *ngIf="edit" [src]="employee.imagen || '../../../assets/resources/'+ employee.genero">
+            <img *ngIf="!edit && employee.genero"
+              [src]="employee.imagen ||'../../../assets/resources/'+ employee.genero">
+            <img *ngIf="!edit && !employee.genero && !employee.imagen" [src]="'../../../assets/resources/personas.png'">
+            <img *ngIf="!edit && !employee.genero && employee.imagen" [src]="employee.imagen">
+          </ion-avatar>
+        </div>
         <ion-item>
           <ion-label color="dark" position="floating">Name</ion-label>
           <ion-input name="nombre" type="text" placeholder="Introduzca nombre.." [(ngModel)]="employee.nombre" required>
@@ -74,6 +75,4 @@
     </ion-grid>
 
   </ion-card>
-
-  
 </ion-content>

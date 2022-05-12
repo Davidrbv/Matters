@@ -4,21 +4,21 @@
 
   <ion-grid>
     <ion-row>
-      
+
       <ion-col size-xs="0" size-md="2" size-lg="3" size-xl="4"></ion-col>
       <!-- Contenido -->
       <ion-col size-xs="12" size-md="8" size-lg="6" size-xl="4">
-        
+
         <swiper #swiper [config]="config">
           <ng-template swiperSlide *ngFor="let image of photos | async">
-            <img (click)="presentAlertConfirm(image)" class="photo" [src]="image.formato"
-                alt='{{image.ubicacion}}' (error)="image.formato ='../../../assets/resources/matters.png' " />
+            <img (click)="presentAlertConfirm(image)" class="photo" [src]="image.formato" alt='{{image.ubicacion}}'
+              (error)="image.formato ='../../../assets/resources/matters.png' " />
           </ng-template>
         </swiper>
 
         <ion-card *ngIf="select" class="ion-padding ion-text-center newPhoto">
           <!-- Logo -->
-          <img [src]="image || '../../../assets/resources/adios.png'" alt="Select image"/>
+          <img [src]="image || '../../../assets/resources/adios.png'" alt="Select image" />
           <ion-item class="form">
             <ion-label color="dark" position="floating">Ubicación</ion-label>
             <ion-input name="ubicación" type="text" [ngModel]="newPhoto.ubicacion">
@@ -31,7 +31,7 @@
 
           <!-- Button Cancel -->
           <ion-button color="light" (click)="select = false">Cancel</ion-button>
-          
+
         </ion-card>
       </ion-col>
 

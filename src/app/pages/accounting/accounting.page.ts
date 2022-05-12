@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-accounting',
-  templateUrl: './accounting.page.html',
-  styleUrls: ['./accounting.page.scss'],
+  selector: "app-accounting",
+  templateUrl: "./accounting.page.html",
+  styleUrls: ["./accounting.page.scss"]
 })
 export class AccountingPage implements OnInit {
   delay: boolean = false;
