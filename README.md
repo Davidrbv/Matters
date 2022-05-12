@@ -51,7 +51,7 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   <a href="https://github.com/Davidrbv/LandingPageMatter">Matter Landing</a>
 
   ### VERSION MOVIL (APK)
-  <a href="media/app-debug.apk">APK Actual 08/05/2022</a>
+  <a href="media/app-debug.apk">APK Actual 12/05/2022</a>
 
   ### VIDEO DESARROLLO ACTUAL DE LA APP
   <a href="https://www.youtube.com/watch?v=cfXmQmpYGcg&ab_channel=davidrodriguez">Video</a>
