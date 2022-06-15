@@ -61,7 +61,6 @@ export class EmployeesPage implements OnInit {
       })
       .catch(error => {
         this.presentToast("Call error. Try again.");
-        console.log(error);
       });
   }
 

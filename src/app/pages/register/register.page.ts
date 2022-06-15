@@ -35,6 +35,8 @@ export class RegisterPage implements OnInit {
         (await this.authService.registerUser(this.user.email, this.pass)) &&
         this.pass.length >= 6
       ) {
+        this.user.admin = false;
+        this.user.delete = false;
         this.userService.addUser(this.user);
         this.router.navigateByUrl("/dashboard");
       } else {

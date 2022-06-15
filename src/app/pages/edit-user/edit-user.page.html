@@ -48,8 +48,11 @@
     </ion-grid>
 
     <!-- Delete User -->
-    <div class="deleteUser" (click)="presentAlertConfirm()">
-      <p>Delete User</p>
+    <div class="deleteUser">
+      <ion-item>
+        <ion-label>Delete User</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="user.delete" color="danger"></ion-checkbox>
+      </ion-item>
     </div>
 
   </ion-card>

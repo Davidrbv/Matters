@@ -45,13 +45,13 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   - <a href="https://es.stackoverflow.com/"><p>StackOverflow</p></a>
   - <a href="https://docs.python.org/3/"><p>Python</p></a>
 
-## DIARIO DE TRABAJO
+## ENLACES DE INTERÉS
 
   ### LANDING PAGE
   <a href="https://github.com/Davidrbv/LandingPageMatter">Matter Landing</a>
 
   ### VERSION MOVIL (APK)
-  <a href="media/app-debug.apk">APK Actual 08/05/2022</a>
+  <a href="media/app-debug.apk">APK 15/06/2022</a>
 
   ### VIDEO DESARROLLO ACTUAL DE LA APP
   <a href="https://www.youtube.com/watch?v=cfXmQmpYGcg&ab_channel=davidrodriguez">Video</a>
@@ -61,6 +61,8 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
 
   ### VERSION WEB (Angular & PrimeNg)
   <a href="https://github.com/Davidrbv/MatterAccounting">Matter Accounting</a>
+
+## DIARIO DE TRABAJO
 
   - ### Semana 1 y 2:
     - Inicio del proyecto.
@@ -94,6 +96,26 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
     - Remodelación de API con Flask para integración con el proyecto desarrollado con Angular.
     - Corrección de bugs en filtros de la App y modificación de aspecto en Dashboard.
 
+  - ### Semana 7:
+    #### SPA (Angular)
+    - Desarrollo de la apariencia y estilos en modulo administración.
+    - Desarrollo funcionalidades modulo administración para gestión de usuarios.
+    - Correción de bug en modulo empleados y login.
+    - Remodelación de las funcionalidades del módulo estadisticas para consumo de API.
+    - Remodelación interfaz user para festión de administradores.
+    - Creación del servicio Flask para la gestiar la comunicación con la API.
+    - Remodelación del resto de servicios para adaptación a nuevas funcionalidades.
+    #### IonicApp
+    - Corrección en la funcionalidad del login para adaptarlo a las funcionalidades del modulo de administración.
+    - Modificación clase user para adaptación a nuevas funcionalidades.
+    - Modificación de la funcionalidad, el aspecto y los estilos en edición de usuario, para adaptación
+      a nuevos requerimientos.
+    #### Python
+    - Creación de endpoints para obstención de información necesaria en los modulos de administración y estadísticas.
+
+  - ### Semana 8 (Entrega Final):
+
+
 ## Interfaz Actual
 
 <img src="media/loginnew.png" alt="LoginPhoto">
@@ -106,12 +128,6 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
 <img src="media/galerynew.png" alt="GaleryPhoto">
 
 ## Mockup App Inicial
-
-Esta es una muestra de algunas de las pantallas y modulos que comprondrán la aplicación.
-Ha de tenerse en cuenta que este es el boceto inicial, y que el proyecto sufrirá muchos cambios para
-una mayor versatilidad y potencial de uso, además de un rediseño
-para mejorar la interfaz inicial.
-
 
 <img src="media/loginmatter.png" alt="Logo">
 <img src="media/registermatter.png" alt="Logo">

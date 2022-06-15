@@ -79,12 +79,6 @@ export class UserService {
     );
   }
 
-  // TODO: Aliminación usuario
-  // /* Full delte user */
-  // async deleteUser(uid:string) {
-  //   await deleteDoc(doc(this.fireStore, `users/${uid}`));
-  // }
-
   /* Update User */
   async updateUser(user: User) {
     await setDoc(

@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "src/app/model/user";
 import { UserService } from "src/app/services/user.service";
 import { AlertController, ToastController } from "@ionic/angular";
 import { PhotoService } from "src/app/services/photo.service";
-import { updateEmail, updatePassword, deleteUser } from "firebase/auth";
+import { updateEmail, updatePassword } from "firebase/auth";
 import { AuthService } from "src/app/services/auth.service";
 
 @Component({
@@ -28,8 +28,9 @@ export class EditUserPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(data => {
+    const stopService = this.userService.getUsers().subscribe(data => {
       this.user = data[0];
+      stopService.unsubscribe()
     });
   }
 
@@ -50,11 +51,18 @@ export class EditUserPage implements OnInit {
         .then(() => {
           updatePassword(this.authService.getCurrentUser(), this.pass)
             .then(() => {
+              //user.admin =true
               this.userService.updateUser(user);
-              this.presentToast("Making changes...");
-              this.router.navigateByUrl(`/dashboard`);
+              if(user.delete === true){
+                this.presentToast("Why??..");
+                this.router.navigateByUrl("/home");
+                this.authService.logOut();
+              }else {
+                this.presentToast("Making changes...");
+                this.router.navigateByUrl(`/dashboard`);
+              }
             })
-            .catch(error => {
+            .catch(() => {
               this.presentToast("Password change error. Try again.");
             });
         })
@@ -64,24 +72,6 @@ export class EditUserPage implements OnInit {
     }
   }
 
-  /* Delete User */
-
-  // TODO: Ver que hacer con eliminación usuario.
-  // Opciones: Correo a administrador para delete users/uid de forma manual.
-  //           Firebase CLI creando bash.
-  //           Eliminar de forma recursiva.
-  deleteUser(uid: string) {
-    deleteUser(this.authService.getCurrentUser())
-      .then(() => {
-        this.userService.deleteUser(uid);
-        this.presentToast("Why??.. :'(");
-        this.router.navigateByUrl("/home");
-      })
-      .catch(error => {
-        this.presentToast("User delete error..");
-      });
-  }
-
   /* Cancel Change */
   cancelChange() {
     this.presentToast("Changes cancelled..");
@@ -89,9 +79,9 @@ export class EditUserPage implements OnInit {
   }
 
   /* Delete User confirm*/
-  async presentAlertConfirm() {
+  async presentAlertConfirm(user : User) {
     const alert = await this.alertController.create({
-      header: `Email: ${this.authService.getCurrentUser().email}`,
+      header: `Email: ${this.user.email}`,
       subHeader: `¿Why ${this.user.nombre}?`,
       message: `Your account will be deleted. ¿Are you sure?`,
       buttons: [
@@ -106,7 +96,7 @@ export class EditUserPage implements OnInit {
         {
           text: "Ok",
           handler: () => {
-            this.deleteUser(this.authService.getCurrentUser().uid);
+            this.saveChange(user);
           }
         }
       ]

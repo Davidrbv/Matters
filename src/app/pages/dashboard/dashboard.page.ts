@@ -6,6 +6,7 @@ import { UserService } from "src/app/services/user.service";
 import { Invoice } from "src/app/model/invoice";
 import { InvoiceService } from "src/app/services/invoice.service";
 import { ToastController } from "@ionic/angular";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-dashboard",
@@ -15,7 +16,6 @@ import { ToastController } from "@ionic/angular";
 export class DashboardPage implements OnInit {
   modulos: Module[];
   user: User = {} as User;
-  users: User[];
   invoices: Invoice[];
   pending: number;
   date: String;
@@ -24,7 +24,8 @@ export class DashboardPage implements OnInit {
     private userService: UserService,
     private router: Router,
     private invoiceService: InvoiceService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -34,9 +35,14 @@ export class DashboardPage implements OnInit {
       this.presentToast(this.date.toString());
     });
 
-    this.userService.getUsers().subscribe(data => {
-      this.users = data;
-      this.user = this.users[0];
+    const stopService = this.userService.getUsers().subscribe(data => {
+      if(data[0].delete === true){
+        this.authService.logOut();
+        this.router.navigateByUrl('/home');
+      }else{
+        this.user = data[0];
+      }
+      stopService.unsubscribe()
     });
     this.userService.saveDateIntoStorage();
     this.getmodules();

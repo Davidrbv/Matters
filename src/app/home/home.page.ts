@@ -29,12 +29,29 @@ export class HomePage implements OnInit {
 
   /* User Login */
   async login() {
-
     if (this.email !== "" && this.password !== "") {
       const connectionSuccess = await this.authService.login(this.email, this.password);
-      if (connectionSuccess) this.router.navigateByUrl('/dashboard');
-      else this.presentAlert();
+      if (connectionSuccess) {
+        setTimeout(() => {
+          this.checkUserDelete();
+        }, 500);
+      }
+      else this.presentAlert('Enter a correct email and password, please.');
     }
+  }
+
+  checkUserDelete(){
+    setTimeout(() => {
+      const stopService = this.userService.getUsers().subscribe(users =>{
+        if(users[0].delete === true){
+          this.presentAlert('This user has been deleted.');
+          stopService.unsubscribe();
+        }else {
+          this.router.navigateByUrl('/dashboard');
+          stopService.unsubscribe();
+        }
+      });
+    }, 1000);
   }
 
   /* Redirect user's register */
@@ -48,10 +65,10 @@ export class HomePage implements OnInit {
   }
 
   /* Show user not found */
-  async presentAlert() {
+  async presentAlert(message: string) {
     const alert = await this.alertController.create({
-      header: `User Not Found`,
-      message: 'Enter a correct email and password.',
+      header: `Sorry, but...`,
+      message,
       buttons: ['OK'],
       animated: true,
     });
@@ -79,13 +96,17 @@ export class HomePage implements OnInit {
       .then((result) => {
         this.userService.getUsers().subscribe(user => {
           if(user.length !== 1){
-            this.userService.addUser({email: `${result.user.email}`, nombre: `${result.user.displayName}`,image: `${result.user.photoURL}`})
+            this.userService.addUser({
+              admin: false,
+              delete: false,
+              email: `${result.user.email}`,
+              nombre: `${result.user.displayName}`,
+              image: `${result.user.photoURL}`}).then(() => this.checkUserDelete())
           }
-        });          
-        this.router.navigateByUrl('/dashboard');
-      })
+        });
+      }).then(() => this.checkUserDelete())
       .catch((error) => {
-        this.presentToast('Ups. We have a problem with the authentication. Try again.');
+        this.presentToast('Ups. We have a problem with the authentication. Try again..');
       });
   }
 }
