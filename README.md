@@ -59,8 +59,11 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
   ### API PYTHON/FLASK
   <a href="https://github.com/Davidrbv/MatterAPI">API</a>
 
-  ### VERSION WEB (Angular & PrimeNg)
+  ### SPA (Angular Web)
   <a href="https://github.com/Davidrbv/MatterAccounting">Matter Accounting</a>
+
+  ### DOCUMENTO APP
+  <a href="media/PresentaciónProyectoMatter.pdf">Pdf</a>
 
 ## DIARIO DE TRABAJO
 
@@ -115,6 +118,9 @@ Se irá describiendo en el diario de trabajo las adesiones y cambios de las dife
 
   - ### Semana 8 (Entrega Final):
 
+    - Finalización del módulo de administración en aplicación SPA.
+    - Puesta en marcha de la primera versión estable del proyecto, formado por los subproyectos MatterAccounting, MatterLanding,
+    MatterApi y MatterMovilApp.
 
 ## Interfaz Actual
 

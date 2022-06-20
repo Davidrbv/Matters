@@ -34,7 +34,7 @@ export class PhotoService {
       quality: 60,
       allowEditing: false,
       resultType: CameraResultType.Uri,
-      source: CameraSource.Prompt
+      source: CameraSource.Photos
     });
     const blob = await fetch(image.webPath).then(i => i.blob());
     return blob;
